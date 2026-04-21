@@ -1,0 +1,60 @@
+{
+  "id": "template-braincode-ai-powered-code-generation",
+  "slug": "braincode-ai-powered-code-generation",
+  "title": "BrainCode - AI-Powered Code Generation",
+  "summary": "BrainCode - AI code generation and debugging platform for developers",
+  "description": "BrainCode - AI code generation and debugging platform for developers",
+  "category": "saas",
+  "categoryTitle": "SaaS",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-tailwind",
+  "frameworkLabel": "HTML + Tailwind CSS",
+  "templateType": "template",
+  "industry": "SaaS",
+  "style": "No-code Platform",
+  "audience": "SaaS brands and product teams",
+  "tags": [
+    "saas",
+    "no-code platform",
+    "website template hub",
+    "html template",
+    "html",
+    "tailwind",
+    "js"
+  ],
+  "techStack": [
+    "HTML",
+    "Tailwind",
+    "JS"
+  ],
+  "sections": [
+    "Header",
+    "Hero",
+    "Core sections",
+    "Trust blocks",
+    "Call to action",
+    "Footer"
+  ],
+  "layoutNotes": [
+    "Imported from Website Template Hub as a local source-backed template.",
+    "Preview and downloadable code are generated from the original HTML source.",
+    "Asset paths are normalized so the template can preview inside Multiverse."
+  ],
+  "responsiveNotes": [
+    "Responsive layout comes from the original one-page template source.",
+    "Preview uses the real HTML file instead of a synthetic poster image."
+  ],
+  "bestFor": [
+    "SaaS",
+    "No-code Platform",
+    "Quick-launch marketing sites"
+  ],
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": false,
+  "updatedAt": "2026-04-17",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-21T08:02:15.130Z"
+}

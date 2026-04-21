@@ -1,0 +1,60 @@
+{
+  "id": "template-syncteam-team-collaboration-file-sync",
+  "slug": "syncteam-team-collaboration-file-sync",
+  "title": "SyncTeam - Team Collaboration & File Sync",
+  "summary": "SyncTeam - Real-time team collaboration and file sync platform",
+  "description": "SyncTeam - Real-time team collaboration and file sync platform",
+  "category": "saas",
+  "categoryTitle": "SaaS",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-tailwind",
+  "frameworkLabel": "HTML + Tailwind CSS",
+  "templateType": "template",
+  "industry": "SaaS",
+  "style": "Database Management",
+  "audience": "SaaS brands and product teams",
+  "tags": [
+    "saas",
+    "database management",
+    "website template hub",
+    "html template",
+    "html",
+    "tailwind",
+    "js"
+  ],
+  "techStack": [
+    "HTML",
+    "Tailwind",
+    "JS"
+  ],
+  "sections": [
+    "Header",
+    "Hero",
+    "Core sections",
+    "Trust blocks",
+    "Call to action",
+    "Footer"
+  ],
+  "layoutNotes": [
+    "Imported from Website Template Hub as a local source-backed template.",
+    "Preview and downloadable code are generated from the original HTML source.",
+    "Asset paths are normalized so the template can preview inside Multiverse."
+  ],
+  "responsiveNotes": [
+    "Responsive layout comes from the original one-page template source.",
+    "Preview uses the real HTML file instead of a synthetic poster image."
+  ],
+  "bestFor": [
+    "SaaS",
+    "Database Management",
+    "Quick-launch marketing sites"
+  ],
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": false,
+  "updatedAt": "2026-04-17",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-21T08:02:15.130Z"
+}

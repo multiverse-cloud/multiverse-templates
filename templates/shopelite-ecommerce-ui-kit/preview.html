@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShopElite Ecommerce UI Kit</title>
+    <style>
+      :root { --bg:#f6f8f7; --ink:#0f1720; --muted:#5f6b74; --line:rgba(15,23,32,.1); --accent:#0f9f7f; --accent-strong:#0d7d65; }
+      * { box-sizing:border-box; }
+      body { margin:0; font-family:Inter,"Segoe UI",Arial,sans-serif; background:radial-gradient(circle at top right, rgba(16,185,129,.16), transparent 26%), linear-gradient(180deg,#fff 0%,var(--bg) 100%); color:var(--ink); }
+      a { color:inherit; text-decoration:none; }
+      .shell { max-width:1180px; margin:0 auto; padding:24px; }
+      .topbar { display:flex; justify-content:space-between; gap:16px; align-items:center; padding:14px 18px; border:1px solid var(--line); border-radius:20px; background:rgba(255,255,255,.88); backdrop-filter:blur(18px); }
+      .brand { display:inline-flex; align-items:center; gap:12px; font-weight:800; }
+      .brand-mark { width:14px; height:14px; border-radius:999px; background:linear-gradient(135deg,#10b981,#0f766e); box-shadow:0 0 0 7px rgba(16,185,129,.12); }
+      .nav { display:flex; gap:18px; color:var(--muted); font-size:14px; }
+      .hero { display:grid; grid-template-columns:1.02fr .98fr; gap:24px; align-items:center; padding:52px 0 36px; }
+      .eyebrow { margin:0 0 12px; color:var(--accent-strong); font-size:12px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; }
+      h1,h2,h3,p { margin:0; }
+      h1 { font-size:clamp(2.9rem,5vw,5rem); line-height:.98; letter-spacing:-.05em; max-width:10ch; }
+      h2 { font-size:clamp(1.8rem,3vw,2.8rem); line-height:1.06; letter-spacing:-.04em; }
+      .hero-copy p:last-of-type,.section-copy,.product-card p,.meta,.newsletter-copy { color:var(--muted); line-height:1.72; }
+      .cta-row,.metrics,.categories,.products,.proof-grid { display:grid; gap:16px; }
+      .cta-row { display:flex; flex-wrap:wrap; margin:24px 0; }
+      .btn { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 18px; border-radius:16px; border:1px solid var(--line); font-weight:700; }
+      .btn-primary { background:var(--accent); color:#fff; }
+      .btn-secondary { background:#fff; }
+      .hero-panel,.metric,.trust-strip,.category-card,.product-card,.deals-panel,.proof-card,.newsletter { border:1px solid var(--line); border-radius:26px; background:rgba(255,255,255,.92); box-shadow:0 20px 40px -28px rgba(15,23,32,.25); }
+      .hero-panel { padding:22px; display:grid; gap:16px; }
+      .panel-shot { display:grid; gap:14px; padding:18px; border-radius:20px; background:linear-gradient(180deg,#0f1720,#1e293b); }
+      .panel-row { display:grid; grid-template-columns:1.2fr .8fr; gap:12px; }
+      .panel-box,.panel-chip { border-radius:16px; background:rgba(255,255,255,.08); }
+      .panel-box { min-height:148px; }
+      .panel-chip { min-height:56px; }
+      .metrics { grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:20px; }
+      .metric { padding:16px 18px; }
+      .metric strong { display:block; font-size:1.2rem; margin-bottom:6px; }
+      .trust-strip { display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; padding:18px 22px; }
+      .section { padding:20px 0 0; }
+      .section-head { display:flex; justify-content:space-between; gap:18px; align-items:end; margin-bottom:20px; }
+      .categories { grid-template-columns:repeat(4,minmax(0,1fr)); }
+      .category-card { padding:20px; min-height:180px; display:grid; align-content:end; background:linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,.92)), linear-gradient(135deg, rgba(16,185,129,.16), rgba(13,148,136,.04)); }
+      .products { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      .product-card { overflow:hidden; }
+      .product-image { aspect-ratio:4/3; background:linear-gradient(135deg,#d1fae5,#ecfeff); }
+      .product-copy { padding:18px; display:grid; gap:10px; }
+      .price-row { display:flex; justify-content:space-between; align-items:center; gap:12px; font-weight:700; }
+      .deals-panel { margin-top:24px; padding:24px; display:grid; grid-template-columns:1fr auto; gap:18px; align-items:center; background:linear-gradient(135deg,#062f29,#115e59); color:#f8fffd; }
+      .countdown { display:flex; gap:12px; flex-wrap:wrap; }
+      .countdown span { min-width:76px; padding:14px 12px; border-radius:16px; text-align:center; background:rgba(255,255,255,.1); }
+      .countdown strong { display:block; font-size:1.2rem; margin-bottom:4px; }
+      .proof-grid { grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:24px; }
+      .proof-card { padding:20px; }
+      .newsletter { margin:28px 0 12px; padding:26px; display:grid; grid-template-columns:1fr auto; gap:18px; align-items:center; }
+      .newsletter-form { display:flex; gap:12px; flex-wrap:wrap; }
+      .newsletter input { min-width:280px; min-height:48px; padding:0 16px; border-radius:16px; border:1px solid var(--line); font:inherit; }
+      @media (max-width:980px) { .hero,.deals-panel,.newsletter,.section-head { grid-template-columns:1fr; } .nav { display:none; } .categories,.products,.proof-grid,.metrics { grid-template-columns:1fr; } }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar"><div class="brand"><span class="brand-mark"></span><span>ShopElite</span></div><nav class="nav"><a href="#featured">Featured</a><a href="#categories">Categories</a><a href="#deals">Deals</a><a href="#newsletter">Newsletter</a></nav></header>
+      <main>
+        <section class="hero">
+          <div class="hero-copy"><p class="eyebrow">Ecommerce UI starter</p><h1>Launch a premium storefront without rebuilding the basics.</h1><p>ShopElite packages a polished retail home page, category discovery, featured merchandising, timed promotions, testimonials, and reusable storefront source files.</p><div class="cta-row"><a class="btn btn-primary" href="#featured">View sections</a><a class="btn btn-secondary" href="#newsletter">Download kit</a></div><div class="metrics"><div class="metric"><strong>12+</strong><span>storefront modules inside the kit</span></div><div class="metric"><strong>Next.js</strong><span>ready for modern commerce MVPs</span></div><div class="metric"><strong>Mock data</strong><span>shipped for instant local previewing</span></div></div></div>
+          <div class="hero-panel"><div class="panel-shot"><div class="panel-chip"></div><div class="panel-row"><div class="panel-box"></div><div class="panel-box"></div></div><div class="panel-row"><div class="panel-chip"></div><div class="panel-chip"></div></div></div><p class="meta">Includes the actual storefront source bundle from the mini0 project, packaged for Multiverse templates.</p></div>
+        </section>
+        <section class="trust-strip"><span>Conversion-first layout</span><span>Responsive merchandising</span><span>Cart + auth surfaces</span><span>Downloadable source bundle</span></section>
+        <section class="section" id="categories"><div class="section-head"><div><p class="eyebrow">Category discovery</p><h2>Highlight collections with cleaner retail hierarchy.</h2></div><p class="section-copy">Use these blocks for departments, curated drops, or seasonal collections.</p></div><div class="categories"><article class="category-card"><h3>Electronics</h3><p class="meta">Smart devices and premium everyday tech.</p></article><article class="category-card"><h3>Fashion</h3><p class="meta">Modern wardrobe staples and elevated basics.</p></article><article class="category-card"><h3>Home &amp; Living</h3><p class="meta">Comfort-focused pieces for contemporary spaces.</p></article><article class="category-card"><h3>Sports &amp; Outdoors</h3><p class="meta">Performance gear for active routines.</p></article></div></section>
+        <section class="section" id="featured"><div class="section-head"><div><p class="eyebrow">Featured products</p><h2>Merchandise hero products with sharper cards and pricing emphasis.</h2></div><p class="section-copy">The kit includes hero, product grid, category, countdown, trust, testimonial, and newsletter sections.</p></div><div class="products"><article class="product-card"><div class="product-image"></div><div class="product-copy"><h3>Aurora Headphones</h3><p>Noise-canceling over-ear headphones with strong hero appeal and premium pricing treatment.</p><div class="price-row"><span>$199</span><span class="meta">4.8 rating</span></div></div></article><article class="product-card"><div class="product-image"></div><div class="product-copy"><h3>Orbit Smartwatch Pro</h3><p>Retail-ready product card layout with clear secondary metadata and cleaner spacing.</p><div class="price-row"><span>$279</span><span class="meta">Health + GPS</span></div></div></article><article class="product-card"><div class="product-image"></div><div class="product-copy"><h3>Canvas Utility Jacket</h3><p>Balanced card framing built for apparel, electronics, and mixed-category merchandising.</p><div class="price-row"><span>$89</span><span class="meta">Featured</span></div></div></article></div></section>
+        <section class="deals-panel" id="deals"><div><p class="eyebrow" style="color:#bfffe2;">Flash deals module</p><h2>Timed promotions and callouts are built into the storefront flow.</h2><p class="meta" style="color:rgba(248,255,253,.74);">The source bundle includes the countdown-driven deals section from the original project.</p></div><div class="countdown"><span><strong>12</strong>Hours</span><span><strong>24</strong>Minutes</span><span><strong>08</strong>Seconds</span></div></section>
+        <section class="section"><div class="section-head"><div><p class="eyebrow">Why teams use it</p><h2>More than a landing page: a practical commerce starter with supporting surfaces.</h2></div></div><div class="proof-grid"><article class="proof-card"><h3>Storefront UI</h3><p>Homepage merchandising, product grids, category cards, testimonials, and newsletter capture.</p></article><article class="proof-card"><h3>State + interactions</h3><p>Cart drawers, filters, mobile navigation, and commerce-friendly components are included in the bundle.</p></article><article class="proof-card"><h3>Source bundle</h3><p>Real Next.js files from the mini0 project so teams can start with actual structure instead of flat snippets.</p></article></div></section>
+        <section class="newsletter" id="newsletter"><div class="newsletter-copy"><p class="eyebrow">Newsletter module</p><h2>Finish the flow with retention and repeat-visit capture.</h2><p>The kit also includes the storefront footer, trust badges, and call-to-action patterns used throughout the original design.</p></div><form class="newsletter-form"><input type="email" placeholder="Enter your email" /><button class="btn btn-primary" type="button">Join updates</button></form></section>
+      </main>
+    </div>
+  </body>
+</html>

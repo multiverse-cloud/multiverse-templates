@@ -1,0 +1,67 @@
+{
+  "id": "template-shopelite-ecommerce-ui-kit",
+  "slug": "shopelite-ecommerce-ui-kit",
+  "title": "ShopElite Ecommerce UI Kit",
+  "summary": "A storefront-first Next.js ecommerce starter with premium merchandising, featured products, conversion-focused sections, responsive layout, and supporting UI state.",
+  "description": "Built from the mini0 project inside Multiverse, this template packages a polished ecommerce UI system with a storefront home page, category discovery, featured merchandising, timed deals, trust sections, testimonials, newsletter capture, header and footer patterns, and reusable component primitives.",
+  "category": "ecommerce",
+  "categoryTitle": "Ecommerce UI",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "next-tailwind",
+  "frameworkLabel": "Next.js + Tailwind",
+  "industry": "Retail commerce",
+  "style": "Bright conversion-led storefront with premium merchandising",
+  "audience": "store founders and frontend product teams",
+  "tags": [
+    "ecommerce ui",
+    "nextjs storefront",
+    "shop template",
+    "retail landing page",
+    "product grid",
+    "storefront starter"
+  ],
+  "techStack": [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "Zustand",
+    "shadcn/ui"
+  ],
+  "sections": [
+    "Sticky header",
+    "Hero banner",
+    "Trust badges",
+    "Featured products",
+    "Category discovery",
+    "Deals countdown",
+    "Product grid",
+    "Testimonials",
+    "Newsletter signup",
+    "Footer"
+  ],
+  "layoutNotes": [
+    "The homepage opens with merchandising-first hero framing and quickly moves into trust and product proof.",
+    "The template keeps section spacing consistent so retail content feels like one system instead of disconnected blocks.",
+    "The included file bundle focuses on reusable storefront UI rather than shipping the original API-backed homepage unchanged.",
+    "Live demo: https://ecommerce-pro-orcin.vercel.app/",
+    "Download zip: https://github.com/arunmvp/ecommerce-pro/archive/refs/heads/main.zip"
+  ],
+  "responsiveNotes": [
+    "The header compresses into mobile-friendly search and menu interactions.",
+    "Product and category grids collapse cleanly into stacked cards on smaller screens.",
+    "Shared spacing utilities keep the storefront readable across desktop, tablet, and mobile."
+  ],
+  "bestFor": [
+    "Storefront starters",
+    "Retail landing pages",
+    "Commerce MVPs"
+  ],
+  "liveUrl": "https://ecommerce-pro-orcin.vercel.app/",
+  "downloadUrl": "https://github.com/arunmvp/ecommerce-pro/archive/refs/heads/main.zip",
+  "featured": true,
+  "updatedAt": "2026-04-07",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-21T08:02:15.130Z"
+}

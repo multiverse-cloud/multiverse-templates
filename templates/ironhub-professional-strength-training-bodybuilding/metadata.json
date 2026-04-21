@@ -1,0 +1,60 @@
+{
+  "id": "template-ironhub-professional-strength-training-bodybuilding",
+  "slug": "ironhub-professional-strength-training-bodybuilding",
+  "title": "IronHub - Professional Strength Training & Bodybuilding",
+  "summary": "World-class strength training programs for competitive athletes and dedicated bodybuilders.",
+  "description": "World-class strength training programs for competitive athletes and dedicated bodybuilders.",
+  "category": "fitness",
+  "categoryTitle": "Fitness",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-tailwind",
+  "frameworkLabel": "HTML + Tailwind CSS",
+  "templateType": "template",
+  "industry": "Fitness",
+  "style": "Strength Training",
+  "audience": "Fitness brands and product teams",
+  "tags": [
+    "fitness",
+    "strength training",
+    "website template hub",
+    "html template",
+    "html",
+    "tailwind",
+    "js"
+  ],
+  "techStack": [
+    "HTML",
+    "Tailwind",
+    "JS"
+  ],
+  "sections": [
+    "Header",
+    "Hero",
+    "Core sections",
+    "Trust blocks",
+    "Call to action",
+    "Footer"
+  ],
+  "layoutNotes": [
+    "Imported from Website Template Hub as a local source-backed template.",
+    "Preview and downloadable code are generated from the original HTML source.",
+    "Asset paths are normalized so the template can preview inside Multiverse."
+  ],
+  "responsiveNotes": [
+    "Responsive layout comes from the original one-page template source.",
+    "Preview uses the real HTML file instead of a synthetic poster image."
+  ],
+  "bestFor": [
+    "Fitness",
+    "Strength Training",
+    "Quick-launch marketing sites"
+  ],
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": false,
+  "updatedAt": "2026-04-17",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-21T08:02:15.130Z"
+}

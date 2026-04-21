@@ -1,0 +1,60 @@
+{
+  "id": "template-doctorhub-book-doctor-appointments",
+  "slug": "doctorhub-book-doctor-appointments",
+  "title": "DoctorHub - Book Doctor Appointments",
+  "summary": "DoctorHub - Find and book appointments with doctors online",
+  "description": "DoctorHub - Find and book appointments with doctors online",
+  "category": "healthcare",
+  "categoryTitle": "Healthcare",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-tailwind",
+  "frameworkLabel": "HTML + Tailwind CSS",
+  "templateType": "template",
+  "industry": "Healthcare",
+  "style": "Mental Health",
+  "audience": "Healthcare brands and product teams",
+  "tags": [
+    "healthcare",
+    "mental health",
+    "website template hub",
+    "html template",
+    "html",
+    "tailwind",
+    "js"
+  ],
+  "techStack": [
+    "HTML",
+    "Tailwind",
+    "JS"
+  ],
+  "sections": [
+    "Header",
+    "Hero",
+    "Core sections",
+    "Trust blocks",
+    "Call to action",
+    "Footer"
+  ],
+  "layoutNotes": [
+    "Imported from Website Template Hub as a local source-backed template.",
+    "Preview and downloadable code are generated from the original HTML source.",
+    "Asset paths are normalized so the template can preview inside Multiverse."
+  ],
+  "responsiveNotes": [
+    "Responsive layout comes from the original one-page template source.",
+    "Preview uses the real HTML file instead of a synthetic poster image."
+  ],
+  "bestFor": [
+    "Healthcare",
+    "Mental Health",
+    "Quick-launch marketing sites"
+  ],
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": false,
+  "updatedAt": "2026-04-17",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-21T08:02:15.130Z"
+}

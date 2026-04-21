@@ -1,0 +1,67 @@
+{
+  "id": "template-nexusshop-platform-ui-kit",
+  "slug": "nexusshop-platform-ui-kit",
+  "title": "NexusShop Platform UI Kit",
+  "summary": "A premium Next.js and Tailwind platform starter for teams that want storefront flows, subscription packaging, account workspaces, and admin operations in one system.",
+  "description": "Analyzed from the workspace-f30e2c47 project, this template captures a dense Next.js SaaS-commerce system with marketing sections, ecommerce primitives, subscription models, cart and checkout state, notifications, user account flows, and admin-oriented data structures.",
+  "category": "dashboard",
+  "categoryTitle": "Dashboards",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "next-tailwind",
+  "frameworkLabel": "Next.js + Tailwind",
+  "industry": "Commerce operations",
+  "style": "Modern SaaS-commerce interface with bold gradients and dashboard depth",
+  "audience": "product teams building storefront plus workspace products",
+  "tags": [
+    "nextjs dashboard",
+    "saas ecommerce ui",
+    "subscription platform",
+    "admin workspace",
+    "premium storefront",
+    "shadcn ui"
+  ],
+  "techStack": [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "Prisma",
+    "Zustand"
+  ],
+  "sections": [
+    "Hero banner",
+    "Trusted brands",
+    "Feature cards",
+    "Featured products",
+    "Pricing comparison",
+    "Testimonials",
+    "FAQ",
+    "Newsletter signup",
+    "Cart and checkout flows",
+    "User dashboard",
+    "Admin dashboard"
+  ],
+  "layoutNotes": [
+    "The original project centralizes much of the UI in a very large application surface, so this bundle focuses on the shell, tokens, state layer, and configuration that define the system.",
+    "The interface direction blends ecommerce merchandising with SaaS subscription packaging and account-management flows.",
+    "The bundled files emphasize reusable configuration, theme tokens, and application state instead of copying the full monolithic page into the template store."
+  ],
+  "responsiveNotes": [
+    "The homepage pattern supports collapsible navigation, stacked cards, and responsive product grids.",
+    "State and modal flows are designed to keep cart, auth, and checkout interactions manageable on smaller screens.",
+    "Shared theme tokens and shadcn primitives help the UI stay consistent across public and workspace surfaces."
+  ],
+  "bestFor": [
+    "Commerce dashboards",
+    "Subscription storefronts",
+    "Account-based product platforms"
+  ],
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": true,
+  "updatedAt": "2026-04-15",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-21T08:02:15.130Z"
+}

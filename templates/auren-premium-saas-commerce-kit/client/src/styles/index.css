@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 42 40% 98%;
+  --foreground: 225 38% 12%;
+  --muted: 220 25% 94%;
+  --muted-foreground: 220 10% 45%;
+  --border: 220 17% 86%;
+  --surface: 0 0% 100%;
+  --accent: 37 92% 66%;
+  --accent-foreground: 225 38% 12%;
+  --primary: 220 72% 46%;
+  --primary-foreground: 0 0% 100%;
+  --success: 152 57% 39%;
+  --warning: 34 95% 49%;
+  --danger: 0 72% 55%;
+}
+
+.dark {
+  --background: 225 36% 7%;
+  --foreground: 44 28% 96%;
+  --muted: 225 23% 16%;
+  --muted-foreground: 220 12% 68%;
+  --border: 224 18% 22%;
+  --surface: 226 30% 10%;
+  --accent: 42 92% 66%;
+  --accent-foreground: 225 38% 12%;
+  --primary: 213 92% 58%;
+  --primary-foreground: 225 36% 7%;
+  --success: 152 57% 46%;
+  --warning: 34 95% 58%;
+  --danger: 0 79% 63%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    background-image:
+      radial-gradient(circle at top left, rgba(217, 169, 81, 0.12), transparent 28%),
+      radial-gradient(circle at 82% 10%, rgba(35, 83, 198, 0.12), transparent 18%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 243, 238, 1));
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(35, 83, 198, 0.16);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 md:px-8 lg:px-10;
+  }
+
+  .surface-panel {
+    @apply rounded-lg border border-border/80 bg-surface shadow-card;
+  }
+
+  .section-space {
+    @apply py-16 md:py-24;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2;
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "template-fitmax-sports-fitness-equipment",
+  "slug": "fitmax-sports-fitness-equipment",
+  "title": "FitMax - Sports & Fitness Equipment",
+  "summary": "FitMax - Sports & Fitness Equipment is a e-commerce template with a polished one-page layout and production-ready sections.",
+  "description": "FitMax - Sports & Fitness Equipment is a e-commerce template with a polished one-page layout and production-ready sections.",
+  "category": "ecommerce",
+  "categoryTitle": "E-commerce",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-tailwind",
+  "frameworkLabel": "HTML + Tailwind CSS",
+  "templateType": "template",
+  "industry": "E-commerce",
+  "style": "Antiques & Vintage",
+  "audience": "E-commerce brands and product teams",
+  "tags": [
+    "e-commerce",
+    "antiques & vintage",
+    "website template hub",
+    "html template",
+    "html",
+    "tailwind",
+    "js"
+  ],
+  "techStack": [
+    "HTML",
+    "Tailwind",
+    "JS"
+  ],
+  "sections": [
+    "Header",
+    "Hero",
+    "Core sections",
+    "Trust blocks",
+    "Call to action",
+    "Footer"
+  ],
+  "layoutNotes": [
+    "Imported from Website Template Hub as a local source-backed template.",
+    "Preview and downloadable code are generated from the original HTML source.",
+    "Asset paths are normalized so the template can preview inside Multiverse."
+  ],
+  "responsiveNotes": [
+    "Responsive layout comes from the original one-page template source.",
+    "Preview uses the real HTML file instead of a synthetic poster image."
+  ],
+  "bestFor": [
+    "E-commerce",
+    "Antiques & Vintage",
+    "Quick-launch marketing sites"
+  ],
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": false,
+  "updatedAt": "2026-04-17",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-21T08:02:15.130Z"
+}

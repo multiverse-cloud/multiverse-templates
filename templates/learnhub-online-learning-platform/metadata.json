@@ -1,0 +1,60 @@
+{
+  "id": "template-learnhub-online-learning-platform",
+  "slug": "learnhub-online-learning-platform",
+  "title": "LearnHub - Online Learning Platform",
+  "summary": "LearnHub - Master new skills with our comprehensive online courses. Expert instructors, lifetime access, and industry-recognized certifications.",
+  "description": "LearnHub - Master new skills with our comprehensive online courses. Expert instructors, lifetime access, and industry-recognized certifications.",
+  "category": "education",
+  "categoryTitle": "Education",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-tailwind",
+  "frameworkLabel": "HTML + Tailwind CSS",
+  "templateType": "template",
+  "industry": "Education",
+  "style": "K-12 Education",
+  "audience": "Education brands and product teams",
+  "tags": [
+    "education",
+    "k-12 education",
+    "website template hub",
+    "html template",
+    "html",
+    "tailwind",
+    "js"
+  ],
+  "techStack": [
+    "HTML",
+    "Tailwind",
+    "JS"
+  ],
+  "sections": [
+    "Header",
+    "Hero",
+    "Core sections",
+    "Trust blocks",
+    "Call to action",
+    "Footer"
+  ],
+  "layoutNotes": [
+    "Imported from Website Template Hub as a local source-backed template.",
+    "Preview and downloadable code are generated from the original HTML source.",
+    "Asset paths are normalized so the template can preview inside Multiverse."
+  ],
+  "responsiveNotes": [
+    "Responsive layout comes from the original one-page template source.",
+    "Preview uses the real HTML file instead of a synthetic poster image."
+  ],
+  "bestFor": [
+    "Education",
+    "K-12 Education",
+    "Quick-launch marketing sites"
+  ],
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": false,
+  "updatedAt": "2026-04-17",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-21T08:02:15.130Z"
+}

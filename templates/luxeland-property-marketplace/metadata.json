@@ -1,0 +1,60 @@
+{
+  "id": "template-luxeland-property-marketplace",
+  "slug": "luxeland-property-marketplace",
+  "title": "LuxeLand - Property Marketplace",
+  "summary": "LuxeLand - Find your perfect home with top real estate marketplace",
+  "description": "LuxeLand - Find your perfect home with top real estate marketplace",
+  "category": "real-estate",
+  "categoryTitle": "Real Estate",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-tailwind",
+  "frameworkLabel": "HTML + Tailwind CSS",
+  "templateType": "template",
+  "industry": "Real Estate",
+  "style": "General Real Estate",
+  "audience": "Real Estate brands and product teams",
+  "tags": [
+    "real estate",
+    "general real estate",
+    "website template hub",
+    "html template",
+    "html",
+    "tailwind",
+    "js"
+  ],
+  "techStack": [
+    "HTML",
+    "Tailwind",
+    "JS"
+  ],
+  "sections": [
+    "Header",
+    "Hero",
+    "Core sections",
+    "Trust blocks",
+    "Call to action",
+    "Footer"
+  ],
+  "layoutNotes": [
+    "Imported from Website Template Hub as a local source-backed template.",
+    "Preview and downloadable code are generated from the original HTML source.",
+    "Asset paths are normalized so the template can preview inside Multiverse."
+  ],
+  "responsiveNotes": [
+    "Responsive layout comes from the original one-page template source.",
+    "Preview uses the real HTML file instead of a synthetic poster image."
+  ],
+  "bestFor": [
+    "Real Estate",
+    "General Real Estate",
+    "Quick-launch marketing sites"
+  ],
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": false,
+  "updatedAt": "2026-04-17",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-21T08:02:15.130Z"
+}
