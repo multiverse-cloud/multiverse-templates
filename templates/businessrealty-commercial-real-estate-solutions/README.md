@@ -7,6 +7,7 @@ BusinessRealty - Commercial real estate solutions for offices, retail, and indus
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/businessrealty-commercial-real-estate-solutions
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

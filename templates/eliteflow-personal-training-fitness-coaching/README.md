@@ -7,6 +7,7 @@ Transform your body with EliteFlow
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/eliteflow-personal-training-fitness-coaching
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

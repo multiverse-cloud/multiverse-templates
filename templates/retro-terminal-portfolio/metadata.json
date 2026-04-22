@@ -1,0 +1,58 @@
+{
+  "id": "template-retro-terminal-portfolio",
+  "slug": "retro-terminal-portfolio",
+  "title": "Retro Terminal Portfolio",
+  "summary": "A retro terminal-inspired portfolio with command-line storytelling, nostalgic UI details, and a focused developer identity.",
+  "description": "Retro Terminal packages a command-line inspired portfolio aesthetic into a plain HTML, CSS, and JavaScript template. It is built for developers who want a nostalgic terminal presentation without adding framework complexity.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Retro terminal developer portfolio with nostalgic UI",
+  "audience": "developers, terminal lovers, and indie makers",
+  "tags": [
+    "terminal portfolio",
+    "retro portfolio",
+    "developer website",
+    "command line ui",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Terminal hero",
+    "Projects",
+    "Skills",
+    "Commands",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "The terminal framing gives the site personality, but the content still needs to be easy to scan.",
+    "Works best for technical creators with a playful personal brand."
+  ],
+  "responsiveNotes": [
+    "Terminal content wraps into compact stacked sections on mobile.",
+    "Interactive command details remain optional so the portfolio still works as a normal site."
+  ],
+  "bestFor": [
+    "Developer portfolios",
+    "Indie maker sites",
+    "Nostalgic personal brands"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": false,
+  "updatedAt": "2026-04-22",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-22T10:53:42.043Z"
+}

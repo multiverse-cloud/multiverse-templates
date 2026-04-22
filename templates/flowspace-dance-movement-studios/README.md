@@ -7,6 +7,7 @@ Transform your body with hip-hop, contemporary, and Zumba classes. Dance your wa
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/flowspace-dance-movement-studios
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

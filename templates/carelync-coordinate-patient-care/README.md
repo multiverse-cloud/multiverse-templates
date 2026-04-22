@@ -7,6 +7,7 @@ CareLync - Patient care coordination and communication platform
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/carelync-coordinate-patient-care
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

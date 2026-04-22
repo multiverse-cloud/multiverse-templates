@@ -7,6 +7,7 @@ ShopHub - Modern e-commerce platform for online shopping
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/shophub-your-online-store
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

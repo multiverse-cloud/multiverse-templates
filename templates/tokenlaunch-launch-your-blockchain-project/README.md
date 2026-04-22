@@ -7,6 +7,7 @@ TokenLaunch - Token launchpad for blockchain projects
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/tokenlaunch-launch-your-blockchain-project
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

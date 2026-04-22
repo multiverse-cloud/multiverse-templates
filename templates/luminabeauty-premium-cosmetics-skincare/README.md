@@ -7,6 +7,7 @@ LuminaBeauty - Premium Cosmetics & Skincare is a e-commerce template with a poli
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/luminabeauty-premium-cosmetics-skincare
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

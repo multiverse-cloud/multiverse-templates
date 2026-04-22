@@ -7,6 +7,7 @@ AnalyticsHub - Advanced analytics platform for data-driven insights
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/analyticshub-real-time-analytics-insights-platform
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

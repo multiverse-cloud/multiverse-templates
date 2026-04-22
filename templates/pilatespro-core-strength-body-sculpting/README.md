@@ -7,6 +7,7 @@ Expert Pilates training for core strength, flexibility, and elegant body sculpti
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/pilatespro-core-strength-body-sculpting
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

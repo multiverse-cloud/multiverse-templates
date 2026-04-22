@@ -7,6 +7,7 @@ Integrate fitness with mindfulness. ZenFit offers yoga, meditation, and strength
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/zenfit-holistic-wellness-mindful-fitness
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

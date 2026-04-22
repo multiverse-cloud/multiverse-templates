@@ -7,6 +7,7 @@ NFTGallery - Create, trade, and collect digital NFTs
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/nftgallery-create-trade-digital-nfts
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

@@ -7,6 +7,7 @@ VacationPalace - Luxury vacation rentals and holiday homes worldwide
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/vacationpalace-luxury-holiday-homes
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

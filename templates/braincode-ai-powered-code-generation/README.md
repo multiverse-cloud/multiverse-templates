@@ -7,6 +7,7 @@ BrainCode - AI code generation and debugging platform for developers
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/braincode-ai-powered-code-generation
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

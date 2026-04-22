@@ -7,6 +7,7 @@ No equipment needed. Train anywhere. Functional fitness for real strength and mo
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/crossflex-functional-fitness-anywhere
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

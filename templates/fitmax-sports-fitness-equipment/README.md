@@ -7,6 +7,7 @@ FitMax - Sports & Fitness Equipment is a e-commerce template with a polished one
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/fitmax-sports-fitness-equipment
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

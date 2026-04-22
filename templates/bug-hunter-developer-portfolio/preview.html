@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrey Petrovic — QA Engineer</title>
+
+  <meta name="description" content="Andrey Petrovic — QA Engineer. Bug tracker-themed portfolio." />
+  <meta name="author" content="Andrey Petrovic" />
+  <meta name="theme-color" content="#0d1117" />
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0d1117;
+  --bg-card: #161b22;
+  --bg-card-hover: #1c2333;
+  --bg-input: #0d1117;
+  --border: #30363d;
+  --border-hover: #484f58;
+  --text: #e6edf3;
+  --text-sec: #8b949e;
+  --text-muted: #484f58;
+  --green: #3fb950;
+  --green-dim: #238636;
+  --green-bg: rgba(63, 185, 80, 0.1);
+  --red: #f85149;
+  --red-dim: #da3633;
+  --red-bg: rgba(248, 81, 73, 0.1);
+  --orange: #d29922;
+  --orange-bg: rgba(210, 153, 34, 0.1);
+  --yellow: #e3b341;
+  --blue: #58a6ff;
+  --blue-bg: rgba(88, 166, 255, 0.1);
+  --purple: #bc8cff;
+  --purple-bg: rgba(188, 140, 255, 0.1);
+  --font: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --max-w: 1100px;
+  --px: 24px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--px);
+}
+
+/* ===== ANIMATED GRID BACKGROUND ===== */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(48, 54, 61, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(48, 54, 61, 0.3) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 70%);
+}
+
+/* ===== FLOATING BUGS ===== */
+.floating-bugs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fbug {
+  position: absolute;
+  font-size: 16px;
+  opacity: 0.06;
+  animation: bugFloat linear infinite;
+}
+
+@keyframes bugFloat {
+  0% {
+    transform: translateY(110vh) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-10vh) rotate(360deg);
+  }
+}
+
+/* ===== STATUS BAR ===== */
+.status-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: 32px;
+  background: #010409;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-sec);
+}
+
+.status-left, .status-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-led {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: ledBlink 2s ease-in-out infinite;
+}
+
+.status-led.green {
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+}
+
+@keyframes ledBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.status-sep {
+  color: var(--text-muted);
+}
+
+.counter {
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* ===== NAVIGATION ===== */
+.nav {
+  position: fixed;
+  top: 32px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px var(--px);
+  background: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bug-icon {
+  font-size: 22px;
+}
+
+.logo-name {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 1px;
+}
+
+.logo-accent {
+  color: var(--red);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-sec);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s, background 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.nav-id {
+  color: var(--text-muted);
+  margin-right: 4px;
+}
+
+/* ===== SEVERITY BADGES ===== */
+.severity {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.severity.critical {
+  background: var(--red-bg);
+  color: var(--red);
+  border: 1px solid rgba(248, 81, 73, 0.3);
+}
+
+.severity.resolved {
+  background: var(--green-bg);
+  color: var(--green);
+  border: 1px solid rgba(63, 185, 80, 0.3);
+}
+
+.severity.active-tag {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border: 1px solid rgba(88, 166, 255, 0.3);
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  padding: 120px var(--px) 80px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.ticket-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  animation: fadeSlideUp 0.6s var(--ease) both;
+}
+
+.ticket-id {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.hero-title {
+  font-family: var(--font-mono);
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+/* Glitch effect */
+.glitch {
+  display: block;
+  position: relative;
+  animation: fadeSlideUp 0.6s var(--ease) 0.1s both;
+}
+
+.glitch:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.glitch:hover {
+  animation: glitchText 0.4s ease-in-out;
+}
+
+@keyframes glitchText {
+  0% { transform: translate(0); }
+  20% { transform: translate(-3px, 2px); color: var(--red); }
+  40% { transform: translate(3px, -2px); color: var(--blue); }
+  60% { transform: translate(-2px, -1px); color: var(--green); }
+  80% { transform: translate(2px, 1px); }
+  100% { transform: translate(0); }
+}
+
+.hero-role {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--green);
+  margin-bottom: 20px;
+  animation: fadeSlideUp 0.6s var(--ease) 0.3s both;
+}
+
+.role-prefix {
+  color: var(--text-muted);
+}
+
+.type-cursor {
+  animation: cursorBlink 0.8s step-end infinite;
+  color: var(--green);
+}
+
+@keyframes cursorBlink {
+  50% { opacity: 0; }
+}
+
+.hero-desc {
+  font-size: 16px;
+  color: var(--text-sec);
+  max-width: 460px;
+  margin-bottom: 32px;
+  animation: fadeSlideUp 0.6s var(--ease) 0.4s both;
+}
+
+/* Hero stats */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 36px;
+  padding: 20px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  animation: fadeSlideUp 0.6s var(--ease) 0.5s both;
+}
+
+.hstat {
+  text-align: center;
+}
+
+.hstat-val {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--green);
+  display: inline;
+}
+
+.hstat-unit {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.hstat-label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.hstat-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+}
+
+/* Hero actions */
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  animation: fadeSlideUp 0.6s var(--ease) 0.6s both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s, background 0.2s;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--green-dim);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--green);
+  color: #0d1117;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(63, 185, 80, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card);
+  transform: translateY(-2px);
+}
+
+.btn-bug {
+  font-size: 16px;
+}
+
+/* Terminal card */
+.hero-visual {
+  flex-shrink: 0;
+  width: min(440px, 45%);
+  animation: fadeSlideUp 0.8s var(--ease) 0.3s both;
+}
+
+.terminal-card {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: #010409;
+}
+
+.tc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+}
+
+.tc-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.tc-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.tc-dot.red { background: var(--red); }
+.tc-dot.yellow { background: var(--yellow); }
+.tc-dot.green { background: var(--green); }
+
+.tc-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.tc-body {
+  padding: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.tc-line {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.tc-prompt {
+  color: var(--green);
+  margin-right: 6px;
+}
+
+.tc-dim { color: var(--text-muted); }
+.tc-success { color: var(--green); }
+.tc-error { color: var(--red); }
+.tc-warn { color: var(--orange); }
+.tc-result { color: var(--text-sec); }
+
+.tc-progress {
+  color: var(--green);
+  letter-spacing: -2px;
+}
+
+.tc-cursor {
+  color: var(--green);
+  animation: cursorBlink 0.8s step-end infinite;
+}
+
+/* ===== SECTION COMMON ===== */
+.section {
+  padding: 100px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.section-header {
+  margin-bottom: 48px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--green);
+  margin-bottom: 10px;
+  padding: 4px 12px;
+  background: var(--green-bg);
+  border: 1px solid rgba(63, 185, 80, 0.2);
+  border-radius: 20px;
+}
+
+.section-title {
+  font-family: var(--font-mono);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* ===== BUG REPORT — ABOUT ===== */
+.bug-report {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.br-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.br-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.br-id {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.br-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.br-meta {
+  display: flex;
+  gap: 32px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.01);
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.meta-val {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar-sm {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-dim), var(--green));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+}
+
+.priority-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.priority-dot.high {
+  background: var(--orange);
+  box-shadow: 0 0 6px var(--orange);
+}
+
+.status-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+
+.status-badge.resolved {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.br-body {
+  padding: 24px;
+}
+
+.br-description {
+  margin-bottom: 24px;
+}
+
+.br-description h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-sec);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.br-description p {
+  color: var(--text-sec);
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+/* Code block */
+.br-code-block {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.code-header {
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.code-body {
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-x: auto;
+  background: #010409;
+}
+
+.code-key { color: var(--blue); }
+.code-str { color: var(--green); }
+.code-num { color: var(--orange); }
+
+/* ===== TIMELINE — EXPERIENCE ===== */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tl-item {
+  display: flex;
+  gap: 20px;
+}
+
+.tl-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 20px;
+}
+
+.tl-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  background: var(--bg);
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.tl-dot.active {
+  border-color: var(--green);
+  background: var(--green);
+  box-shadow: 0 0 10px rgba(63, 185, 80, 0.4);
+}
+
+.tl-dot.closed {
+  border-color: var(--text-muted);
+}
+
+.tl-line {
+  width: 2px;
+  flex: 1;
+  background: var(--border);
+}
+
+.tl-card {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 20px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.tl-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tl-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.tl-date {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.tl-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.tl-company {
+  color: var(--text-sec);
+  font-weight: 500;
+}
+
+.tl-card p {
+  font-size: 14px;
+  color: var(--text-sec);
+  margin-bottom: 14px;
+}
+
+.tl-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text-sec);
+}
+
+.tl-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--green);
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.tl-stat-icon {
+  font-size: 16px;
+}
+
+/* ===== COVERAGE — SKILLS ===== */
+.coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.cov-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: border-color 0.3s, transform 0.3s var(--ease);
+}
+
+.cov-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+}
+
+.cov-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cov-header h3 {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.cov-pct {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--green);
+}
+
+.cov-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.cov-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--green-dim), var(--green));
+  box-shadow: 0 0 8px rgba(63, 185, 80, 0.3);
+  transition: width 1.2s var(--ease);
+}
+
+.cov-fill.animate {
+  width: var(--target-width);
+}
+
+.cov-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tool-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-sec);
+  border: 1px solid var(--border);
+}
+
+/* ===== BUG KILLS ===== */
+.kills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.kill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s var(--ease);
+}
+
+.kill-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+}
+
+.kill-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.kill-sev {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.kill-sev.critical {
+  background: var(--red-bg);
+  color: var(--red);
+  border: 1px solid rgba(248, 81, 73, 0.3);
+}
+
+.kill-sev.high-sev {
+  background: var(--orange-bg);
+  color: var(--orange);
+  border: 1px solid rgba(210, 153, 34, 0.3);
+}
+
+.kill-sev.medium-sev {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border: 1px solid rgba(88, 166, 255, 0.3);
+}
+
+.kill-id {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.kill-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.kill-desc {
+  font-size: 14px;
+  color: var(--text-sec);
+  margin-bottom: 18px;
+}
+
+.kill-impact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+.impact-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.impact-label {
+  color: var(--text-muted);
+}
+
+.impact-val {
+  color: var(--text-sec);
+  font-weight: 500;
+}
+
+.critical-text {
+  color: var(--red) !important;
+  font-weight: 600 !important;
+}
+
+.kill-stamp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--green);
+  letter-spacing: 2px;
+  opacity: 0.7;
+  transform: rotate(-3deg);
+}
+
+.stamp-icon {
+  font-size: 20px;
+}
+
+/* ===== CONTACT / REPORT ===== */
+.report-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+}
+
+.report-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.report-icon {
+  font-size: 40px;
+}
+
+.report-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.report-sub {
+  color: var(--text-sec);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.report-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-sec);
+  margin-bottom: 6px;
+}
+
+.required {
+  color: var(--red);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(63, 185, 80, 0.15);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.priority-select {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.prio-option {
+  cursor: pointer;
+}
+
+.prio-option input {
+  display: none;
+}
+
+.prio-chip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.prio-option input:checked + .low-chip {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border-color: rgba(88, 166, 255, 0.4);
+}
+
+.prio-option input:checked + .med-chip {
+  background: var(--orange-bg);
+  color: var(--orange);
+  border-color: rgba(210, 153, 34, 0.4);
+}
+
+.prio-option input:checked + .high-chip {
+  background: var(--red-bg);
+  color: var(--red);
+  border-color: rgba(248, 81, 73, 0.4);
+}
+
+.prio-option input:checked + .crit-chip {
+  background: rgba(248, 81, 73, 0.2);
+  color: var(--red);
+  border-color: var(--red);
+  box-shadow: 0 0 12px rgba(248, 81, 73, 0.2);
+}
+
+.btn-submit {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 2;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.footer-tagline {
+  color: var(--green);
+}
+
+.footer-bug {
+  display: inline-block;
+  animation: bugWiggle 2s ease-in-out infinite;
+}
+
+@keyframes bugWiggle {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .hero-visual {
+    width: 100%;
+  }
+
+  .hero-stats {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .coverage-grid,
+  .kills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .br-meta {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --px: 16px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero-stats {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .hstat-val {
+    font-size: 24px;
+  }
+
+  .report-card {
+    padding: 24px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .br-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .br-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+
+</style></head>
+<body>
+
+  <!-- Animated grid background -->
+  <div class="grid-bg"></div>
+
+  <!-- Floating bugs -->
+  <div class="floating-bugs" id="floatingBugs"></div>
+
+  <!-- Top status bar -->
+  <div class="status-bar">
+    <div class="status-left">
+      <span class="status-led green"></span>
+      <span class="status-text">SYSTEM ONLINE</span>
+      <span class="status-sep">|</span>
+      <span class="status-text" id="bugCounter">BUGS SQUASHED: <span class="counter">0</span></span>
+    </div>
+    <div class="status-right">
+      <span class="status-text" id="statusClock"></span>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">
+      <span class="bug-icon">&#128027;</span>
+      <span class="logo-name">BUG<span class="logo-accent">HUNTER</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#about" class="nav-link" data-section="about">
+        <span class="nav-id">#001</span> About
+      </a>
+      <a href="#experience" class="nav-link" data-section="experience">
+        <span class="nav-id">#002</span> Experience
+      </a>
+      <a href="#skills" class="nav-link" data-section="skills">
+        <span class="nav-id">#003</span> Skills
+      </a>
+      <a href="#kills" class="nav-link" data-section="kills">
+        <span class="nav-id">#004</span> Bug Kills
+      </a>
+      <a href="#contact" class="nav-link" data-section="contact">
+        <span class="nav-id">#005</span> Report
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="ticket-badge">
+        <span class="ticket-id">TICKET-0001</span>
+        <span class="severity critical">CRITICAL</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="glitch" data-text="Andrey">Andrey</span>
+        <span class="glitch" data-text="Petrovic">Petrovic</span>
+      </h1>
+      <div class="hero-role">
+        <span class="role-prefix">&gt;</span>
+        <span class="typewriter" id="heroTyper"></span>
+        <span class="type-cursor">|</span>
+      </div>
+      <p class="hero-desc">I find bugs before your users do. I break things on purpose so nothing breaks by accident.</p>
+
+      <div class="hero-stats">
+        <div class="hstat">
+          <span class="hstat-val" data-target="2847">0</span>
+          <span class="hstat-label">Bugs Found</span>
+        </div>
+        <div class="hstat-divider"></div>
+        <div class="hstat">
+          <span class="hstat-val" data-target="2841">0</span>
+          <span class="hstat-label">Bugs Resolved</span>
+        </div>
+        <div class="hstat-divider"></div>
+        <div class="hstat">
+          <span class="hstat-val" data-target="99">0</span>
+          <span class="hstat-unit">%</span>
+          <span class="hstat-label">Squash Rate</span>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#kills" class="btn btn-primary">
+          <span class="btn-bug">&#128027;</span>
+          View Bug Kills
+        </a>
+        <a href="#contact" class="btn btn-outline">File a Report</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="terminal-card">
+        <div class="tc-header">
+          <div class="tc-dots">
+            <span class="tc-dot red"></span>
+            <span class="tc-dot yellow"></span>
+            <span class="tc-dot green"></span>
+          </div>
+          <span class="tc-title">bug_scan.sh</span>
+        </div>
+        <div class="tc-body" id="scanOutput">
+          <div class="tc-line"><span class="tc-prompt">$</span> ./scan --target production</div>
+          <div class="tc-line tc-dim">Initializing deep scan...</div>
+          <div class="tc-line tc-dim">Scanning modules <span class="tc-progress" id="scanBar">██████████</span> 100%</div>
+          <div class="tc-line tc-success">✓ auth.service — PASSED</div>
+          <div class="tc-line tc-success">✓ payment.gateway — PASSED</div>
+          <div class="tc-line tc-error">✗ user.session — BUG DETECTED (memory leak)</div>
+          <div class="tc-line tc-success">✓ api.routes — PASSED</div>
+          <div class="tc-line tc-warn">⚠ cache.handler — WARNING (race condition)</div>
+          <div class="tc-line tc-success">✓ db.connector — PASSED</div>
+          <div class="tc-line"><br/></div>
+          <div class="tc-line tc-result">Scan complete: <span class="tc-error">1 bug</span>, <span class="tc-warn">1 warning</span>, <span class="tc-success">4 passed</span></div>
+          <div class="tc-line"><span class="tc-prompt">$</span> <span class="tc-cursor">_</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About — styled as a bug report -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="bug-report">
+        <div class="br-header">
+          <div class="br-title-row">
+            <span class="br-id">BUG-001</span>
+            <h2 class="br-title">About: Who is this Bug Hunter?</h2>
+          </div>
+          <span class="severity resolved">RESOLVED</span>
+        </div>
+        <div class="br-meta">
+          <div class="meta-item">
+            <span class="meta-label">Assignee</span>
+            <span class="meta-val">
+              <span class="avatar-sm">AP</span> Andrey Petrovic
+            </span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Priority</span>
+            <span class="meta-val"><span class="priority-dot high"></span> High</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Status</span>
+            <span class="meta-val status-badge resolved">Resolved</span>
+          </div>
+        </div>
+        <div class="br-body">
+          <div class="br-description">
+            <h3>Description</h3>
+            <p>QA Engineer with 5+ years of experience breaking things professionally. I specialize in finding the bugs that nobody else can find — the ones hiding in edge cases, race conditions, and that "it works on my machine" territory.</p>
+            <p>My mission: ship software that users can trust. I've prevented thousands of bugs from reaching production across fintech, e-commerce, and SaaS platforms.</p>
+          </div>
+          <div class="br-code-block">
+            <div class="code-header">
+              <span>andrey_petrovic.json</span>
+            </div>
+            <pre class="code-body"><code>{
+  "<span class="code-key">name</span>": "<span class="code-str">Andrey Petrovic</span>",
+  "<span class="code-key">role</span>": "<span class="code-str">Senior QA Engineer</span>",
+  "<span class="code-key">location</span>": "<span class="code-str">Remote</span>",
+  "<span class="code-key">specialties</span>": [
+    "<span class="code-str">Test Automation</span>",
+    "<span class="code-str">Performance Testing</span>",
+    "<span class="code-str">Security Testing</span>",
+    "<span class="code-str">API Testing</span>"
+  ],
+  "<span class="code-key">bugs_found</span>": <span class="code-num">2847</span>,
+  "<span class="code-key">coffee_consumed</span>": "<span class="code-str">∞</span>"
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience — timeline of bug reports -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">CHANGELOG</span>
+        <h2 class="section-title">Experience Log</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item reveal" data-status="active">
+          <div class="tl-marker">
+            <span class="tl-dot active"></span>
+            <span class="tl-line"></span>
+          </div>
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <span class="tl-date">2022 — Present</span>
+              <span class="severity active-tag">CURRENT</span>
+            </div>
+            <h3>Senior QA Engineer <span class="tl-company">@ TechCorp</span></h3>
+            <p>Leading QA automation across 3 product teams. Built the entire E2E testing infrastructure from scratch. Reduced production bugs by 73%.</p>
+            <div class="tl-tags">
+              <span class="tag">Cypress</span>
+              <span class="tag">Playwright</span>
+              <span class="tag">CI/CD</span>
+              <span class="tag">Performance</span>
+            </div>
+            <div class="tl-stat">
+              <span class="tl-stat-icon">&#128027;</span>
+              <span>1,200+ bugs caught before release</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal" data-status="closed">
+          <div class="tl-marker">
+            <span class="tl-dot closed"></span>
+            <span class="tl-line"></span>
+          </div>
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <span class="tl-date">2020 — 2022</span>
+              <span class="severity resolved">CLOSED</span>
+            </div>
+            <h3>QA Engineer <span class="tl-company">@ FinPay</span></h3>
+            <p>Automated regression suite for payment processing. Found a critical security flaw in the token refresh flow that could have exposed 50K accounts.</p>
+            <div class="tl-tags">
+              <span class="tag">Selenium</span>
+              <span class="tag">API Testing</span>
+              <span class="tag">Security</span>
+              <span class="tag">Postman</span>
+            </div>
+            <div class="tl-stat">
+              <span class="tl-stat-icon">&#128170;</span>
+              <span>Prevented $2M+ in potential fraud losses</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal" data-status="closed">
+          <div class="tl-marker">
+            <span class="tl-dot closed"></span>
+            <span class="tl-line"></span>
+          </div>
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <span class="tl-date">2018 — 2020</span>
+              <span class="severity resolved">CLOSED</span>
+            </div>
+            <h3>Junior QA Engineer <span class="tl-company">@ ShopWave</span></h3>
+            <p>First QA role. Built manual test plans and started automating. Tested checkout flows across 15 payment providers and 30+ locales.</p>
+            <div class="tl-tags">
+              <span class="tag">Manual Testing</span>
+              <span class="tag">JIRA</span>
+              <span class="tag">Cross-browser</span>
+            </div>
+            <div class="tl-stat">
+              <span class="tl-stat-icon">&#127891;</span>
+              <span>Where it all began — got hooked on breaking things</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills — styled as test coverage report -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">TEST COVERAGE</span>
+        <h2 class="section-title">Skills & Tools</h2>
+      </div>
+
+      <div class="coverage-grid">
+        <div class="cov-card reveal">
+          <div class="cov-header">
+            <h3>Test Automation</h3>
+            <span class="cov-pct">96%</span>
+          </div>
+          <div class="cov-bar"><div class="cov-fill" data-width="96"></div></div>
+          <div class="cov-tools">
+            <span class="tool-chip">Cypress</span>
+            <span class="tool-chip">Playwright</span>
+            <span class="tool-chip">Selenium</span>
+            <span class="tool-chip">WebdriverIO</span>
+          </div>
+        </div>
+
+        <div class="cov-card reveal">
+          <div class="cov-header">
+            <h3>API Testing</h3>
+            <span class="cov-pct">92%</span>
+          </div>
+          <div class="cov-bar"><div class="cov-fill" data-width="92"></div></div>
+          <div class="cov-tools">
+            <span class="tool-chip">Postman</span>
+            <span class="tool-chip">REST Assured</span>
+            <span class="tool-chip">GraphQL</span>
+            <span class="tool-chip">k6</span>
+          </div>
+        </div>
+
+        <div class="cov-card reveal">
+          <div class="cov-header">
+            <h3>CI/CD & DevOps</h3>
+            <span class="cov-pct">88%</span>
+          </div>
+          <div class="cov-bar"><div class="cov-fill" data-width="88"></div></div>
+          <div class="cov-tools">
+            <span class="tool-chip">GitHub Actions</span>
+            <span class="tool-chip">Jenkins</span>
+            <span class="tool-chip">Docker</span>
+            <span class="tool-chip">AWS</span>
+          </div>
+        </div>
+
+        <div class="cov-card reveal">
+          <div class="cov-header">
+            <h3>Performance</h3>
+            <span class="cov-pct">85%</span>
+          </div>
+          <div class="cov-bar"><div class="cov-fill" data-width="85"></div></div>
+          <div class="cov-tools">
+            <span class="tool-chip">JMeter</span>
+            <span class="tool-chip">Lighthouse</span>
+            <span class="tool-chip">k6</span>
+            <span class="tool-chip">Grafana</span>
+          </div>
+        </div>
+
+        <div class="cov-card reveal">
+          <div class="cov-header">
+            <h3>Languages</h3>
+            <span class="cov-pct">90%</span>
+          </div>
+          <div class="cov-bar"><div class="cov-fill" data-width="90"></div></div>
+          <div class="cov-tools">
+            <span class="tool-chip">JavaScript</span>
+            <span class="tool-chip">TypeScript</span>
+            <span class="tool-chip">Python</span>
+            <span class="tool-chip">Java</span>
+          </div>
+        </div>
+
+        <div class="cov-card reveal">
+          <div class="cov-header">
+            <h3>Security Testing</h3>
+            <span class="cov-pct">78%</span>
+          </div>
+          <div class="cov-bar"><div class="cov-fill" data-width="78"></div></div>
+          <div class="cov-tools">
+            <span class="tool-chip">OWASP ZAP</span>
+            <span class="tool-chip">Burp Suite</span>
+            <span class="tool-chip">SQL Injection</span>
+            <span class="tool-chip">XSS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bug Kills — trophy showcase -->
+  <section class="section" id="kills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">INCIDENT LOG</span>
+        <h2 class="section-title">Notable Bug Kills</h2>
+      </div>
+
+      <div class="kills-grid">
+        <div class="kill-card reveal">
+          <div class="kill-header">
+            <span class="kill-sev critical">CRITICAL</span>
+            <span class="kill-id">#BUG-4721</span>
+          </div>
+          <h3 class="kill-title">The Phantom Payment</h3>
+          <p class="kill-desc">Users were being double-charged on slow 3G connections due to a missing idempotency key in the payment retry logic.</p>
+          <div class="kill-impact">
+            <div class="impact-item">
+              <span class="impact-label">Impact</span>
+              <span class="impact-val critical-text">$180K in refunds prevented</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-label">Found via</span>
+              <span class="impact-val">Network throttling test</span>
+            </div>
+          </div>
+          <div class="kill-stamp">
+            <span class="stamp-icon">&#128027;</span>
+            <span class="stamp-text">SQUASHED</span>
+          </div>
+        </div>
+
+        <div class="kill-card reveal">
+          <div class="kill-header">
+            <span class="kill-sev critical">CRITICAL</span>
+            <span class="kill-id">#BUG-3199</span>
+          </div>
+          <h3 class="kill-title">The Token Leak</h3>
+          <p class="kill-desc">Refresh tokens were being logged in plaintext to the monitoring service. Could have exposed 50K+ user sessions.</p>
+          <div class="kill-impact">
+            <div class="impact-item">
+              <span class="impact-label">Impact</span>
+              <span class="impact-val critical-text">50K accounts protected</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-label">Found via</span>
+              <span class="impact-val">Security audit</span>
+            </div>
+          </div>
+          <div class="kill-stamp">
+            <span class="stamp-icon">&#128027;</span>
+            <span class="stamp-text">SQUASHED</span>
+          </div>
+        </div>
+
+        <div class="kill-card reveal">
+          <div class="kill-header">
+            <span class="kill-sev high-sev">HIGH</span>
+            <span class="kill-id">#BUG-2850</span>
+          </div>
+          <h3 class="kill-title">The Midnight Crash</h3>
+          <p class="kill-desc">App crashed every night at exactly 00:00 UTC. A timezone conversion bug in the cron scheduler was killing the event loop.</p>
+          <div class="kill-impact">
+            <div class="impact-item">
+              <span class="impact-label">Impact</span>
+              <span class="impact-val">Zero downtime since fix</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-label">Found via</span>
+              <span class="impact-val">Log pattern analysis</span>
+            </div>
+          </div>
+          <div class="kill-stamp">
+            <span class="stamp-icon">&#128027;</span>
+            <span class="stamp-text">SQUASHED</span>
+          </div>
+        </div>
+
+        <div class="kill-card reveal">
+          <div class="kill-header">
+            <span class="kill-sev medium-sev">MEDIUM</span>
+            <span class="kill-id">#BUG-1544</span>
+          </div>
+          <h3 class="kill-title">The Invisible Button</h3>
+          <p class="kill-desc">Submit button disappeared on iOS Safari when keyboard was open. CSS viewport unit was calculating height wrong with the virtual keyboard.</p>
+          <div class="kill-impact">
+            <div class="impact-item">
+              <span class="impact-label">Impact</span>
+              <span class="impact-val">Conversion rate +22%</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-label">Found via</span>
+              <span class="impact-val">Cross-device testing</span>
+            </div>
+          </div>
+          <div class="kill-stamp">
+            <span class="stamp-icon">&#128027;</span>
+            <span class="stamp-text">SQUASHED</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact — styled as "File a Bug Report" -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="report-card">
+        <div class="report-header">
+          <span class="report-icon">&#128027;</span>
+          <div>
+            <h2>File a Bug Report</h2>
+            <p class="report-sub">Got a project that needs testing? Let's talk.</p>
+          </div>
+        </div>
+        <form class="report-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Reporter Name <span class="required">*</span></label>
+              <input type="text" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label>Email <span class="required">*</span></label>
+              <input type="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Priority</label>
+            <div class="priority-select">
+              <label class="prio-option">
+                <input type="radio" name="priority" value="low" />
+                <span class="prio-chip low-chip">Low</span>
+              </label>
+              <label class="prio-option">
+                <input type="radio" name="priority" value="medium" checked />
+                <span class="prio-chip med-chip">Medium</span>
+              </label>
+              <label class="prio-option">
+                <input type="radio" name="priority" value="high" />
+                <span class="prio-chip high-chip">High</span>
+              </label>
+              <label class="prio-option">
+                <input type="radio" name="priority" value="critical" />
+                <span class="prio-chip crit-chip">Critical</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description <span class="required">*</span></label>
+            <textarea rows="5" placeholder="Steps to reproduce the issue..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-submit">
+            <span>Submit Report</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 Andrey Petrovic — QA Engineer</span>
+      <span class="footer-tagline">No bugs shipped. <span class="footer-bug">&#128027;</span></span>
+    </div>
+  </footer>
+
+  
+<script>
+// ===== Clock in status bar =====
+function updateClock() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2, '0');
+  const m = String(now.getMinutes()).padStart(2, '0');
+  const s = String(now.getSeconds()).padStart(2, '0');
+  document.getElementById('statusClock').textContent = `${h}:${m}:${s}`;
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+// ===== Floating bugs =====
+const bugsContainer = document.getElementById('floatingBugs');
+const bugEmojis = ['🐛', '🪲', '🐞', '🦗'];
+
+for (let i = 0; i < 15; i++) {
+  const bug = document.createElement('div');
+  bug.className = 'fbug';
+  bug.textContent = bugEmojis[Math.floor(Math.random() * bugEmojis.length)];
+  bug.style.left = Math.random() * 100 + '%';
+  bug.style.fontSize = (12 + Math.random() * 16) + 'px';
+  bug.style.animationDuration = (15 + Math.random() * 25) + 's';
+  bug.style.animationDelay = -(Math.random() * 30) + 's';
+  bugsContainer.appendChild(bug);
+}
+
+// ===== Typewriter for hero role =====
+const roles = [
+  'QA Engineer',
+  'Bug Hunter',
+  'Test Automation Architect',
+  'Quality Guardian',
+  'Chaos Engineer'
+];
+
+const typer = document.getElementById('heroTyper');
+let roleIdx = 0;
+let charIdx = 0;
+let deleting = false;
+let pauseTimer = 0;
+
+function typeRole() {
+  const current = roles[roleIdx];
+
+  if (!deleting) {
+    typer.textContent = current.slice(0, charIdx + 1);
+    charIdx++;
+
+    if (charIdx >= current.length) {
+      pauseTimer = 40;
+      deleting = true;
+    }
+  } else {
+    if (pauseTimer > 0) {
+      pauseTimer--;
+    } else {
+      charIdx--;
+      typer.textContent = current.slice(0, charIdx);
+
+      if (charIdx <= 0) {
+        deleting = false;
+        roleIdx = (roleIdx + 1) % roles.length;
+      }
+    }
+  }
+
+  const speed = deleting && pauseTimer <= 0 ? 40 : 80;
+  setTimeout(typeRole, speed);
+}
+
+typeRole();
+
+// ===== Counter animation =====
+function animateCounters() {
+  const counters = document.querySelectorAll('.hstat-val[data-target]');
+
+  counters.forEach(el => {
+    const target = parseInt(el.getAttribute('data-target'));
+    const duration = 2000;
+    const start = performance.now();
+
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(target * eased).toLocaleString();
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    requestAnimationFrame(update);
+  });
+}
+
+// ===== Bug squash counter =====
+let squashCount = 0;
+const squashEl = document.querySelector('#bugCounter .counter');
+
+function incrementSquash() {
+  squashCount++;
+  squashEl.textContent = squashCount;
+}
+
+// ===== Scroll reveal =====
+const reveals = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const siblings = entry.target.parentElement.querySelectorAll('.reveal');
+        const idx = Array.from(siblings).indexOf(entry.target);
+        entry.target.style.transitionDelay = `${idx * 0.1}s`;
+        entry.target.classList.add('visible');
+        incrementSquash();
+      }
+    });
+  },
+  { threshold: 0.15 }
+);
+
+reveals.forEach(el => revealObserver.observe(el));
+
+// ===== Coverage bar animation =====
+const covFills = document.querySelectorAll('.cov-fill');
+
+const covObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = entry.target;
+        const width = fill.getAttribute('data-width');
+        fill.style.setProperty('--target-width', width + '%');
+        fill.classList.add('animate');
+        covObserver.unobserve(fill);
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
+
+covFills.forEach(el => covObserver.observe(el));
+
+// ===== Start hero counters when visible =====
+const heroStats = document.querySelector('.hero-stats');
+let countersStarted = false;
+
+const statsObserver = new IntersectionObserver(
+  (entries) => {
+    if (entries[0].isIntersecting && !countersStarted) {
+      countersStarted = true;
+      animateCounters();
+    }
+  },
+  { threshold: 0.5 }
+);
+
+if (heroStats) {
+  statsObserver.observe(heroStats);
+}
+
+// ===== Terminal scan animation =====
+const scanLines = document.querySelectorAll('#scanOutput .tc-line');
+
+scanLines.forEach((line, i) => {
+  line.style.opacity = '0';
+  line.style.transform = 'translateX(-10px)';
+  line.style.transition = 'opacity 0.3s, transform 0.3s';
+
+  setTimeout(() => {
+    line.style.opacity = '1';
+    line.style.transform = 'translateX(0)';
+  }, 300 + i * 200);
+});
+
+// ===== Contact form =====
+const form = document.getElementById('contactForm');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const btn = form.querySelector('.btn-submit span');
+  btn.textContent = '✓ Report Filed!';
+
+  setTimeout(() => {
+    btn.textContent = 'Submit Report';
+    form.reset();
+  }, 3000);
+});
+
+// ===== Nav active state =====
+const sections = document.querySelectorAll('.section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    if (window.scrollY >= section.offsetTop - 200) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.style.color = '';
+    link.style.background = '';
+    if (link.getAttribute('data-section') === current) {
+      link.style.color = 'var(--text)';
+      link.style.background = 'rgba(255,255,255,0.04)';
+    }
+  });
+});
+
+</script></body>
+</html>

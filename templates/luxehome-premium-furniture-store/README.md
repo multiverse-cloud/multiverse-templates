@@ -7,6 +7,7 @@ LuxeHome - Premium Furniture Store is a e-commerce template with a polished one-
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/luxehome-premium-furniture-store
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

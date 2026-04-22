@@ -7,6 +7,7 @@ FlowHub - Collaborative project management made simple
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/flowhub-simple-project-management-for-teams
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

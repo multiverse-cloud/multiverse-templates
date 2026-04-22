@@ -1,0 +1,58 @@
+{
+  "id": "template-purple-wave-creative-portfolio",
+  "slug": "purple-wave-creative-portfolio",
+  "title": "Purple Wave Creative Portfolio",
+  "summary": "A bold gradient-led portfolio with modern motion, creative section transitions, and a vibrant visual personality for standout creators.",
+  "description": "Purple Wave is a high-energy static portfolio template built for creators who want bold color, large type, and strong first impressions while still keeping a simple HTML, CSS, and JavaScript stack.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Bold gradient creative portfolio with vibrant surfaces",
+  "audience": "creative developers, digital artists, and startup-friendly freelancers",
+  "tags": [
+    "creative portfolio",
+    "gradient portfolio",
+    "modern portfolio",
+    "personal website",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Hero",
+    "Projects",
+    "About",
+    "Skills",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "The template relies on color and motion to create identity quickly.",
+    "Best used when the creator wants a louder and more expressive portfolio style."
+  ],
+  "responsiveNotes": [
+    "Large typography scales down with preserved contrast and spacing on mobile.",
+    "Animated areas remain lightweight and do not dominate the first screen on smaller devices."
+  ],
+  "bestFor": [
+    "Creative freelancers",
+    "Design-forward developers",
+    "Personal brand pages"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": false,
+  "updatedAt": "2026-04-22",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-22T10:53:42.043Z"
+}

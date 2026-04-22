@@ -7,6 +7,7 @@ TechPulse - Premium Electronics Store is a e-commerce template with a polished o
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/techpulse-premium-electronics-store
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

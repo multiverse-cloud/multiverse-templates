@@ -7,6 +7,7 @@ Le Petit Bistro - Authentic French Cuisine
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/le-petit-bistro-french-cuisine
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

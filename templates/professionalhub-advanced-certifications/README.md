@@ -7,6 +7,7 @@ ProfessionalHub - Professional certifications & advanced degrees. MBA, Project M
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/professionalhub-advanced-certifications
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

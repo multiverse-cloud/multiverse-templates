@@ -1,0 +1,59 @@
+{
+  "id": "template-macos-desktop-portfolio-experience",
+  "slug": "macos-desktop-portfolio-experience",
+  "title": "macOS Desktop Portfolio Experience",
+  "summary": "A playful desktop-style portfolio with draggable windows, dock-inspired navigation, and a standout interactive presentation for personal branding.",
+  "description": "This template recreates a macOS-inspired desktop portfolio experience using plain HTML, CSS, and JavaScript. It is ideal for developers and creative technologists who want a memorable interactive portfolio instead of a standard single-column site.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Desktop simulation portfolio with interactive windows",
+  "audience": "creative developers, full-stack engineers, and interactive portfolio builders",
+  "tags": [
+    "interactive portfolio",
+    "macos portfolio",
+    "desktop ui portfolio",
+    "developer portfolio",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Desktop hero",
+    "About window",
+    "Experience window",
+    "Skills window",
+    "Terminal window",
+    "Contact window"
+  ],
+  "layoutNotes": [
+    "The window system is the main product idea, so every section should feel like part of a desktop environment.",
+    "This template works best when the creator wants a memorable portfolio interaction instead of a conventional page."
+  ],
+  "responsiveNotes": [
+    "The desktop metaphor compresses into a simpler stacked experience on smaller screens.",
+    "Interactive windows still remain accessible through tap-first controls."
+  ],
+  "bestFor": [
+    "Interactive portfolios",
+    "Creative engineers",
+    "Personal brand sites"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": true,
+  "updatedAt": "2026-04-22",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-22T10:53:42.043Z"
+}

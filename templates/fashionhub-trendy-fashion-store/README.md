@@ -7,6 +7,7 @@ FashionHub - Online fashion store for trendy clothes and accessories
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/fashionhub-trendy-fashion-store
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

@@ -7,6 +7,7 @@ AI-powered personalized fitness coaching. Smart workouts that adapt to your prog
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/fitlife-365-your-personal-ai-fitness-coach
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

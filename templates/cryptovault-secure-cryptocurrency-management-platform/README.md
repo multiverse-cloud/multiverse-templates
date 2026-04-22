@@ -7,6 +7,7 @@ CryptoVault - Secure crypto wallet and asset management platform
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/cryptovault-secure-cryptocurrency-management-platform
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

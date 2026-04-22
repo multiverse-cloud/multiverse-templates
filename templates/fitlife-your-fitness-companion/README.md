@@ -7,6 +7,7 @@ FitLife - Fitness tracking, workouts, nutrition and health coaching
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/fitlife-your-fitness-companion
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

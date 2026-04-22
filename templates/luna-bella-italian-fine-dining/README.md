@@ -7,6 +7,7 @@ Luna Bella - Authentic Italian Fine Dining
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/luna-bella-italian-fine-dining
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

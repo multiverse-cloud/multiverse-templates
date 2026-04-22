@@ -7,6 +7,7 @@ MetaVerse Exchange - Trade virtual assets and NFTs across metaverses
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/metaverse-exchange-trade-across-all-metaverses
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

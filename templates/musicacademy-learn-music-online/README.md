@@ -7,6 +7,7 @@ MusicAcademy - Learn music online from beginner to professional. Piano, guitar, 
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/musicacademy-learn-music-online
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

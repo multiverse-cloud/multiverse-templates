@@ -7,6 +7,7 @@ Ember & Oak - Authentic BBQ Restaurant
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/ember-oak-bbq-smokehouse
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

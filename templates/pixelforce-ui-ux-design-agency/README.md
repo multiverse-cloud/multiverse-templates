@@ -7,6 +7,7 @@ PixelForce - UI/UX design agency. Digital product design, user experience, inter
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/pixelforce-ui-ux-design-agency
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

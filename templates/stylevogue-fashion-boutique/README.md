@@ -7,6 +7,7 @@ StyleVogue - Fashion Boutique is a e-commerce template with a polished one-page 
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/stylevogue-fashion-boutique
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

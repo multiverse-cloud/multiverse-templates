@@ -7,6 +7,7 @@ ProSkills Academy - Corporate training and professional development programs. Up
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/proskills-academy-corporate-training
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

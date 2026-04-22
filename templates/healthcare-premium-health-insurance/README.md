@@ -7,6 +7,7 @@ HealthCare+ - Premium subscription health insurance and wellness benefits
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/healthcare-premium-health-insurance
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

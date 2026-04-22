@@ -7,6 +7,7 @@ TutorConnect - Online tutoring platform for K-12 students. 1-on-1 lessons with c
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/tutorconnect-online-tutoring-platform
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

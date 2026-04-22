@@ -7,6 +7,7 @@ CreativeStudio - Branding and design agency. Logo design, brand identity, visual
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/creativestudio-branding-design-agency
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

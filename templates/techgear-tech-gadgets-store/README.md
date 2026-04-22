@@ -7,6 +7,7 @@ TechGear - Electronics store for gadgets and tech accessories
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/techgear-tech-gadgets-store
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

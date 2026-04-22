@@ -7,6 +7,7 @@ CreativeHub - Master graphic design, digital art, and creative skills. Learn fro
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/creativehub-design-digital-art-academy
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

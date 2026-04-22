@@ -7,6 +7,7 @@ InvestRealty - Smart real estate investment platform with market analytics and p
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/investrealty-real-estate-investment-platform
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

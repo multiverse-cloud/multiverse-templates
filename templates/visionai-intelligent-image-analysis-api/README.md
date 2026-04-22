@@ -7,6 +7,7 @@ VisionAI - Computer vision API for intelligent image analysis
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/visionai-intelligent-image-analysis-api
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

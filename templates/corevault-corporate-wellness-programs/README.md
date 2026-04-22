@@ -7,6 +7,7 @@ Bring fitness to your workplace. Customized corporate wellness programs that boo
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/corevault-corporate-wellness-programs
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

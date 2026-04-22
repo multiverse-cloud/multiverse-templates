@@ -7,6 +7,7 @@ HomeFinder - Community-first real estate platform helping families find their pe
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/homefinder-find-your-community
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

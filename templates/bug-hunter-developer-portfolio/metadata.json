@@ -1,0 +1,60 @@
+{
+  "id": "template-bug-hunter-developer-portfolio",
+  "slug": "bug-hunter-developer-portfolio",
+  "title": "Bug Hunter Developer Portfolio",
+  "summary": "A cinematic bug-bounty and developer portfolio with dark neon styling, animated sections, and a sharper security-focused personality.",
+  "description": "Built as a static HTML, CSS, and JavaScript portfolio template, Bug Hunter is ideal for security researchers, developers, and technical creators who want a darker, more tactical portfolio presence with bold personality.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Dark neon hacker portfolio with animated panels",
+  "audience": "security researchers, bug bounty hunters, and technical freelancers",
+  "tags": [
+    "developer portfolio",
+    "bug bounty portfolio",
+    "security portfolio",
+    "dark portfolio",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Hero",
+    "About",
+    "Projects",
+    "Skills",
+    "Terminal-style details",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "The experience feels like a hacker-inspired portfolio while still staying readable for mainstream visitors.",
+    "Sections use strong contrast and motion to make the personality memorable.",
+    "The layout is best used when the creator wants a technical, security-heavy brand."
+  ],
+  "responsiveNotes": [
+    "The portfolio stacks vertically on smaller screens while keeping the hero readable.",
+    "Animations are decorative and do not block the core content on mobile."
+  ],
+  "bestFor": [
+    "Security researchers",
+    "Freelance developers",
+    "Technical personal sites"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": true,
+  "updatedAt": "2026-04-22",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-22T10:53:42.043Z"
+}

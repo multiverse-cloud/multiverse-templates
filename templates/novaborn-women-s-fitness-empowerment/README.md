@@ -7,6 +7,7 @@ Fitness programs designed by women, for women. Strength, confidence, and communi
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/novaborn-women-s-fitness-empowerment
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

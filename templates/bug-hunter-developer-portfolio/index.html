@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrey Petrovic — QA Engineer</title>
+
+  <meta name="description" content="Andrey Petrovic — QA Engineer. Bug tracker-themed portfolio." />
+  <meta name="author" content="Andrey Petrovic" />
+  <meta name="theme-color" content="#0d1117" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Animated grid background -->
+  <div class="grid-bg"></div>
+
+  <!-- Floating bugs -->
+  <div class="floating-bugs" id="floatingBugs"></div>
+
+  <!-- Top status bar -->
+  <div class="status-bar">
+    <div class="status-left">
+      <span class="status-led green"></span>
+      <span class="status-text">SYSTEM ONLINE</span>
+      <span class="status-sep">|</span>
+      <span class="status-text" id="bugCounter">BUGS SQUASHED: <span class="counter">0</span></span>
+    </div>
+    <div class="status-right">
+      <span class="status-text" id="statusClock"></span>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">
+      <span class="bug-icon">&#128027;</span>
+      <span class="logo-name">BUG<span class="logo-accent">HUNTER</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#about" class="nav-link" data-section="about">
+        <span class="nav-id">#001</span> About
+      </a>
+      <a href="#experience" class="nav-link" data-section="experience">
+        <span class="nav-id">#002</span> Experience
+      </a>
+      <a href="#skills" class="nav-link" data-section="skills">
+        <span class="nav-id">#003</span> Skills
+      </a>
+      <a href="#kills" class="nav-link" data-section="kills">
+        <span class="nav-id">#004</span> Bug Kills
+      </a>
+      <a href="#contact" class="nav-link" data-section="contact">
+        <span class="nav-id">#005</span> Report
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="ticket-badge">
+        <span class="ticket-id">TICKET-0001</span>
+        <span class="severity critical">CRITICAL</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="glitch" data-text="Andrey">Andrey</span>
+        <span class="glitch" data-text="Petrovic">Petrovic</span>
+      </h1>
+      <div class="hero-role">
+        <span class="role-prefix">&gt;</span>
+        <span class="typewriter" id="heroTyper"></span>
+        <span class="type-cursor">|</span>
+      </div>
+      <p class="hero-desc">I find bugs before your users do. I break things on purpose so nothing breaks by accident.</p>
+
+      <div class="hero-stats">
+        <div class="hstat">
+          <span class="hstat-val" data-target="2847">0</span>
+          <span class="hstat-label">Bugs Found</span>
+        </div>
+        <div class="hstat-divider"></div>
+        <div class="hstat">
+          <span class="hstat-val" data-target="2841">0</span>
+          <span class="hstat-label">Bugs Resolved</span>
+        </div>
+        <div class="hstat-divider"></div>
+        <div class="hstat">
+          <span class="hstat-val" data-target="99">0</span>
+          <span class="hstat-unit">%</span>
+          <span class="hstat-label">Squash Rate</span>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#kills" class="btn btn-primary">
+          <span class="btn-bug">&#128027;</span>
+          View Bug Kills
+        </a>
+        <a href="#contact" class="btn btn-outline">File a Report</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="terminal-card">
+        <div class="tc-header">
+          <div class="tc-dots">
+            <span class="tc-dot red"></span>
+            <span class="tc-dot yellow"></span>
+            <span class="tc-dot green"></span>
+          </div>
+          <span class="tc-title">bug_scan.sh</span>
+        </div>
+        <div class="tc-body" id="scanOutput">
+          <div class="tc-line"><span class="tc-prompt">$</span> ./scan --target production</div>
+          <div class="tc-line tc-dim">Initializing deep scan...</div>
+          <div class="tc-line tc-dim">Scanning modules <span class="tc-progress" id="scanBar">██████████</span> 100%</div>
+          <div class="tc-line tc-success">✓ auth.service — PASSED</div>
+          <div class="tc-line tc-success">✓ payment.gateway — PASSED</div>
+          <div class="tc-line tc-error">✗ user.session — BUG DETECTED (memory leak)</div>
+          <div class="tc-line tc-success">✓ api.routes — PASSED</div>
+          <div class="tc-line tc-warn">⚠ cache.handler — WARNING (race condition)</div>
+          <div class="tc-line tc-success">✓ db.connector — PASSED</div>
+          <div class="tc-line"><br/></div>
+          <div class="tc-line tc-result">Scan complete: <span class="tc-error">1 bug</span>, <span class="tc-warn">1 warning</span>, <span class="tc-success">4 passed</span></div>
+          <div class="tc-line"><span class="tc-prompt">$</span> <span class="tc-cursor">_</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About — styled as a bug report -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="bug-report">
+        <div class="br-header">
+          <div class="br-title-row">
+            <span class="br-id">BUG-001</span>
+            <h2 class="br-title">About: Who is this Bug Hunter?</h2>
+          </div>
+          <span class="severity resolved">RESOLVED</span>
+        </div>
+        <div class="br-meta">
+          <div class="meta-item">
+            <span class="meta-label">Assignee</span>
+            <span class="meta-val">
+              <span class="avatar-sm">AP</span> Andrey Petrovic
+            </span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Priority</span>
+            <span class="meta-val"><span class="priority-dot high"></span> High</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Status</span>
+            <span class="meta-val status-badge resolved">Resolved</span>
+          </div>
+        </div>
+        <div class="br-body">
+          <div class="br-description">
+            <h3>Description</h3>
+            <p>QA Engineer with 5+ years of experience breaking things professionally. I specialize in finding the bugs that nobody else can find — the ones hiding in edge cases, race conditions, and that "it works on my machine" territory.</p>
+            <p>My mission: ship software that users can trust. I've prevented thousands of bugs from reaching production across fintech, e-commerce, and SaaS platforms.</p>
+          </div>
+          <div class="br-code-block">
+            <div class="code-header">
+              <span>andrey_petrovic.json</span>
+            </div>
+            <pre class="code-body"><code>{
+  "<span class="code-key">name</span>": "<span class="code-str">Andrey Petrovic</span>",
+  "<span class="code-key">role</span>": "<span class="code-str">Senior QA Engineer</span>",
+  "<span class="code-key">location</span>": "<span class="code-str">Remote</span>",
+  "<span class="code-key">specialties</span>": [
+    "<span class="code-str">Test Automation</span>",
+    "<span class="code-str">Performance Testing</span>",
+    "<span class="code-str">Security Testing</span>",
+    "<span class="code-str">API Testing</span>"
+  ],
+  "<span class="code-key">bugs_found</span>": <span class="code-num">2847</span>,
+  "<span class="code-key">coffee_consumed</span>": "<span class="code-str">∞</span>"
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience — timeline of bug reports -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">CHANGELOG</span>
+        <h2 class="section-title">Experience Log</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item reveal" data-status="active">
+          <div class="tl-marker">
+            <span class="tl-dot active"></span>
+            <span class="tl-line"></span>
+          </div>
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <span class="tl-date">2022 — Present</span>
+              <span class="severity active-tag">CURRENT</span>
+            </div>
+            <h3>Senior QA Engineer <span class="tl-company">@ TechCorp</span></h3>
+            <p>Leading QA automation across 3 product teams. Built the entire E2E testing infrastructure from scratch. Reduced production bugs by 73%.</p>
+            <div class="tl-tags">
+              <span class="tag">Cypress</span>
+              <span class="tag">Playwright</span>
+              <span class="tag">CI/CD</span>
+              <span class="tag">Performance</span>
+            </div>
+            <div class="tl-stat">
+              <span class="tl-stat-icon">&#128027;</span>
+              <span>1,200+ bugs caught before release</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal" data-status="closed">
+          <div class="tl-marker">
+            <span class="tl-dot closed"></span>
+            <span class="tl-line"></span>
+          </div>
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <span class="tl-date">2020 — 2022</span>
+              <span class="severity resolved">CLOSED</span>
+            </div>
+            <h3>QA Engineer <span class="tl-company">@ FinPay</span></h3>
+            <p>Automated regression suite for payment processing. Found a critical security flaw in the token refresh flow that could have exposed 50K accounts.</p>
+            <div class="tl-tags">
+              <span class="tag">Selenium</span>
+              <span class="tag">API Testing</span>
+              <span class="tag">Security</span>
+              <span class="tag">Postman</span>
+            </div>
+            <div class="tl-stat">
+              <span class="tl-stat-icon">&#128170;</span>
+              <span>Prevented $2M+ in potential fraud losses</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal" data-status="closed">
+          <div class="tl-marker">
+            <span class="tl-dot closed"></span>
+            <span class="tl-line"></span>
+          </div>
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <span class="tl-date">2018 — 2020</span>
+              <span class="severity resolved">CLOSED</span>
+            </div>
+            <h3>Junior QA Engineer <span class="tl-company">@ ShopWave</span></h3>
+            <p>First QA role. Built manual test plans and started automating. Tested checkout flows across 15 payment providers and 30+ locales.</p>
+            <div class="tl-tags">
+              <span class="tag">Manual Testing</span>
+              <span class="tag">JIRA</span>
+              <span class="tag">Cross-browser</span>
+            </div>
+            <div class="tl-stat">
+              <span class="tl-stat-icon">&#127891;</span>
+              <span>Where it all began — got hooked on breaking things</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills — styled as test coverage report -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">TEST COVERAGE</span>
+        <h2 class="section-title">Skills & Tools</h2>
+      </div>
+
+      <div class="coverage-grid">
+        <div class="cov-card reveal">
+          <div class="cov-header">
+            <h3>Test Automation</h3>
+            <span class="cov-pct">96%</span>
+          </div>
+          <div class="cov-bar"><div class="cov-fill" data-width="96"></div></div>
+          <div class="cov-tools">
+            <span class="tool-chip">Cypress</span>
+            <span class="tool-chip">Playwright</span>
+            <span class="tool-chip">Selenium</span>
+            <span class="tool-chip">WebdriverIO</span>
+          </div>
+        </div>
+
+        <div class="cov-card reveal">
+          <div class="cov-header">
+            <h3>API Testing</h3>
+            <span class="cov-pct">92%</span>
+          </div>
+          <div class="cov-bar"><div class="cov-fill" data-width="92"></div></div>
+          <div class="cov-tools">
+            <span class="tool-chip">Postman</span>
+            <span class="tool-chip">REST Assured</span>
+            <span class="tool-chip">GraphQL</span>
+            <span class="tool-chip">k6</span>
+          </div>
+        </div>
+
+        <div class="cov-card reveal">
+          <div class="cov-header">
+            <h3>CI/CD & DevOps</h3>
+            <span class="cov-pct">88%</span>
+          </div>
+          <div class="cov-bar"><div class="cov-fill" data-width="88"></div></div>
+          <div class="cov-tools">
+            <span class="tool-chip">GitHub Actions</span>
+            <span class="tool-chip">Jenkins</span>
+            <span class="tool-chip">Docker</span>
+            <span class="tool-chip">AWS</span>
+          </div>
+        </div>
+
+        <div class="cov-card reveal">
+          <div class="cov-header">
+            <h3>Performance</h3>
+            <span class="cov-pct">85%</span>
+          </div>
+          <div class="cov-bar"><div class="cov-fill" data-width="85"></div></div>
+          <div class="cov-tools">
+            <span class="tool-chip">JMeter</span>
+            <span class="tool-chip">Lighthouse</span>
+            <span class="tool-chip">k6</span>
+            <span class="tool-chip">Grafana</span>
+          </div>
+        </div>
+
+        <div class="cov-card reveal">
+          <div class="cov-header">
+            <h3>Languages</h3>
+            <span class="cov-pct">90%</span>
+          </div>
+          <div class="cov-bar"><div class="cov-fill" data-width="90"></div></div>
+          <div class="cov-tools">
+            <span class="tool-chip">JavaScript</span>
+            <span class="tool-chip">TypeScript</span>
+            <span class="tool-chip">Python</span>
+            <span class="tool-chip">Java</span>
+          </div>
+        </div>
+
+        <div class="cov-card reveal">
+          <div class="cov-header">
+            <h3>Security Testing</h3>
+            <span class="cov-pct">78%</span>
+          </div>
+          <div class="cov-bar"><div class="cov-fill" data-width="78"></div></div>
+          <div class="cov-tools">
+            <span class="tool-chip">OWASP ZAP</span>
+            <span class="tool-chip">Burp Suite</span>
+            <span class="tool-chip">SQL Injection</span>
+            <span class="tool-chip">XSS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bug Kills — trophy showcase -->
+  <section class="section" id="kills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">INCIDENT LOG</span>
+        <h2 class="section-title">Notable Bug Kills</h2>
+      </div>
+
+      <div class="kills-grid">
+        <div class="kill-card reveal">
+          <div class="kill-header">
+            <span class="kill-sev critical">CRITICAL</span>
+            <span class="kill-id">#BUG-4721</span>
+          </div>
+          <h3 class="kill-title">The Phantom Payment</h3>
+          <p class="kill-desc">Users were being double-charged on slow 3G connections due to a missing idempotency key in the payment retry logic.</p>
+          <div class="kill-impact">
+            <div class="impact-item">
+              <span class="impact-label">Impact</span>
+              <span class="impact-val critical-text">$180K in refunds prevented</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-label">Found via</span>
+              <span class="impact-val">Network throttling test</span>
+            </div>
+          </div>
+          <div class="kill-stamp">
+            <span class="stamp-icon">&#128027;</span>
+            <span class="stamp-text">SQUASHED</span>
+          </div>
+        </div>
+
+        <div class="kill-card reveal">
+          <div class="kill-header">
+            <span class="kill-sev critical">CRITICAL</span>
+            <span class="kill-id">#BUG-3199</span>
+          </div>
+          <h3 class="kill-title">The Token Leak</h3>
+          <p class="kill-desc">Refresh tokens were being logged in plaintext to the monitoring service. Could have exposed 50K+ user sessions.</p>
+          <div class="kill-impact">
+            <div class="impact-item">
+              <span class="impact-label">Impact</span>
+              <span class="impact-val critical-text">50K accounts protected</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-label">Found via</span>
+              <span class="impact-val">Security audit</span>
+            </div>
+          </div>
+          <div class="kill-stamp">
+            <span class="stamp-icon">&#128027;</span>
+            <span class="stamp-text">SQUASHED</span>
+          </div>
+        </div>
+
+        <div class="kill-card reveal">
+          <div class="kill-header">
+            <span class="kill-sev high-sev">HIGH</span>
+            <span class="kill-id">#BUG-2850</span>
+          </div>
+          <h3 class="kill-title">The Midnight Crash</h3>
+          <p class="kill-desc">App crashed every night at exactly 00:00 UTC. A timezone conversion bug in the cron scheduler was killing the event loop.</p>
+          <div class="kill-impact">
+            <div class="impact-item">
+              <span class="impact-label">Impact</span>
+              <span class="impact-val">Zero downtime since fix</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-label">Found via</span>
+              <span class="impact-val">Log pattern analysis</span>
+            </div>
+          </div>
+          <div class="kill-stamp">
+            <span class="stamp-icon">&#128027;</span>
+            <span class="stamp-text">SQUASHED</span>
+          </div>
+        </div>
+
+        <div class="kill-card reveal">
+          <div class="kill-header">
+            <span class="kill-sev medium-sev">MEDIUM</span>
+            <span class="kill-id">#BUG-1544</span>
+          </div>
+          <h3 class="kill-title">The Invisible Button</h3>
+          <p class="kill-desc">Submit button disappeared on iOS Safari when keyboard was open. CSS viewport unit was calculating height wrong with the virtual keyboard.</p>
+          <div class="kill-impact">
+            <div class="impact-item">
+              <span class="impact-label">Impact</span>
+              <span class="impact-val">Conversion rate +22%</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-label">Found via</span>
+              <span class="impact-val">Cross-device testing</span>
+            </div>
+          </div>
+          <div class="kill-stamp">
+            <span class="stamp-icon">&#128027;</span>
+            <span class="stamp-text">SQUASHED</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact — styled as "File a Bug Report" -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="report-card">
+        <div class="report-header">
+          <span class="report-icon">&#128027;</span>
+          <div>
+            <h2>File a Bug Report</h2>
+            <p class="report-sub">Got a project that needs testing? Let's talk.</p>
+          </div>
+        </div>
+        <form class="report-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Reporter Name <span class="required">*</span></label>
+              <input type="text" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label>Email <span class="required">*</span></label>
+              <input type="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Priority</label>
+            <div class="priority-select">
+              <label class="prio-option">
+                <input type="radio" name="priority" value="low" />
+                <span class="prio-chip low-chip">Low</span>
+              </label>
+              <label class="prio-option">
+                <input type="radio" name="priority" value="medium" checked />
+                <span class="prio-chip med-chip">Medium</span>
+              </label>
+              <label class="prio-option">
+                <input type="radio" name="priority" value="high" />
+                <span class="prio-chip high-chip">High</span>
+              </label>
+              <label class="prio-option">
+                <input type="radio" name="priority" value="critical" />
+                <span class="prio-chip crit-chip">Critical</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Description <span class="required">*</span></label>
+            <textarea rows="5" placeholder="Steps to reproduce the issue..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-submit">
+            <span>Submit Report</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 Andrey Petrovic — QA Engineer</span>
+      <span class="footer-tagline">No bugs shipped. <span class="footer-bug">&#128027;</span></span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

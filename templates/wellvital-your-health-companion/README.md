@@ -7,6 +7,7 @@ WellVital - Track your health metrics and wellness journey
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/wellvital-your-health-companion
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

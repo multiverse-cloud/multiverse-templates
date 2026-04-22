@@ -7,6 +7,7 @@ SocialVibe - Social media marketing agency. Instagram, TikTok, LinkedIn, Twitter
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/socialvibe-social-media-marketing-agency
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

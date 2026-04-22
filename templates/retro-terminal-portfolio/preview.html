@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrey Petrovic — Portfolio Terminal</title>
+
+  <meta name="description" content="Andrey Petrovic — Full Stack Developer. Retro terminal-style portfolio." />
+  <meta name="author" content="Andrey Petrovic" />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --green: #33ff33;
+  --green-dim: #1a9e1a;
+  --green-glow: rgba(51, 255, 51, 0.15);
+  --green-bright: #66ff66;
+  --amber: #ffb000;
+  --amber-dim: #996a00;
+  --bg: #0a0a0a;
+  --bg-screen: #050505;
+  --bezel: #2a2a2a;
+  --bezel-edge: #1a1a1a;
+  --text: var(--green);
+  --text-dim: var(--green-dim);
+  --font: 'VT323', 'Courier New', monospace;
+  --font-alt: 'IBM Plex Mono', monospace;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  -webkit-font-smoothing: none;
+}
+
+/* ===== CRT EFFECTS ===== */
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ===== MONITOR ===== */
+.monitor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+
+.monitor-bezel {
+  background: var(--bezel);
+  border-radius: 16px;
+  padding: 20px;
+  border: 3px solid var(--bezel-edge);
+  box-shadow:
+    0 0 60px rgba(51, 255, 51, 0.05),
+    inset 0 2px 4px rgba(255, 255, 255, 0.05),
+    0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.monitor-screen {
+  width: min(800px, 90vw);
+  height: min(520px, 70vh);
+  background: var(--bg-screen);
+  border-radius: 6px;
+  border: 2px solid #111;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 80px rgba(51, 255, 51, 0.03),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.monitor-stand {
+  width: 60px;
+  height: 30px;
+  background: linear-gradient(to bottom, var(--bezel), var(--bezel-edge));
+  border-radius: 0 0 4px 4px;
+}
+
+.monitor-base {
+  width: 160px;
+  height: 12px;
+  background: var(--bezel);
+  border-radius: 0 0 8px 8px;
+  border: 2px solid var(--bezel-edge);
+  border-top: none;
+}
+
+.power-led {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green), 0 0 16px var(--green-glow);
+  animation: led-pulse 2s ease-in-out infinite;
+}
+
+@keyframes led-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ===== TITLE BAR ===== */
+.title-bar {
+  height: 28px;
+  background: linear-gradient(to right, #000080, #1084d0);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px 0 8px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.title-bar-text {
+  font-family: var(--font-alt);
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+.title-bar-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.tb-btn {
+  width: 20px;
+  height: 18px;
+  background: #c0c0c0;
+  border: 1px outset #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-alt);
+  font-size: 11px;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.tb-btn:active {
+  border-style: inset;
+}
+
+/* ===== TERMINAL ===== */
+.terminal {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+}
+
+.terminal::-webkit-scrollbar {
+  width: 12px;
+}
+
+.terminal::-webkit-scrollbar-track {
+  background: #111;
+}
+
+.terminal::-webkit-scrollbar-thumb {
+  background: #333;
+  border: 2px solid #111;
+}
+
+/* Output lines */
+#output {
+  flex: 1;
+}
+
+.line {
+  margin-bottom: 2px;
+  word-wrap: break-word;
+}
+
+.line-cmd {
+  color: var(--green-bright);
+}
+
+.line-info {
+  color: var(--green);
+}
+
+.line-dim {
+  color: var(--green-dim);
+}
+
+.line-header {
+  color: var(--amber);
+  font-size: 20px;
+}
+
+.line-accent {
+  color: var(--amber);
+}
+
+.line-error {
+  color: #ff4444;
+}
+
+.line-separator {
+  color: var(--green-dim);
+  opacity: 0.5;
+}
+
+.line-blank {
+  height: 18px;
+}
+
+/* ASCII art */
+.ascii-art {
+  color: var(--green);
+  line-height: 1.15;
+  font-size: 14px;
+  white-space: pre;
+}
+
+/* Input line */
+.input-line {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.prompt {
+  color: var(--green);
+  white-space: nowrap;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.cmd-hidden {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.cmd-mirror {
+  color: var(--green-bright);
+  white-space: pre;
+}
+
+.cursor-block {
+  color: var(--green);
+  animation: blink 0.8s step-end infinite;
+  font-weight: 700;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Typing animation */
+.typing::after {
+  content: '_';
+  animation: blink 0.8s step-end infinite;
+}
+
+/* Tables */
+.table-row {
+  display: flex;
+  gap: 4px;
+}
+
+.table-key {
+  color: var(--amber);
+  min-width: 18ch;
+  flex-shrink: 0;
+}
+
+.table-val {
+  color: var(--green);
+}
+
+/* Progress bar */
+.progress-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-track {
+  color: var(--green-dim);
+}
+
+.progress-fill {
+  color: var(--green);
+}
+
+.progress-label {
+  color: var(--green-dim);
+  font-size: 16px;
+}
+
+/* Link style */
+.term-link {
+  color: var(--amber);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.term-link:hover {
+  color: var(--green-bright);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .monitor-bezel {
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .monitor-screen {
+    width: 95vw;
+    height: 80vh;
+  }
+
+  .terminal {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+
+  .ascii-art {
+    font-size: 8px;
+  }
+
+  .table-key {
+    min-width: 14ch;
+  }
+
+  .monitor-stand,
+  .monitor-base {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminal {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+
+  .ascii-art {
+    font-size: 6px;
+  }
+
+  .table-key {
+    min-width: 12ch;
+  }
+}
+
+</style></head>
+<body>
+  <!-- CRT overlay effects -->
+  <div class="crt-overlay"></div>
+  <div class="scanlines"></div>
+
+  <!-- Monitor frame -->
+  <div class="monitor">
+    <div class="monitor-bezel">
+      <div class="monitor-screen">
+        <!-- Title bar -->
+        <div class="title-bar">
+          <span class="title-bar-text">C:\PORTFOLIO\ANDREY.EXE</span>
+          <div class="title-bar-controls">
+            <span class="tb-btn">_</span>
+            <span class="tb-btn">□</span>
+            <span class="tb-btn">×</span>
+          </div>
+        </div>
+
+        <!-- Terminal output area -->
+        <div class="terminal" id="terminal">
+          <div id="output"></div>
+          <div class="input-line" id="input-line">
+            <span class="prompt">C:\PORTFOLIO&gt;</span>
+            <span id="cmd-mirror" class="cmd-mirror"></span><span class="cursor-block">_</span>
+            <input type="text" id="cmd-input" class="cmd-hidden" autocomplete="off" spellcheck="false" autofocus />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Monitor base -->
+    <div class="monitor-stand"></div>
+    <div class="monitor-base"></div>
+  </div>
+
+  <!-- Power LED -->
+  <div class="power-led"></div>
+
+  
+<script>
+// ===== Portfolio Data =====
+const DATA = {
+  name: 'Andrey Petrovic',
+  role: 'Full Stack Developer',
+  location: 'Your City',
+  email: 'andrey@example.com',
+  github: 'github.com/andrey',
+  linkedin: 'linkedin.com/in/andrey',
+
+  about: [
+    'Passionate developer who loves building things from scratch.',
+    'I thrive in fast-paced environments where creativity meets code.',
+    'When I\'m not coding, I\'m probably tinkering with retro hardware.'
+  ],
+
+  experience: [
+    {
+      role: 'Senior Developer',
+      company: 'Acme Corp',
+      date: '2023 - Present',
+      desc: 'Leading frontend architecture and building scalable web apps.'
+    },
+    {
+      role: 'Full Stack Developer',
+      company: 'Nexora',
+      date: '2021 - 2022',
+      desc: 'Built a SaaS platform serving thousands of users.'
+    },
+    {
+      role: 'Frontend Developer',
+      company: 'BlueLabs',
+      date: '2019 - 2021',
+      desc: 'Developed interactive dashboards and data viz tools.'
+    }
+  ],
+
+  skills: [
+    { name: 'JavaScript/TypeScript', level: 95 },
+    { name: 'React / Next.js',      level: 90 },
+    { name: 'Node.js / Express',    level: 85 },
+    { name: 'Python / FastAPI',     level: 80 },
+    { name: 'PostgreSQL / Redis',   level: 75 },
+    { name: 'AWS / Docker',         level: 70 },
+    { name: 'Git / CI/CD',          level: 90 }
+  ],
+
+  projects: [
+    {
+      name: 'TaskForge',
+      tech: 'Next.js, TypeScript, PostgreSQL',
+      desc: 'A project management tool with real-time collaboration.'
+    },
+    {
+      name: 'PixelBoard',
+      tech: 'React, Canvas API, WebSockets',
+      desc: 'Collaborative pixel art canvas for the web.'
+    },
+    {
+      name: 'CLI Weather',
+      tech: 'Python, Click, OpenWeather API',
+      desc: 'Beautiful terminal weather app with ASCII art.'
+    }
+  ]
+};
+
+// ===== ASCII Art =====
+const ASCII_BANNER = `
+ ██████╗  ██████╗ ██████╗ ████████╗███████╗ ██████╗ ██╗     ██╗ ██████╗
+ ██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██║     ██║██╔═══██╗
+ ██████╔╝██║   ██║██████╔╝   ██║   █████╗  ██║   ██║██║     ██║██║   ██║
+ ██╔═══╝ ██║   ██║██╔══██╗   ██║   ██╔══╝  ██║   ██║██║     ██║██║   ██║
+ ██║     ╚██████╔╝██║  ██║   ██║   ██║     ╚██████╔╝███████╗██║╚██████╔╝
+ ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚══════╝╚═╝ ╚═════╝`;
+
+// ===== Terminal Engine =====
+const output = document.getElementById('output');
+const cmdInput = document.getElementById('cmd-input');
+const cmdMirror = document.getElementById('cmd-mirror');
+const terminal = document.getElementById('terminal');
+
+// Print helpers
+function addLine(text, className = 'line-info') {
+  const div = document.createElement('div');
+  div.className = `line ${className}`;
+  div.innerHTML = text;
+  output.appendChild(div);
+}
+
+function addBlank() {
+  const div = document.createElement('div');
+  div.className = 'line line-blank';
+  output.appendChild(div);
+}
+
+function addAscii(text) {
+  const pre = document.createElement('pre');
+  pre.className = 'ascii-art';
+  pre.textContent = text;
+  output.appendChild(pre);
+}
+
+function addSeparator() {
+  addLine('─'.repeat(60), 'line-separator');
+}
+
+function addTableRow(key, val) {
+  addLine(
+    `<span class="table-key">${key}</span> <span class="table-val">${val}</span>`
+  );
+}
+
+function addProgressBar(label, percent) {
+  const filled = Math.round(percent / 5);
+  const empty = 20 - filled;
+  const bar = `<span class="progress-fill">${'█'.repeat(filled)}</span><span class="progress-track">${'░'.repeat(empty)}</span>`;
+  addLine(
+    `<span class="table-key">${label}</span> <span class="progress-bar">${bar} <span class="progress-label">${percent}%</span></span>`
+  );
+}
+
+function scrollToBottom() {
+  terminal.scrollTop = terminal.scrollHeight;
+}
+
+// ===== Typing Animation =====
+function typeText(text, className, speed = 15) {
+  return new Promise(resolve => {
+    const div = document.createElement('div');
+    div.className = `line ${className}`;
+    output.appendChild(div);
+
+    let i = 0;
+    function type() {
+      if (i < text.length) {
+        div.innerHTML += text[i] === ' ' ? '&nbsp;' : text[i];
+        i++;
+        scrollToBottom();
+        setTimeout(type, speed);
+      } else {
+        div.innerHTML = text;
+        resolve();
+      }
+    }
+    type();
+  });
+}
+
+// ===== Commands =====
+const COMMANDS = {
+  help: cmdHelp,
+  about: cmdAbout,
+  skills: cmdSkills,
+  experience: cmdExperience,
+  projects: cmdProjects,
+  contact: cmdContact,
+  clear: cmdClear,
+  whoami: cmdWhoami,
+  date: cmdDate,
+  banner: cmdBanner,
+  theme: cmdTheme,
+  neofetch: cmdNeofetch,
+  ls: cmdLs,
+  cat: cmdCat,
+  sudo: cmdSudo,
+};
+
+function cmdHelp() {
+  addBlank();
+  addLine('Available commands:', 'line-header');
+  addSeparator();
+  addTableRow('about', 'Who am I');
+  addTableRow('skills', 'Technical skills');
+  addTableRow('experience', 'Work history');
+  addTableRow('projects', 'Things I\'ve built');
+  addTableRow('contact', 'Get in touch');
+  addTableRow('neofetch', 'System info');
+  addTableRow('theme [green|amber]', 'Change color theme');
+  addTableRow('banner', 'Show ASCII banner');
+  addTableRow('clear', 'Clear the screen');
+  addTableRow('date', 'Current date & time');
+  addTableRow('whoami', 'Current user');
+  addTableRow('ls', 'List files');
+  addTableRow('cat [file]', 'Read a file');
+  addSeparator();
+  addLine('Type a command and press Enter.', 'line-dim');
+  addBlank();
+}
+
+function cmdAbout() {
+  addBlank();
+  addLine(`┌── About ${DATA.name} ──┐`, 'line-header');
+  addSeparator();
+  addTableRow('Name', DATA.name);
+  addTableRow('Role', DATA.role);
+  addTableRow('Location', DATA.location);
+  addBlank();
+  DATA.about.forEach(line => addLine(`  ${line}`));
+  addSeparator();
+  addBlank();
+}
+
+function cmdSkills() {
+  addBlank();
+  addLine('┌── Technical Skills ──┐', 'line-header');
+  addSeparator();
+  DATA.skills.forEach(s => addProgressBar(s.name, s.level));
+  addSeparator();
+  addBlank();
+}
+
+function cmdExperience() {
+  addBlank();
+  addLine('┌── Work Experience ──┐', 'line-header');
+  addSeparator();
+  DATA.experience.forEach((exp, i) => {
+    addLine(`  <span class="line-accent">${exp.role}</span> @ ${exp.company}`, 'line-info');
+    addLine(`  ${exp.date}`, 'line-dim');
+    addLine(`  ${exp.desc}`);
+    if (i < DATA.experience.length - 1) addBlank();
+  });
+  addSeparator();
+  addBlank();
+}
+
+function cmdProjects() {
+  addBlank();
+  addLine('┌── Projects ──┐', 'line-header');
+  addSeparator();
+  DATA.projects.forEach((p, i) => {
+    addLine(`  <span class="line-accent">${p.name}</span>`, 'line-info');
+    addLine(`  Tech: ${p.tech}`, 'line-dim');
+    addLine(`  ${p.desc}`);
+    if (i < DATA.projects.length - 1) addBlank();
+  });
+  addSeparator();
+  addBlank();
+}
+
+function cmdContact() {
+  addBlank();
+  addLine('┌── Contact ──┐', 'line-header');
+  addSeparator();
+  addTableRow('Email', DATA.email);
+  addTableRow('GitHub', DATA.github);
+  addTableRow('LinkedIn', DATA.linkedin);
+  addSeparator();
+  addLine('  Feel free to reach out!', 'line-dim');
+  addBlank();
+}
+
+function cmdClear() {
+  output.innerHTML = '';
+}
+
+function cmdWhoami() {
+  addLine(`  ${DATA.name} (${DATA.role})`);
+}
+
+function cmdDate() {
+  const now = new Date();
+  addLine(`  ${now.toLocaleString('en-US', {
+    weekday: 'long', year: 'numeric', month: 'long',
+    day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'
+  })}`);
+}
+
+function cmdBanner() {
+  addBlank();
+  addAscii(ASCII_BANNER);
+  addBlank();
+}
+
+function cmdTheme(args) {
+  const theme = (args[0] || '').toLowerCase();
+  if (theme === 'amber') {
+    document.documentElement.style.setProperty('--green', '#ffb000');
+    document.documentElement.style.setProperty('--green-dim', '#996a00');
+    document.documentElement.style.setProperty('--green-glow', 'rgba(255, 176, 0, 0.15)');
+    document.documentElement.style.setProperty('--green-bright', '#ffc233');
+    addLine('  Theme changed to amber.', 'line-accent');
+  } else if (theme === 'green') {
+    document.documentElement.style.setProperty('--green', '#33ff33');
+    document.documentElement.style.setProperty('--green-dim', '#1a9e1a');
+    document.documentElement.style.setProperty('--green-glow', 'rgba(51, 255, 51, 0.15)');
+    document.documentElement.style.setProperty('--green-bright', '#66ff66');
+    addLine('  Theme changed to green.', 'line-info');
+  } else {
+    addLine('  Usage: theme [green|amber]', 'line-dim');
+  }
+}
+
+function cmdNeofetch() {
+  const mini = [
+    '   ┌─────────┐',
+    '   │  ◣   ◢  │',
+    '   │    ▼    │',
+    '   │  ╰───╯  │',
+    '   └─────────┘',
+  ];
+
+  addBlank();
+  const info = [
+    `<span class="line-accent">${DATA.name}</span>`,
+    `─────────────────────`,
+    `OS:       RetroOS 1.0`,
+    `Host:     Portfolio Terminal`,
+    `Shell:    COMMAND.COM`,
+    `Terminal: VT323`,
+    `CPU:      Caffeinated Brain @ 3.2GHz`,
+    `Memory:   ${DATA.skills.length} skills loaded`,
+    `Uptime:   5+ years`,
+  ];
+
+  for (let i = 0; i < Math.max(mini.length, info.length); i++) {
+    const art = mini[i] || '                ';
+    const inf = info[i] || '';
+    addLine(`<span class="line-accent">${art}</span>    ${inf}`);
+  }
+  addBlank();
+}
+
+function cmdLs() {
+  addBlank();
+  addLine('  <span class="line-accent">about.txt</span>     <span class="line-accent">skills.dat</span>     <span class="line-accent">experience.log</span>');
+  addLine('  <span class="line-accent">projects.md</span>   <span class="line-accent">contact.cfg</span>    <span class="line-accent">README.txt</span>');
+  addBlank();
+}
+
+function cmdCat(args) {
+  const file = (args[0] || '').toLowerCase();
+  const fileMap = {
+    'about.txt': cmdAbout,
+    'skills.dat': cmdSkills,
+    'experience.log': cmdExperience,
+    'projects.md': cmdProjects,
+    'contact.cfg': cmdContact,
+    'readme.txt': () => {
+      addBlank();
+      addLine('  Welcome to my portfolio terminal!');
+      addLine('  Type "help" to see available commands.');
+      addBlank();
+    }
+  };
+  if (fileMap[file]) {
+    fileMap[file]();
+  } else if (!file) {
+    addLine('  Usage: cat [filename]', 'line-dim');
+    addLine('  Try: cat about.txt', 'line-dim');
+  } else {
+    addLine(`  cat: ${file}: No such file or directory`, 'line-error');
+  }
+}
+
+function cmdSudo() {
+  addLine('  Nice try. Access denied. 😏', 'line-error');
+}
+
+// ===== Command Processing =====
+function processCommand(input) {
+  const trimmed = input.trim();
+  if (!trimmed) return;
+
+  // Echo the command
+  addLine(`<span class="prompt">C:\\PORTFOLIO&gt;</span> <span class="line-cmd">${trimmed}</span>`);
+
+  const parts = trimmed.split(/\s+/);
+  const cmd = parts[0].toLowerCase();
+  const args = parts.slice(1);
+
+  if (COMMANDS[cmd]) {
+    COMMANDS[cmd](args);
+  } else {
+    addLine(`  '${cmd}' is not recognized. Type "help" for commands.`, 'line-error');
+    addBlank();
+  }
+
+  scrollToBottom();
+}
+
+// ===== Input Handling =====
+function syncMirror() {
+  cmdMirror.textContent = cmdInput.value;
+}
+
+cmdInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const val = cmdInput.value;
+    cmdInput.value = '';
+    syncMirror();
+    processCommand(val);
+  }
+});
+
+cmdInput.addEventListener('input', syncMirror);
+
+// Focus input on click anywhere
+document.addEventListener('click', () => cmdInput.focus());
+
+// ===== Boot Sequence =====
+async function boot() {
+  const inputLine = document.getElementById('input-line');
+  inputLine.style.display = 'none';
+
+  addLine('BIOS v1.0 — Portfolio System', 'line-dim');
+  addLine('Checking memory... OK', 'line-dim');
+  addLine('Loading portfolio data... OK', 'line-dim');
+  addBlank();
+
+  await new Promise(r => setTimeout(r, 400));
+
+  addAscii(ASCII_BANNER);
+  addBlank();
+
+  await typeText(`  Welcome! I'm ${DATA.name} — ${DATA.role}.`, 'line-info', 20);
+  addBlank();
+
+  addLine('  Type <span class="line-accent">help</span> to see available commands.', 'line-info');
+  addLine('  Type <span class="line-accent">about</span>, <span class="line-accent">skills</span>, <span class="line-accent">experience</span>, or <span class="line-accent">projects</span> to explore.', 'line-dim');
+  addBlank();
+
+  inputLine.style.display = 'flex';
+  cmdInput.focus();
+  scrollToBottom();
+}
+
+boot();
+
+</script></body>
+</html>

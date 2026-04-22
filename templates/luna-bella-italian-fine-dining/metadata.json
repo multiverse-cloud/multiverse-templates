@@ -50,11 +50,13 @@
     "Landing Page",
     "Quick-launch marketing sites"
   ],
-  "liveUrl": null,
+  "previewImage": "https://res.cloudinary.com/dlgmkieem/image/upload/f_auto,q_auto,c_fill,w_1600,h_1000/multiverse/template-previews/luna-bella-italian-fine-dining",
+  "previewCapturedAt": "2026-04-21T08:47:16.398Z",
+  "liveUrl": "https://multiverse-templates.vercel.app/luna-bella-italian-fine-dining",
   "downloadUrl": null,
   "featured": false,
   "updatedAt": "2026-04-17",
   "license": "Free download",
   "priceLabel": "Free",
-  "generatedAt": "2026-04-21T08:02:15.130Z"
+  "generatedAt": "2026-04-22T10:53:42.043Z"
 }

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrey Petrovic — Full Stack Developer</title>
+
+  <!-- Primary Meta -->
+  <meta name="description" content="Andrey Petrovic is a Full Stack Developer with experience in React, Next.js, TypeScript, Python, and cloud platforms." />
+  <meta name="keywords" content="Andrey Petrovic, Software Engineer, Full Stack Developer, React, Next.js, TypeScript, Python, AWS" />
+  <meta name="author" content="Andrey Petrovic" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Andrey Petrovic — Full Stack Developer" />
+  <meta property="og:description" content="Full Stack Developer with 5+ years shipping products across startups." />
+  <meta property="og:url" content="https://example.com" />
+  <meta property="og:site_name" content="Andrey Petrovic Portfolio" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Andrey Petrovic — Full Stack Developer" />
+  <meta name="twitter:description" content="Full Stack Developer with 5+ years shipping products across startups." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://example.com" />
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#1a1a2e" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Mono:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Desktop Wallpaper -->
+  <div class="desktop">
+    <!-- Menu Bar -->
+    <div class="menubar">
+      <div class="menubar-left">
+        <div class="apple-logo">
+          <svg width="14" height="17" viewBox="0 0 14 17" fill="currentColor">
+            <path d="M13.2 12.45c-.3.67-.44.97-.82 1.57-.53.83-1.28 1.87-2.2 1.88-.83.01-1.04-.54-2.17-.53-1.12 0-1.36.54-2.18.54-.93.01-1.63-.95-2.16-1.78C2.17 11.87 1.6 8.8 2.88 6.74c.64-1.03 1.6-1.64 2.5-1.64.99 0 1.61.55 2.43.55.79 0 1.27-.55 2.41-.55.8 0 1.65.43 2.29 1.18-2.01 1.1-1.69 3.97.39 4.74-.4 1.02-.58 1.48-1.07 2.38zM9.58.45c-.4.52-1.06.93-1.72.89-.09-.65.22-1.34.59-1.82C8.83.02 9.53-.3 10.13-.35c.07.68-.18 1.35-.55 1.8z" transform="translate(-1.3 .35)"/>
+          </svg>
+        </div>
+        <span class="menubar-app">Finder</span>
+        <span class="menubar-item">File</span>
+        <span class="menubar-item">Edit</span>
+        <span class="menubar-item">View</span>
+        <span class="menubar-item">Go</span>
+        <span class="menubar-item">Window</span>
+        <span class="menubar-item">Help</span>
+      </div>
+      <div class="menubar-right">
+        <span class="menubar-icon" id="clock"></span>
+      </div>
+    </div>
+
+    <!-- Windows Container -->
+    <div class="windows-container">
+
+      <!-- Finder Window — About -->
+      <div class="window active" id="win-about" data-x="60" data-y="50" style="width:680px; left:60px; top:50px; z-index:10;">
+        <div class="window-titlebar" data-window="win-about">
+          <div class="traffic-lights">
+            <button class="tl-btn tl-close" data-action="close" data-window="win-about"></button>
+            <button class="tl-btn tl-minimize" data-action="minimize" data-window="win-about"></button>
+            <button class="tl-btn tl-maximize" data-action="maximize" data-window="win-about"></button>
+          </div>
+          <span class="window-title">About Andrey — Finder</span>
+        </div>
+        <div class="window-toolbar finder-toolbar">
+          <div class="finder-nav">
+            <button class="finder-btn">‹</button>
+            <button class="finder-btn">›</button>
+          </div>
+          <div class="finder-breadcrumb">
+            <span class="crumb">Users</span>
+            <span class="crumb-sep">›</span>
+            <span class="crumb active">andrey</span>
+          </div>
+          <div class="finder-view-toggle">
+            <button class="view-btn active">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="0" width="6" height="6" rx="1"/><rect x="8" y="0" width="6" height="6" rx="1"/><rect x="0" y="8" width="6" height="6" rx="1"/><rect x="8" y="8" width="6" height="6" rx="1"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="window-body finder-body">
+          <div class="finder-sidebar">
+            <div class="sidebar-section">
+              <div class="sidebar-title">Favorites</div>
+              <a class="sidebar-item active" data-target="win-about">
+                <span class="sidebar-icon">🏠</span> About
+              </a>
+              <a class="sidebar-item" data-target="win-experience">
+                <span class="sidebar-icon">💼</span> Experience
+              </a>
+              <a class="sidebar-item" data-target="win-skills">
+                <span class="sidebar-icon">⚡</span> Skills
+              </a>
+              <a class="sidebar-item" data-target="win-terminal">
+                <span class="sidebar-icon">⬛</span> Terminal
+              </a>
+              <a class="sidebar-item" data-target="win-contact">
+                <span class="sidebar-icon">✉️</span> Contact
+              </a>
+            </div>
+          </div>
+          <div class="finder-content about-content">
+            <div class="about-hero">
+              <div class="about-avatar">
+                <div class="avatar-placeholder">AP</div>
+              </div>
+              <div class="about-info">
+                <h1 class="about-name">Andrey Petrovic</h1>
+                <p class="about-role">Full Stack Developer</p>
+                <p class="about-tagline">Building things that matter</p>
+              </div>
+            </div>
+            <div class="about-bio">
+              <p>I love solving hard problems and turning ideas into polished products.</p>
+              <p>Whether it's a greenfield project or scaling an existing system, I bring the same energy and curiosity.</p>
+              <p class="about-focus">Currently working on <strong>Your Project</strong> — describe what you're building here.</p>
+            </div>
+            <div class="about-stats">
+              <div class="stat-card">
+                <span class="stat-number">5+</span>
+                <span class="stat-label">Years Experience</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">Projects</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">∞</span>
+                <span class="stat-label">Bugs Squashed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finder Window — Experience -->
+      <div class="window" id="win-experience" data-x="120" data-y="80" style="width:750px; left:120px; top:80px; z-index:9; display:none;">
+        <div class="window-titlebar" data-window="win-experience">
+          <div class="traffic-lights">
+            <button class="tl-btn tl-close" data-action="close" data-window="win-experience"></button>
+            <button class="tl-btn tl-minimize" data-action="minimize" data-window="win-experience"></button>
+            <button class="tl-btn tl-maximize" data-action="maximize" data-window="win-experience"></button>
+          </div>
+          <span class="window-title">Experience — Finder</span>
+        </div>
+        <div class="window-toolbar finder-toolbar">
+          <div class="finder-nav">
+            <button class="finder-btn">‹</button>
+            <button class="finder-btn">›</button>
+          </div>
+          <div class="finder-breadcrumb">
+            <span class="crumb">Users</span>
+            <span class="crumb-sep">›</span>
+            <span class="crumb">andrey</span>
+            <span class="crumb-sep">›</span>
+            <span class="crumb active">experience</span>
+          </div>
+        </div>
+        <div class="window-body">
+          <div class="experience-list">
+            <div class="exp-item">
+              <div class="exp-icon">
+                <div class="folder-icon current">AC</div>
+              </div>
+              <div class="exp-details">
+                <h3>Senior Developer <span class="exp-company">@ Acme Corp</span></h3>
+                <span class="exp-date">Jan 2023 — Present</span>
+                <p>Leading frontend architecture and building scalable web applications for enterprise clients.</p>
+                <div class="exp-tags">
+                  <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Architecture</span><span class="tag">Full Stack</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-icon">
+                <div class="folder-icon">NX</div>
+              </div>
+              <div class="exp-details">
+                <h3>Full Stack Developer <span class="exp-company">@ Nexora</span></h3>
+                <span class="exp-date">Mar 2021 — Dec 2022</span>
+                <p>Built and maintained a SaaS platform serving thousands of users. Focused on performance and reliability.</p>
+                <div class="exp-tags">
+                  <span class="tag">SaaS</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">AWS</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-icon">
+                <div class="folder-icon">BL</div>
+              </div>
+              <div class="exp-details">
+                <h3>Frontend Developer <span class="exp-company">@ BlueLabs</span></h3>
+                <span class="exp-date">Jun 2019 — Feb 2021</span>
+                <p>Developed interactive dashboards and data visualization tools for analytics products.</p>
+                <div class="exp-tags">
+                  <span class="tag">Frontend</span><span class="tag">Data Viz</span><span class="tag">React</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Window -->
+      <div class="window" id="win-skills" data-x="180" data-y="100" style="width:600px; left:180px; top:100px; z-index:8; display:none;">
+        <div class="window-titlebar" data-window="win-skills">
+          <div class="traffic-lights">
+            <button class="tl-btn tl-close" data-action="close" data-window="win-skills"></button>
+            <button class="tl-btn tl-minimize" data-action="minimize" data-window="win-skills"></button>
+            <button class="tl-btn tl-maximize" data-action="maximize" data-window="win-skills"></button>
+          </div>
+          <span class="window-title">Skills — System Preferences</span>
+        </div>
+        <div class="window-body skills-body">
+          <div class="skills-grid">
+            <div class="skill-category">
+              <div class="skill-cat-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#3b82f6"/><text x="16" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="600">&lt;/&gt;</text></svg>
+              </div>
+              <h3>Frontend</h3>
+              <div class="skill-items">
+                <div class="skill-pill">React</div>
+                <div class="skill-pill">Next.js</div>
+                <div class="skill-pill">TypeScript</div>
+                <div class="skill-pill">Tailwind CSS</div>
+                <div class="skill-pill">Remotion</div>
+                <div class="skill-pill">Zustand</div>
+                <div class="skill-pill">Redux</div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <div class="skill-cat-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#8b5cf6"/><text x="16" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="600">{ }</text></svg>
+              </div>
+              <h3>Backend & AI</h3>
+              <div class="skill-items">
+                <div class="skill-pill">Python</div>
+                <div class="skill-pill">FastAPI</div>
+                <div class="skill-pill">Django</div>
+                <div class="skill-pill">LLM</div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <div class="skill-cat-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#10b981"/><text x="16" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="600">DB</text></svg>
+              </div>
+              <h3>Cloud & Data</h3>
+              <div class="skill-items">
+                <div class="skill-pill">AWS</div>
+                <div class="skill-pill">GCP</div>
+                <div class="skill-pill">Azure</div>
+                <div class="skill-pill">PostgreSQL</div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <div class="skill-cat-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#f59e0b"/><text x="16" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="600">⚙</text></svg>
+              </div>
+              <h3>Tools</h3>
+              <div class="skill-items">
+                <div class="skill-pill">Git</div>
+                <div class="skill-pill">Docker</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Terminal Window -->
+      <div class="window" id="win-terminal" data-x="100" data-y="120" style="width:650px; left:100px; top:120px; z-index:7; display:none;">
+        <div class="window-titlebar terminal-titlebar" data-window="win-terminal">
+          <div class="traffic-lights">
+            <button class="tl-btn tl-close" data-action="close" data-window="win-terminal"></button>
+            <button class="tl-btn tl-minimize" data-action="minimize" data-window="win-terminal"></button>
+            <button class="tl-btn tl-maximize" data-action="maximize" data-window="win-terminal"></button>
+          </div>
+          <span class="window-title terminal-title">andrey — zsh — 80×24</span>
+        </div>
+        <div class="window-body terminal-body" id="terminal-output">
+          <div class="terminal-line">
+            <span class="terminal-prompt">andrey@macbook</span><span class="terminal-sep">:</span><span class="terminal-dir">~</span><span class="terminal-dollar">$</span> <span class="terminal-cmd">cat about.txt</span>
+          </div>
+          <div class="terminal-response">
+            <br/>Name: Andrey Petrovic
+            <br/>Role: Full Stack Developer
+            <br/>Location: Your City
+            <br/>Passion: Web, Open Source, Building Things
+            <br/>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-prompt">andrey@macbook</span><span class="terminal-sep">:</span><span class="terminal-dir">~</span><span class="terminal-dollar">$</span> <span class="terminal-cmd">ls skills/</span>
+          </div>
+          <div class="terminal-response terminal-ls">
+            <span class="term-folder">react/</span>
+            <span class="term-folder">nextjs/</span>
+            <span class="term-folder">typescript/</span>
+            <span class="term-folder">python/</span>
+            <span class="term-folder">tailwindcss/</span>
+            <span class="term-folder">zustand/</span>
+            <span class="term-folder">redux/</span>
+            <span class="term-folder">remotion/</span>
+            <span class="term-folder">fastapi/</span>
+            <span class="term-folder">django/</span>
+            <span class="term-folder">llm/</span>
+            <span class="term-folder">aws/</span>
+            <span class="term-folder">gcp/</span>
+            <span class="term-folder">azure/</span>
+            <span class="term-folder">postgresql/</span>
+            <span class="term-folder">docker/</span>
+            <span class="term-folder">git/</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-prompt">andrey@macbook</span><span class="terminal-sep">:</span><span class="terminal-dir">~</span><span class="terminal-dollar">$</span> <span class="terminal-cmd">echo $CURRENT_STATUS</span>
+          </div>
+          <div class="terminal-response">
+            Building awesome things 🚀
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-prompt">andrey@macbook</span><span class="terminal-sep">:</span><span class="terminal-dir">~</span><span class="terminal-dollar">$</span> <span class="terminal-cmd">uptime</span>
+          </div>
+          <div class="terminal-response">
+            5+ years of shipping code and counting...
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-prompt">andrey@macbook</span><span class="terminal-sep">:</span><span class="terminal-dir">~</span><span class="terminal-dollar">$</span> <span class="terminal-cursor">▊</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Window -->
+      <div class="window" id="win-contact" data-x="200" data-y="90" style="width:480px; left:200px; top:90px; z-index:6; display:none;">
+        <div class="window-titlebar" data-window="win-contact">
+          <div class="traffic-lights">
+            <button class="tl-btn tl-close" data-action="close" data-window="win-contact"></button>
+            <button class="tl-btn tl-minimize" data-action="minimize" data-window="win-contact"></button>
+            <button class="tl-btn tl-maximize" data-action="maximize" data-window="win-contact"></button>
+          </div>
+          <span class="window-title">Contact — Messages</span>
+        </div>
+        <div class="window-body contact-body">
+          <div class="contact-header">
+            <div class="contact-avatar">AP</div>
+            <div>
+              <h2>Get in Touch</h2>
+              <p class="contact-sub">Let's build something great together</p>
+            </div>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea rows="4" placeholder="What's on your mind?" required></textarea>
+            </div>
+            <button type="submit" class="send-btn">
+              <span>Send Message</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H1.5a.5.5 0 0 0 0 1h12.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Dock -->
+    <div class="dock">
+      <div class="dock-container">
+        <button class="dock-item active" data-target="win-about" title="About">
+          <div class="dock-icon dock-finder">
+            <svg viewBox="0 0 32 32" width="40" height="40">
+              <rect width="32" height="32" rx="8" fill="linear-gradient(135deg, #1e90ff, #00bfff)"/>
+              <rect width="32" height="32" rx="8" fill="#1a9fff"/>
+              <path d="M8 10h6v12H8z" fill="#fff" opacity="0.9"/>
+              <path d="M18 10h6v12h-6z" fill="#fff" opacity="0.5"/>
+            </svg>
+          </div>
+          <span class="dock-label">About</span>
+          <span class="dock-dot"></span>
+        </button>
+        <button class="dock-item" data-target="win-experience" title="Experience">
+          <div class="dock-icon dock-experience">
+            <svg viewBox="0 0 32 32" width="40" height="40">
+              <rect width="32" height="32" rx="8" fill="#6366f1"/>
+              <rect x="7" y="10" width="18" height="14" rx="2" fill="#fff" opacity="0.9"/>
+              <rect x="11" y="7" width="10" height="5" rx="1.5" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.9"/>
+            </svg>
+          </div>
+          <span class="dock-label">Experience</span>
+          <span class="dock-dot"></span>
+        </button>
+        <button class="dock-item" data-target="win-skills" title="Skills">
+          <div class="dock-icon dock-skills">
+            <svg viewBox="0 0 32 32" width="40" height="40">
+              <rect width="32" height="32" rx="8" fill="#64748b"/>
+              <circle cx="16" cy="16" r="8" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.9"/>
+              <circle cx="16" cy="16" r="3" fill="#fff" opacity="0.9"/>
+              <rect x="15" y="5" width="2" height="4" rx="1" fill="#fff" opacity="0.7"/>
+              <rect x="15" y="23" width="2" height="4" rx="1" fill="#fff" opacity="0.7"/>
+              <rect x="5" y="15" width="4" height="2" rx="1" fill="#fff" opacity="0.7"/>
+              <rect x="23" y="15" width="4" height="2" rx="1" fill="#fff" opacity="0.7"/>
+            </svg>
+          </div>
+          <span class="dock-label">Skills</span>
+          <span class="dock-dot"></span>
+        </button>
+        <div class="dock-divider"></div>
+        <button class="dock-item" data-target="win-terminal" title="Terminal">
+          <div class="dock-icon dock-terminal">
+            <svg viewBox="0 0 32 32" width="40" height="40">
+              <rect width="32" height="32" rx="8" fill="#1e1e1e"/>
+              <path d="M10 11l5 5-5 5" stroke="#4ade80" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="17" y1="21" x2="23" y2="21" stroke="#4ade80" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="dock-label">Terminal</span>
+          <span class="dock-dot"></span>
+        </button>
+        <button class="dock-item" data-target="win-contact" title="Contact">
+          <div class="dock-icon dock-contact">
+            <svg viewBox="0 0 32 32" width="40" height="40">
+              <rect width="32" height="32" rx="8" fill="#22c55e"/>
+              <ellipse cx="16" cy="17" rx="10" ry="8" fill="#fff" opacity="0.9"/>
+              <circle cx="11" cy="17" r="1.5" fill="#22c55e"/>
+              <circle cx="16" cy="17" r="1.5" fill="#22c55e"/>
+              <circle cx="21" cy="17" r="1.5" fill="#22c55e"/>
+            </svg>
+          </div>
+          <span class="dock-label">Contact</span>
+          <span class="dock-dot"></span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

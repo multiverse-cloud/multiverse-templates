@@ -7,6 +7,7 @@ SyncTeam - Real-time team collaboration and file sync platform
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/syncteam-team-collaboration-file-sync
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

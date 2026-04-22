@@ -1,0 +1,58 @@
+{
+  "id": "template-designer-folio-editorial-portfolio",
+  "slug": "designer-folio-editorial-portfolio",
+  "title": "Designer Folio Editorial Portfolio",
+  "summary": "A minimal editorial-style designer portfolio with elegant typography, project storytelling, and a cleaner art-direction-led homepage.",
+  "description": "Designer Folio is a polished static portfolio template for visual designers, brand designers, and creative directors who want a calm, image-led presentation with lighter motion and stronger typography.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Minimal editorial portfolio with clean spacing",
+  "audience": "visual designers, art directors, and creative freelancers",
+  "tags": [
+    "designer portfolio",
+    "creative portfolio",
+    "editorial portfolio",
+    "minimal portfolio",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Hero",
+    "Selected work",
+    "About",
+    "Services",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "The layout uses whitespace and typography rather than heavy UI chrome.",
+    "Project sections should read like a design case-study teaser rather than a busy gallery."
+  ],
+  "responsiveNotes": [
+    "Typography and image blocks scale down cleanly for touch screens.",
+    "Project cards remain legible without needing dense overlays on mobile."
+  ],
+  "bestFor": [
+    "Brand designers",
+    "Creative portfolios",
+    "Case-study led personal sites"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": true,
+  "updatedAt": "2026-04-22",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-22T10:53:42.043Z"
+}

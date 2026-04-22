@@ -7,6 +7,7 @@ StreamPro - Live streaming and video platform for creators
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/streampro-professional-live-streaming-platform
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with

@@ -7,6 +7,7 @@ VitalSign - Health monitoring with wearable devices and AI analysis
 - Framework: HTML + Tailwind CSS
 - Type: template
 - License: Free download
+- Live preview: https://multiverse-templates.vercel.app/vitalsign-monitor-your-health
 ## Included files
 - `index.html` - Main template source file imported from Website Template Hub.
 ## Start with
