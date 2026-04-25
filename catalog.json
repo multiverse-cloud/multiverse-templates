@@ -1,17 +1,42 @@
 {
-  "generatedAt": "2026-04-22T10:53:42.043Z",
-  "count": 98,
+  "generatedAt": "2026-04-25T12:29:34.436Z",
+  "count": 106,
   "templates": [
     {
-      "slug": "auren-premium-saas-commerce-kit",
-      "title": "Auren Premium SaaS Commerce Kit",
-      "category": "landing",
-      "categoryTitle": "Landing Pages",
-      "framework": "react-tailwind",
-      "frameworkLabel": "React + Tailwind",
-      "liveUrl": "https://multiverse-templates.vercel.app/auren-premium-saas-commerce-kit",
+      "slug": "3d-interactive-portfolio",
+      "title": "3D Interactive Portfolio",
+      "category": "portfolio",
+      "categoryTitle": "Portfolio Sites",
+      "framework": "html-css-js",
+      "frameworkLabel": "HTML + CSS + JS",
+      "templateType": "template",
+      "liveUrl": null,
       "downloadUrl": null,
-      "relativePath": "templates/auren-premium-saas-commerce-kit"
+      "relativePath": "templates/3d-interactive-portfolio"
+    },
+    {
+      "slug": "alex-chen-developer-terminal-portfolio",
+      "title": "Alex Chen Developer Terminal Portfolio",
+      "category": "portfolio",
+      "categoryTitle": "Portfolio Sites",
+      "framework": "html-css-js",
+      "frameworkLabel": "HTML + CSS + JS",
+      "templateType": "template",
+      "liveUrl": null,
+      "downloadUrl": null,
+      "relativePath": "templates/alex-chen-developer-terminal-portfolio"
+    },
+    {
+      "slug": "alex-morgan-dark-minimal-portfolio",
+      "title": "Alex Morgan Dark Minimal Portfolio",
+      "category": "portfolio",
+      "categoryTitle": "Portfolio Sites",
+      "framework": "html-css-js",
+      "frameworkLabel": "HTML + CSS + JS",
+      "templateType": "template",
+      "liveUrl": null,
+      "downloadUrl": null,
+      "relativePath": "templates/alex-morgan-dark-minimal-portfolio"
     },
     {
       "slug": "blockforge-build-deploy-defi-protocols",
@@ -74,6 +99,18 @@
       "relativePath": "templates/contentworks-content-marketing-agency"
     },
     {
+      "slug": "creative-agency-bold-portfolio",
+      "title": "Creative Agency Bold Portfolio",
+      "category": "portfolio",
+      "categoryTitle": "Portfolio Sites",
+      "framework": "html-css-js",
+      "frameworkLabel": "HTML + CSS + JS",
+      "templateType": "template",
+      "liveUrl": null,
+      "downloadUrl": null,
+      "relativePath": "templates/creative-agency-bold-portfolio"
+    },
+    {
       "slug": "creativestudio-branding-design-agency",
       "title": "CreativeStudio - Branding & Design Agency",
       "category": "agency",
@@ -122,6 +159,18 @@
       "relativePath": "templates/designstudio-creative-digital-agency"
     },
     {
+      "slug": "elena-voss-photographer-portfolio",
+      "title": "Elena Voss Photographer Portfolio",
+      "category": "portfolio",
+      "categoryTitle": "Portfolio Sites",
+      "framework": "html-css-js",
+      "frameworkLabel": "HTML + CSS + JS",
+      "templateType": "template",
+      "liveUrl": null,
+      "downloadUrl": null,
+      "relativePath": "templates/elena-voss-photographer-portfolio"
+    },
+    {
       "slug": "eventflow-event-marketing-management",
       "title": "EventFlow - Event Marketing & Management",
       "category": "agency",
@@ -158,15 +207,16 @@
       "relativePath": "templates/macos-desktop-portfolio-experience"
     },
     {
-      "slug": "nexusshop-platform-ui-kit",
-      "title": "NexusShop Platform UI Kit",
-      "category": "dashboard",
-      "categoryTitle": "Dashboards",
-      "framework": "next-tailwind",
-      "frameworkLabel": "Next.js + Tailwind",
-      "liveUrl": "https://multiverse-templates.vercel.app/nexusshop-platform-ui-kit",
+      "slug": "neon-cyberpunk-portfolio",
+      "title": "Neon Cyberpunk Portfolio",
+      "category": "portfolio",
+      "categoryTitle": "Portfolio Sites",
+      "framework": "html-css-js",
+      "frameworkLabel": "HTML + CSS + JS",
+      "templateType": "template",
+      "liveUrl": null,
       "downloadUrl": null,
-      "relativePath": "templates/nexusshop-platform-ui-kit"
+      "relativePath": "templates/neon-cyberpunk-portfolio"
     },
     {
       "slug": "pixelforce-ui-ux-design-agency",
@@ -228,6 +278,18 @@
       "relativePath": "templates/analyticshub-real-time-analytics-insights-platform"
     },
     {
+      "slug": "architect-studio-portfolio",
+      "title": "Architect Studio Portfolio",
+      "category": "portfolio",
+      "categoryTitle": "Portfolio Sites",
+      "framework": "html-css-js",
+      "frameworkLabel": "HTML + CSS + JS",
+      "templateType": "template",
+      "liveUrl": null,
+      "downloadUrl": null,
+      "relativePath": "templates/architect-studio-portfolio"
+    },
+    {
       "slug": "bookvault-online-bookstore-media",
       "title": "BookVault - Online Bookstore & Media",
       "category": "ecommerce",
@@ -262,6 +324,18 @@
       "liveUrl": "https://multiverse-templates.vercel.app/braincode-ai-powered-code-generation",
       "downloadUrl": null,
       "relativePath": "templates/braincode-ai-powered-code-generation"
+    },
+    {
+      "slug": "brutalist-portfolio",
+      "title": "Brutalist Portfolio",
+      "category": "portfolio",
+      "categoryTitle": "Portfolio Sites",
+      "framework": "html-css-js",
+      "frameworkLabel": "HTML + CSS + JS",
+      "templateType": "template",
+      "liveUrl": null,
+      "downloadUrl": null,
+      "relativePath": "templates/brutalist-portfolio"
     },
     {
       "slug": "businessrealty-commercial-real-estate-solutions",
@@ -1008,6 +1082,18 @@
       "relativePath": "templates/stylevogue-fashion-boutique"
     },
     {
+      "slug": "swiss-design-portfolio",
+      "title": "Swiss Design Portfolio",
+      "category": "portfolio",
+      "categoryTitle": "Portfolio Sites",
+      "framework": "html-css-js",
+      "frameworkLabel": "HTML + CSS + JS",
+      "templateType": "template",
+      "liveUrl": null,
+      "downloadUrl": null,
+      "relativePath": "templates/swiss-design-portfolio"
+    },
+    {
       "slug": "syncteam-team-collaboration-file-sync",
       "title": "SyncTeam - Team Collaboration & File Sync",
       "category": "saas",
@@ -1126,6 +1212,18 @@
       "liveUrl": "https://multiverse-templates.vercel.app/vacationpalace-luxury-holiday-homes",
       "downloadUrl": null,
       "relativePath": "templates/vacationpalace-luxury-holiday-homes"
+    },
+    {
+      "slug": "valentine-fashion-editorial-portfolio",
+      "title": "Valentine Fashion Editorial Portfolio",
+      "category": "portfolio",
+      "categoryTitle": "Portfolio Sites",
+      "framework": "html-css-js",
+      "frameworkLabel": "HTML + CSS + JS",
+      "templateType": "template",
+      "liveUrl": null,
+      "downloadUrl": null,
+      "relativePath": "templates/valentine-fashion-editorial-portfolio"
     },
     {
       "slug": "visionai-intelligent-image-analysis-api",

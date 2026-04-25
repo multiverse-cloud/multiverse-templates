@@ -1,0 +1,58 @@
+{
+  "id": "template-architect-studio-portfolio",
+  "slug": "architect-studio-portfolio",
+  "title": "Architect Studio Portfolio",
+  "summary": "A structured architecture portfolio with refined grids, calm typography, and project-led spatial storytelling.",
+  "description": "This template is suited for architects and spatial designers who need a clean portfolio with stronger project framing, restrained color use, and a credible studio-like presence.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Architectural studio portfolio",
+  "audience": "architects, interior designers, and spatial studios",
+  "tags": [
+    "architect portfolio",
+    "architecture website",
+    "studio portfolio",
+    "project showcase",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Hero",
+    "Projects",
+    "Studio",
+    "Approach",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "The layout should feel spatial, ordered, and project-first.",
+    "This template fits creators who need a credible studio presence instead of a playful personal page."
+  ],
+  "responsiveNotes": [
+    "Project grids become stacked cards without losing the ordered hierarchy.",
+    "Whitespace remains generous so the portfolio stays premium on mobile screens."
+  ],
+  "bestFor": [
+    "Architects",
+    "Interior studios",
+    "Spatial design portfolios"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": false,
+  "updatedAt": "2026-04-25",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-25T12:29:34.436Z"
+}

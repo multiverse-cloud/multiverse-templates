@@ -1,0 +1,59 @@
+{
+  "id": "template-creative-agency-bold-portfolio",
+  "slug": "creative-agency-bold-portfolio",
+  "title": "Creative Agency Bold Portfolio",
+  "summary": "A vibrant agency-style portfolio with bold typography, expressive color, and campaign-like case study framing.",
+  "description": "This portfolio template is built for studios and creative agencies that want a louder first impression, strong color usage, and more promotional energy across their portfolio sections.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Bold creative agency portfolio",
+  "audience": "creative agencies, studios, and brand-first freelancers",
+  "tags": [
+    "creative agency portfolio",
+    "studio portfolio",
+    "bold portfolio",
+    "agency website",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Hero",
+    "Capabilities",
+    "Work",
+    "Process",
+    "Team",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "The template is more expressive than minimal, so typography and color do most of the identity work.",
+    "Best used when the brand wants a louder agency-style presentation instead of a quiet portfolio."
+  ],
+  "responsiveNotes": [
+    "Large headlines compress into a cleaner stacked mobile layout while preserving contrast.",
+    "High-energy sections remain readable on smaller screens without depending on hover interactions."
+  ],
+  "bestFor": [
+    "Agencies",
+    "Creative studios",
+    "Visual brand portfolios"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": true,
+  "updatedAt": "2026-04-25",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-25T12:29:34.436Z"
+}

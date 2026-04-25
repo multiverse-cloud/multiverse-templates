@@ -1,0 +1,58 @@
+{
+  "id": "template-elena-voss-photographer-portfolio",
+  "slug": "elena-voss-photographer-portfolio",
+  "title": "Elena Voss Photographer Portfolio",
+  "summary": "A premium photographer portfolio with image-led storytelling, elegant typography, and a cleaner gallery-first layout.",
+  "description": "This template is designed for photographers and visual artists who need a high-trust personal site with large imagery, selective editorial copy, and portfolio-first presentation.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Minimal photography portfolio",
+  "audience": "photographers, visual artists, and editorial creators",
+  "tags": [
+    "photography portfolio",
+    "photographer website",
+    "gallery portfolio",
+    "creative portfolio",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Hero",
+    "Gallery",
+    "Selected work",
+    "About",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "The page relies on imagery and whitespace more than interface chrome.",
+    "Use this template when the work itself needs to be the dominant visual anchor."
+  ],
+  "responsiveNotes": [
+    "Gallery blocks stack into mobile-friendly image rails with preserved rhythm.",
+    "Captions and metadata remain secondary so imagery keeps visual priority."
+  ],
+  "bestFor": [
+    "Photographers",
+    "Editorial artists",
+    "Gallery-style portfolios"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": true,
+  "updatedAt": "2026-04-25",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-25T12:29:34.436Z"
+}

@@ -1,0 +1,58 @@
+{
+  "id": "template-neon-cyberpunk-portfolio",
+  "slug": "neon-cyberpunk-portfolio",
+  "title": "Neon Cyberpunk Portfolio",
+  "summary": "A cyberpunk portfolio template with neon lighting, futuristic UI surfaces, and high-energy branding for standout personal sites.",
+  "description": "This template is built for creators who want a loud futuristic portfolio with glowing accents, dark surfaces, animated visuals, and a more cinematic personal brand.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Cyberpunk neon portfolio",
+  "audience": "creative technologists, gamers, and futuristic personal brands",
+  "tags": [
+    "cyberpunk portfolio",
+    "neon portfolio",
+    "futuristic portfolio",
+    "dark website",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Hero",
+    "Projects",
+    "Skills",
+    "Experience",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "The neon styling is the main identity layer, so sections should feel immersive without becoming unreadable.",
+    "This template works best for creators who want a visually loud, memorable portfolio."
+  ],
+  "responsiveNotes": [
+    "Large visual effects scale down into cleaner mobile sections with preserved contrast.",
+    "The page avoids depending on hover-only affordances so the theme still works on touch screens."
+  ],
+  "bestFor": [
+    "Creative developers",
+    "Gaming portfolios",
+    "Futuristic personal brands"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": true,
+  "updatedAt": "2026-04-25",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-25T12:29:34.436Z"
+}

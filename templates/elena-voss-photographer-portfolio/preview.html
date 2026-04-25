@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elena Voss — Photographer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+
+  :root {
+    --color-bg: #faf9f7;
+    --color-bg-dark: #1a1a1a;
+    --color-text: #2c2c2c;
+    --color-text-light: #8a8a8a;
+    --color-text-inv: #f5f5f0;
+    --color-accent: #c9a96e;
+    --color-accent-dark: #b08d4f;
+    --color-border: #e0ddd8;
+    --color-overlay: rgba(26,26,26,0.85);
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, sans-serif;
+    --font-elegant: 'Cormorant Garamond', Georgia, serif;
+    --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+    --space-2xl: 10rem;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 3rem;
+    transition: background 0.5s var(--ease-smooth), padding 0.4s var(--ease-smooth);
+  }
+  .nav.scrolled {
+    background: rgba(250,249,247,0.95);
+    backdrop-filter: blur(12px);
+    padding: 1rem 3rem;
+    box-shadow: 0 1px 0 var(--color-border);
+  }
+  .nav__logo {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-text-inv);
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+  .nav.scrolled .nav__logo { color: var(--color-text); }
+  .nav__links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav__links a {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-inv);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s, color 0.4s;
+  }
+  .nav.scrolled .nav__links a { color: var(--color-text); }
+  .nav__links a:hover { opacity: 1; }
+  .nav__burger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .nav__burger span {
+    width: 24px; height: 1.5px; background: var(--color-text-inv);
+    transition: background 0.4s, transform 0.3s;
+  }
+  .nav.scrolled .nav__burger span { background: var(--color-text); }
+
+  /* ─── HERO (Ken Burns) ─── */
+  .hero {
+    position: relative; height: 100vh; min-height: 600px;
+    overflow: hidden; display: flex; align-items: flex-end;
+  }
+  .hero__bg {
+    position: absolute; inset: 0;
+    background: url('https://picsum.photos/seed/photoghero/1920/1080') center/cover no-repeat;
+    animation: kenBurns 25s ease-in-out infinite alternate;
+  }
+  @keyframes kenBurns {
+    0%   { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.12) translate(-1.5%, -1%); }
+  }
+  .hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.2) 100%);
+  }
+  .hero__content {
+    position: relative; z-index: 2; padding: 0 3rem 5rem;
+    max-width: 800px; color: var(--color-text-inv);
+  }
+  .hero__tagline {
+    font-family: var(--font-sans);
+    font-size: 0.7rem; font-weight: 400;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--color-accent); margin-bottom: 1.2rem;
+    opacity: 0; animation: fadeUp 1s 0.5s var(--ease-out-expo) forwards;
+  }
+  .hero__title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 400; line-height: 1.1;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 1s 0.7s var(--ease-out-expo) forwards;
+  }
+  .hero__subtitle {
+    font-family: var(--font-elegant);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 300; font-style: italic;
+    opacity: 0.8; max-width: 500px; line-height: 1.6;
+    opacity: 0; animation: fadeUp 1s 0.9s var(--ease-out-expo) forwards;
+  }
+  .hero__scroll {
+    position: absolute; bottom: 2rem; right: 3rem; z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  }
+  .hero__scroll span {
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--color-text-inv); opacity: 0.6; writing-mode: vertical-rl;
+  }
+  .hero__scroll-line {
+    width: 1px; height: 60px; background: var(--color-text-inv); opacity: 0.3;
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleY(1); opacity: 0.3; }
+    50% { transform: scaleY(0.5); opacity: 0.6; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SECTION UTILITY ─── */
+  .section {
+    padding: var(--space-2xl) 3rem;
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+  }
+  .section.visible { opacity: 1; transform: translateY(0); }
+  .section__label {
+    font-size: 0.7rem; font-weight: 400; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--color-accent); margin-bottom: 0.8rem;
+  }
+  .section__title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400; line-height: 1.2; margin-bottom: 1rem;
+  }
+  .section__desc {
+    font-family: var(--font-elegant);
+    font-size: 1.15rem; font-weight: 300; color: var(--color-text-light);
+    max-width: 520px; line-height: 1.7;
+  }
+
+  /* ─── HORIZONTAL SCROLL GALLERY ─── */
+  .gallery-h {
+    padding: var(--space-2xl) 0 var(--space-2xl) 3rem;
+    overflow: hidden;
+  }
+  .gallery-h__header { padding-right: 3rem; margin-bottom: var(--space-lg); }
+  .gallery-h__track {
+    display: flex; gap: 1.5rem;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; padding-bottom: 1.5rem;
+    scrollbar-width: none;
+  }
+  .gallery-h__track::-webkit-scrollbar { display: none; }
+  .gallery-h__item {
+    flex: 0 0 auto; scroll-snap-align: start;
+    position: relative; cursor: pointer;
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .gallery-h__item:hover { transform: translateY(-6px); }
+  .gallery-h__item--wide { width: 560px; height: 380px; }
+  .gallery-h__item--tall { width: 340px; height: 460px; }
+  .gallery-h__item--sq   { width: 380px; height: 380px; }
+  .gallery-h__item img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.5s;
+  }
+  .gallery-h__item:hover img { filter: grayscale(0%); }
+  .gallery-h__caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 2rem 1.5rem 1.2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: var(--color-text-inv); font-size: 0.85rem;
+    font-family: var(--font-elegant); font-style: italic;
+    opacity: 0; transform: translateY(10px);
+    transition: all 0.4s var(--ease-out-expo);
+  }
+  .gallery-h__item:hover .gallery-h__caption { opacity: 1; transform: translateY(0); }
+
+  /* ─── FILM STRIP NAV ─── */
+  .filmstrip {
+    display: flex; gap: 0.35rem; padding: 0.5rem 0; margin-top: var(--space-sm);
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .filmstrip::-webkit-scrollbar { display: none; }
+  .filmstrip__frame {
+    flex: 0 0 auto; width: 80px; height: 54px; cursor: pointer;
+    border: 2px solid transparent; transition: border-color 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .filmstrip__frame::before, .filmstrip__frame::after {
+    content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+    width: 6px; height: 4px; background: var(--color-text-light); border-radius: 1px;
+  }
+  .filmstrip__frame::before { top: 2px; }
+  .filmstrip__frame::after  { bottom: 2px; }
+  .filmstrip__frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.3s; }
+  .filmstrip__frame:hover, .filmstrip__frame.active { border-color: var(--color-accent); }
+  .filmstrip__frame:hover img, .filmstrip__frame.active img { filter: grayscale(0%); }
+
+  /* ─── BEFORE / AFTER SLIDER ─── */
+  .compare {
+    background: var(--color-bg-dark); color: var(--color-text-inv);
+    padding: var(--space-2xl) 3rem;
+  }
+  .compare__inner {
+    max-width: 1100px; margin: 0 auto; text-align: center;
+  }
+  .compare__header { margin-bottom: var(--space-lg); }
+  .compare__header .section__label { color: var(--color-accent); }
+  .compare__header .section__title { color: var(--color-text-inv); }
+  .compare__header .section__desc { color: rgba(255,255,255,0.5); margin: 0 auto; }
+  .compare__slider-wrap {
+    position: relative; width: 100%; max-width: 900px;
+    margin: 0 auto; aspect-ratio: 16/10; overflow: hidden;
+    border-radius: 4px; cursor: ew-resize; user-select: none;
+  }
+  .compare__img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+  .compare__img--after { clip-path: inset(0 50% 0 0); }
+  .compare__divider {
+    position: absolute; top: 0; bottom: 0; left: 50%; width: 3px;
+    background: var(--color-accent); z-index: 3; transform: translateX(-50%);
+  }
+  .compare__handle {
+    position: absolute; top: 50%; left: 50%;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--color-accent); border: 3px solid #fff;
+    transform: translate(-50%, -50%); z-index: 4;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+  .compare__handle::before {
+    content: '⟺'; font-size: 1rem; color: #fff;
+  }
+  .compare__labels {
+    display: flex; justify-content: space-between; margin-top: var(--space-sm);
+    max-width: 900px; margin-left: auto; margin-right: auto;
+  }
+  .compare__label {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ─── ABOUT WITH POLAROID CARDS ─── */
+  .about { background: var(--color-bg); }
+  .about__grid {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: var(--space-lg); max-width: 1100px; margin: 0 auto;
+    align-items: start;
+  }
+  .about__text { padding-top: var(--space-md); }
+  .about__text p {
+    font-family: var(--font-elegant); font-size: 1.1rem;
+    font-weight: 300; line-height: 1.8; color: var(--color-text-light);
+    margin-bottom: var(--space-md);
+  }
+  .about__polaroids {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .polaroid {
+    background: #fff; padding: 10px 10px 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transform: rotate(var(--rot, 0deg));
+    transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s;
+  }
+  .polaroid:nth-child(1) { --rot: -3deg; }
+  .polaroid:nth-child(2) { --rot: 2deg; margin-top: 2rem; }
+  .polaroid:nth-child(3) { --rot: 1.5deg; margin-top: -1.5rem; }
+  .polaroid:nth-child(4) { --rot: -2deg; margin-top: 1rem; }
+  .polaroid:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  }
+  .polaroid img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: sepia(10%); }
+  .polaroid__caption {
+    font-family: var(--font-elegant); font-style: italic;
+    font-size: 0.85rem; text-align: center; color: var(--color-text-light);
+    padding-top: 8px;
+  }
+
+  /* ─── AWARDS ─── */
+  .awards {
+    background: var(--color-bg-dark); color: var(--color-text-inv);
+    text-align: center;
+  }
+  .awards__grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md); max-width: 1000px; margin: var(--space-lg) auto 0;
+  }
+  .award {
+    padding: var(--space-md) var(--space-sm);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
+    transition: border-color 0.4s, transform 0.4s var(--ease-out-expo);
+  }
+  .award:hover { border-color: var(--color-accent); transform: translateY(-4px); }
+  .award__icon { font-size: 1.8rem; margin-bottom: var(--space-xs); }
+  .award__year {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--color-accent); margin-bottom: 0.4rem;
+  }
+  .award__name {
+    font-family: var(--font-serif); font-size: 1rem;
+    font-weight: 500; margin-bottom: 0.3rem;
+  }
+  .award__org {
+    font-size: 0.75rem; color: rgba(255,255,255,0.4);
+  }
+
+  /* ─── BLOG PREVIEW ─── */
+  .blog { background: var(--color-bg); }
+  .blog__grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md); max-width: 1100px; margin: var(--space-lg) auto 0;
+  }
+  .blog-card {
+    background: #fff; border-radius: 2px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s;
+  }
+  .blog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  }
+  .blog-card__img {
+    width: 100%; aspect-ratio: 16/10; object-fit: cover;
+    transition: transform 0.6s var(--ease-out-expo);
+  }
+  .blog-card:hover .blog-card__img { transform: scale(1.05); }
+  .blog-card__body { padding: 1.5rem; }
+  .blog-card__date {
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--color-accent); margin-bottom: 0.6rem;
+  }
+  .blog-card__title {
+    font-family: var(--font-serif); font-size: 1.15rem;
+    font-weight: 500; line-height: 1.4; margin-bottom: 0.6rem;
+  }
+  .blog-card__excerpt {
+    font-size: 0.85rem; color: var(--color-text-light); line-height: 1.6;
+  }
+  .blog-card__link {
+    display: inline-block; margin-top: 1rem; font-size: 0.72rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--color-accent-dark); text-decoration: none;
+    border-bottom: 1px solid var(--color-accent);
+    padding-bottom: 2px; transition: color 0.3s;
+  }
+  .blog-card__link:hover { color: var(--color-text); }
+
+  /* ─── CONTACT ─── */
+  .contact {
+    background: var(--color-bg); border-top: 1px solid var(--color-border);
+  }
+  .contact__grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg); max-width: 900px; margin: var(--space-lg) auto 0;
+  }
+  .contact__info h3 {
+    font-family: var(--font-serif); font-size: 1.4rem;
+    font-weight: 500; margin-bottom: var(--space-sm);
+  }
+  .contact__info p {
+    font-family: var(--font-elegant); font-size: 1.05rem;
+    color: var(--color-text-light); line-height: 1.8; margin-bottom: var(--space-sm);
+  }
+  .contact__info a {
+    color: var(--color-accent-dark); text-decoration: none;
+    border-bottom: 1px solid var(--color-accent);
+    transition: color 0.3s;
+  }
+  .contact__info a:hover { color: var(--color-text); }
+  .contact__form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact__field {
+    display: flex; flex-direction: column; gap: 0.4rem;
+  }
+  .contact__field label {
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--color-text-light);
+  }
+  .contact__field input, .contact__field textarea {
+    font-family: var(--font-sans); font-size: 0.9rem;
+    padding: 0.75rem 0; border: none; border-bottom: 1px solid var(--color-border);
+    background: transparent; color: var(--color-text); outline: none;
+    transition: border-color 0.3s;
+  }
+  .contact__field input:focus, .contact__field textarea:focus {
+    border-color: var(--color-accent);
+  }
+  .contact__field textarea { resize: vertical; min-height: 100px; }
+  .contact__btn {
+    align-self: flex-start; font-family: var(--font-sans);
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 1rem 2.5rem; border: 1px solid var(--color-text);
+    background: transparent; color: var(--color-text); cursor: pointer;
+    transition: background 0.4s, color 0.4s;
+  }
+  .contact__btn:hover { background: var(--color-text); color: var(--color-bg); }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    padding: var(--space-lg) 3rem var(--space-md);
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--color-border);
+  }
+  .footer__copy {
+    font-size: 0.75rem; color: var(--color-text-light);
+  }
+  .footer__socials { display: flex; gap: 1.5rem; }
+  .footer__socials a {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--color-text-light); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer__socials a:hover { color: var(--color-accent-dark); }
+
+  /* ─── LIGHTBOX ─── */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 2000;
+    background: var(--color-overlay);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s var(--ease-smooth);
+  }
+  .lightbox.active { opacity: 1; pointer-events: auto; }
+  .lightbox__img {
+    max-width: 85vw; max-height: 85vh; object-fit: contain;
+    border-radius: 2px; transform: scale(0.9);
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .lightbox.active .lightbox__img { transform: scale(1); }
+  .lightbox__close {
+    position: absolute; top: 2rem; right: 2rem;
+    width: 40px; height: 40px; background: none; border: none;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .lightbox__close::before, .lightbox__close::after {
+    content: ''; position: absolute; width: 24px; height: 2px;
+    background: #fff; transition: transform 0.3s;
+  }
+  .lightbox__close::before { transform: rotate(45deg); }
+  .lightbox__close::after  { transform: rotate(-45deg); }
+  .lightbox__close:hover::before { transform: rotate(45deg) scale(1.1); }
+  .lightbox__close:hover::after  { transform: rotate(-45deg) scale(1.1); }
+  .lightbox__nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; font-size: 1.2rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.3s;
+  }
+  .lightbox__nav:hover { background: rgba(255,255,255,0.2); }
+  .lightbox__nav--prev { left: 2rem; }
+  .lightbox__nav--next { right: 2rem; }
+  .lightbox__counter {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    font-size: 0.75rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.5);
+  }
+
+  /* ─── MOBILE NAV OVERLAY ─── */
+  .mobile-nav {
+    position: fixed; inset: 0; z-index: 999;
+    background: var(--color-bg-dark);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2rem; opacity: 0; pointer-events: none;
+    transition: opacity 0.4s var(--ease-smooth);
+  }
+  .mobile-nav.active { opacity: 1; pointer-events: auto; }
+  .mobile-nav a {
+    font-family: var(--font-serif); font-size: 2rem; font-weight: 400;
+    color: var(--color-text-inv); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .mobile-nav a:hover { color: var(--color-accent); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .about__grid { grid-template-columns: 1fr; }
+    .awards__grid { grid-template-columns: repeat(2, 1fr); }
+    .blog__grid { grid-template-columns: 1fr 1fr; }
+    .contact__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav__links { display: none; }
+    .nav__burger { display: flex; }
+    .section { padding: var(--space-xl) 1.5rem; }
+    .gallery-h { padding: var(--space-xl) 0 var(--space-xl) 1.5rem; }
+    .gallery-h__item--wide { width: 320px; height: 220px; }
+    .gallery-h__item--tall { width: 240px; height: 320px; }
+    .gallery-h__item--sq   { width: 260px; height: 260px; }
+    .about__polaroids { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .blog__grid { grid-template-columns: 1fr; max-width: 500px; }
+    .awards__grid { grid-template-columns: 1fr 1fr; }
+    .footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .hero__content { padding: 0 1.5rem 4rem; }
+    .compare { padding: var(--space-xl) 1.5rem; }
+  }
+  @media (max-width: 480px) {
+    .about__polaroids { grid-template-columns: 1fr; }
+    .polaroid:nth-child(2), .polaroid:nth-child(4) { margin-top: 0; }
+    .awards__grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─── -->
+<nav class="nav" id="mainNav">
+  <a href="#" class="nav__logo">Elena Voss</a>
+  <ul class="nav__links">
+    <li><a href="#gallery">Portfolio</a></li>
+    <li><a href="#compare">Process</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#awards">Recognition</a></li>
+    <li><a href="#blog">Journal</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav__burger" id="navBurger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ─── MOBILE NAV ─── -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#gallery" onclick="closeMobileNav()">Portfolio</a>
+  <a href="#compare" onclick="closeMobileNav()">Process</a>
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#awards" onclick="closeMobileNav()">Recognition</a>
+  <a href="#blog" onclick="closeMobileNav()">Journal</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <p class="hero__tagline">Award-Winning Photographer</p>
+    <h1 class="hero__title">Capturing Light,<br>Telling Stories</h1>
+    <p class="hero__subtitle">Through the lens, every fleeting moment becomes an eternal narrative — raw, poetic, and unmistakably human.</p>
+  </div>
+  <div class="hero__scroll">
+    <span>Scroll</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── HORIZONTAL SCROLL GALLERY ─── -->
+<section class="gallery-h section" id="gallery">
+  <div class="gallery-h__header">
+    <p class="section__label">Selected Works</p>
+    <h2 class="section__title">Portfolio</h2>
+    <p class="section__desc">A curated collection of moments frozen in time — each frame a dialogue between shadow and light.</p>
+  </div>
+  <div class="gallery-h__track" id="galleryTrack">
+    <div class="gallery-h__item gallery-h__item--wide" data-index="0">
+      <img src="https://picsum.photos/seed/pf-wide1/1120/760.jpg" alt="Golden Hour Landscape" loading="lazy">
+      <div class="gallery-h__caption">Golden Hour — Tuscany, 2024</div>
+    </div>
+    <div class="gallery-h__item gallery-h__item--tall" data-index="1">
+      <img src="https://picsum.photos/seed/pf-tall1/680/920.jpg" alt="Urban Portrait" loading="lazy">
+      <div class="gallery-h__caption">Solitude — New York, 2023</div>
+    </div>
+    <div class="gallery-h__item gallery-h__item--sq" data-index="2">
+      <img src="https://picsum.photos/seed/pf-sq1/760/760.jpg" alt="Still Life" loading="lazy">
+      <div class="gallery-h__caption">Stillness — Studio, 2024</div>
+    </div>
+    <div class="gallery-h__item gallery-h__item--wide" data-index="3">
+      <img src="https://picsum.photos/seed/pf-wide2/1120/760.jpg" alt="Misty Forest" loading="lazy">
+      <div class="gallery-h__caption">Veiled — Black Forest, 2023</div>
+    </div>
+    <div class="gallery-h__item gallery-h__item--tall" data-index="4">
+      <img src="https://picsum.photos/seed/pf-tall2/680/920.jpg" alt="Architecture" loading="lazy">
+      <div class="gallery-h__caption">Structure — Barcelona, 2024</div>
+    </div>
+    <div class="gallery-h__item gallery-h__item--sq" data-index="5">
+      <img src="https://picsum.photos/seed/pf-sq2/760/760.jpg" alt="Ocean Waves" loading="lazy">
+      <div class="gallery-h__caption">Resonance — Iceland, 2023</div>
+    </div>
+    <div class="gallery-h__item gallery-h__item--wide" data-index="6">
+      <img src="https://picsum.photos/seed/pf-wide3/1120/760.jpg" alt="Desert Dunes" loading="lazy">
+      <div class="gallery-h__caption">Horizon — Sahara, 2024</div>
+    </div>
+    <div class="gallery-h__item gallery-h__item--sq" data-index="7">
+      <img src="https://picsum.photos/seed/pf-sq3/760/760.jpg" alt="Flower Macro" loading="lazy">
+      <div class="gallery-h__caption">Bloom — Garden, 2024</div>
+    </div>
+  </div>
+  <div class="filmstrip" id="filmstrip">
+    <div class="filmstrip__frame active" data-index="0"><img src="https://picsum.photos/seed/pf-wide1/160/108.jpg" alt=""></div>
+    <div class="filmstrip__frame" data-index="1"><img src="https://picsum.photos/seed/pf-tall1/160/108.jpg" alt=""></div>
+    <div class="filmstrip__frame" data-index="2"><img src="https://picsum.photos/seed/pf-sq1/160/108.jpg" alt=""></div>
+    <div class="filmstrip__frame" data-index="3"><img src="https://picsum.photos/seed/pf-wide2/160/108.jpg" alt=""></div>
+    <div class="filmstrip__frame" data-index="4"><img src="https://picsum.photos/seed/pf-tall2/160/108.jpg" alt=""></div>
+    <div class="filmstrip__frame" data-index="5"><img src="https://picsum.photos/seed/pf-sq2/160/108.jpg" alt=""></div>
+    <div class="filmstrip__frame" data-index="6"><img src="https://picsum.photos/seed/pf-wide3/160/108.jpg" alt=""></div>
+    <div class="filmstrip__frame" data-index="7"><img src="https://picsum.photos/seed/pf-sq3/160/108.jpg" alt=""></div>
+  </div>
+</section>
+
+<!-- ─── BEFORE / AFTER ─── -->
+<section class="compare section" id="compare">
+  <div class="compare__inner">
+    <div class="compare__header">
+      <p class="section__label">The Process</p>
+      <h2 class="section__title">Before &amp; After</h2>
+      <p class="section__desc">Every photograph carries two stories — the raw capture and the refined vision. Drag to reveal the transformation.</p>
+    </div>
+    <div class="compare__slider-wrap" id="compareSlider">
+      <img class="compare__img compare__img--before" src="https://picsum.photos/seed/before01/1800/1125.jpg" alt="Before edit">
+      <img class="compare__img compare__img--after" src="https://picsum.photos/seed/after01/1800/1125.jpg" alt="After edit">
+      <div class="compare__divider" id="compareDivider"></div>
+      <div class="compare__handle" id="compareHandle"></div>
+    </div>
+    <div class="compare__labels">
+      <span class="compare__label">Before</span>
+      <span class="compare__label">After</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="about section" id="about">
+  <div class="about__grid">
+    <div class="about__text">
+      <p class="section__label">About</p>
+      <h2 class="section__title">The Eye Behind<br>the Lens</h2>
+      <p>I'm Elena Voss, a documentary and fine-art photographer based in Berlin. For over fifteen years, I've chased the interplay of light and shadow across six continents, seeking the extraordinary within the ordinary.</p>
+      <p>My work has been featured in National Geographic, Vogue, and The New York Times. I believe photography is not about the camera — it's about the connection between the observer and the observed.</p>
+      <p>When I'm not behind a lens, you'll find me developing prints in my darkroom or wandering through flea markets searching for vintage cameras.</p>
+    </div>
+    <div class="about__polaroids">
+      <div class="polaroid">
+        <img src="https://picsum.photos/seed/polaroid1/400/400.jpg" alt="In the field">
+        <p class="polaroid__caption">In the field, Tuscany</p>
+      </div>
+      <div class="polaroid">
+        <img src="https://picsum.photos/seed/polaroid2/400/400.jpg" alt="Studio work">
+        <p class="polaroid__caption">Studio session, Berlin</p>
+      </div>
+      <div class="polaroid">
+        <img src="https://picsum.photos/seed/polaroid3/400/400.jpg" alt="Darkroom">
+        <p class="polaroid__caption">The darkroom</p>
+      </div>
+      <div class="polaroid">
+        <img src="https://picsum.photos/seed/polaroid4/400/400.jpg" alt="Exhibition">
+        <p class="polaroid__caption">Opening night, Paris</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── AWARDS ─── -->
+<section class="awards section" id="awards">
+  <p class="section__label">Recognition</p>
+  <h2 class="section__title">Awards &amp; Accolades</h2>
+  <p class="section__desc" style="margin:0 auto;">Honored to be recognized by some of the most prestigious institutions in photography.</p>
+  <div class="awards__grid">
+    <div class="award">
+      <div class="award__icon">&#9733;</div>
+      <div class="award__year">2024</div>
+      <div class="award__name">World Press Photo</div>
+      <div class="award__org">Nature Category — 1st Place</div>
+    </div>
+    <div class="award">
+      <div class="award__icon">&#9733;</div>
+      <div class="award__year">2023</div>
+      <div class="award__name">Sony World Photography</div>
+      <div class="award__org">Portraiture — Shortlisted</div>
+    </div>
+    <div class="award">
+      <div class="award__icon">&#9733;</div>
+      <div class="award__year">2022</div>
+      <div class="award__name">Hasselblad Masters</div>
+      <div class="award__org">Fine Art Category</div>
+    </div>
+    <div class="award">
+      <div class="award__icon">&#9733;</div>
+      <div class="award__year">2021</div>
+      <div class="award__name">PDN 30 New &amp; Emerging</div>
+      <div class="award__org">Photo District News</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BLOG ─── -->
+<section class="blog section" id="blog">
+  <div style="text-align:center;">
+    <p class="section__label">Journal</p>
+    <h2 class="section__title">Recent Writings</h2>
+    <p class="section__desc" style="margin:0 auto;">Reflections on craft, travel, and the art of seeing — from the studio and beyond.</p>
+  </div>
+  <div class="blog__grid">
+    <article class="blog-card">
+      <div style="overflow:hidden;"><img class="blog-card__img" src="https://picsum.photos/seed/blog1/800/500.jpg" alt="Blog post"></div>
+      <div class="blog-card__body">
+        <p class="blog-card__date">February 12, 2025</p>
+        <h3 class="blog-card__title">The Quiet Power of Morning Light</h3>
+        <p class="blog-card__excerpt">How the first hour of daylight teaches us to see what we habitually overlook — and why the softest shadows speak loudest.</p>
+        <a href="#" class="blog-card__link">Read More</a>
+      </div>
+    </article>
+    <article class="blog-card">
+      <div style="overflow:hidden;"><img class="blog-card__img" src="https://picsum.photos/seed/blog2/800/500.jpg" alt="Blog post"></div>
+      <div class="blog-card__body">
+        <p class="blog-card__date">January 28, 2025</p>
+        <h3 class="blog-card__title">Shooting Film in a Digital World</h3>
+        <p class="blog-card__excerpt">Why I still load 35mm on every assignment — the deliberate slowness, the happy accidents, and the magic of the darkroom.</p>
+        <a href="#" class="blog-card__link">Read More</a>
+      </div>
+    </article>
+    <article class="blog-card">
+      <div style="overflow:hidden;"><img class="blog-card__img" src="https://picsum.photos/seed/blog3/800/500.jpg" alt="Blog post"></div>
+      <div class="blog-card__body">
+        <p class="blog-card__date">December 15, 2024</p>
+        <h3 class="blog-card__title">Finding Stories in Empty Rooms</h3>
+        <p class="blog-card__excerpt">A photographic essay on abandonment, memory, and the traces people leave behind in forgotten spaces.</p>
+        <a href="#" class="blog-card__link">Read More</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="contact section" id="contact">
+  <div style="text-align:center;">
+    <p class="section__label">Get in Touch</p>
+    <h2 class="section__title">Let's Create Together</h2>
+    <p class="section__desc" style="margin:0 auto;">Available for commissions, collaborations, and creative conversations worldwide.</p>
+  </div>
+  <div class="contact__grid">
+    <div class="contact__info">
+      <h3>Studio</h3>
+      <p>Kreuzbergstraße 42<br>10999 Berlin, Germany</p>
+      <p><a href="mailto:hello@elenavoss.com">hello@elenavoss.com</a></p>
+      <p><a href="tel:+4930123456">+49 30 123 456</a></p>
+    </div>
+    <form class="contact__form" onsubmit="handleSubmit(event)">
+      <div class="contact__field">
+        <label for="c-name">Name</label>
+        <input type="text" id="c-name" placeholder="Your full name" required>
+      </div>
+      <div class="contact__field">
+        <label for="c-email">Email</label>
+        <input type="email" id="c-email" placeholder="your@email.com" required>
+      </div>
+      <div class="contact__field">
+        <label for="c-msg">Message</label>
+        <textarea id="c-msg" placeholder="Tell me about your project…" required></textarea>
+      </div>
+      <button type="submit" class="contact__btn">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <p class="footer__copy">&copy; 2025 Elena Voss. All rights reserved.</p>
+  <div class="footer__socials">
+    <a href="#">Instagram</a>
+    <a href="#">Behance</a>
+    <a href="#">Vimeo</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<!-- ─── LIGHTBOX ─── -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox__close" id="lightboxClose" aria-label="Close"></button>
+  <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Previous">&#8592;</button>
+  <img class="lightbox__img" id="lightboxImg" src="" alt="">
+  <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Next">&#8594;</button>
+  <div class="lightbox__counter" id="lightboxCounter"></div>
+</div>
+
+<script>
+(function() {
+  /* ── Nav scroll effect ── */
+  const nav = document.getElementById('mainNav');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* ── Mobile nav ── */
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('mobileNav');
+  burger.addEventListener('click', () => {
+    mobileNav.classList.toggle('active');
+  });
+  window.closeMobileNav = function() {
+    mobileNav.classList.remove('active');
+  };
+
+  /* ── Intersection Observer for sections ── */
+  const sections = document.querySelectorAll('.section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  sections.forEach(s => observer.observe(s));
+
+  /* ── Lightbox ── */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCounter = document.getElementById('lightboxCounter');
+  const galleryItems = document.querySelectorAll('.gallery-h__item');
+  const lightboxImages = [
+    'https://picsum.photos/seed/pf-wide1/1600/1067.jpg',
+    'https://picsum.photos/seed/pf-tall1/1000/1350.jpg',
+    'https://picsum.photos/seed/pf-sq1/1200/1200.jpg',
+    'https://picsum.photos/seed/pf-wide2/1600/1067.jpg',
+    'https://picsum.photos/seed/pf-tall2/1000/1350.jpg',
+    'https://picsum.photos/seed/pf-sq2/1200/1200.jpg',
+    'https://picsum.photos/seed/pf-wide3/1600/1067.jpg',
+    'https://picsum.photos/seed/pf-sq3/1200/1200.jpg'
+  ];
+  let currentLightbox = 0;
+
+  function openLightbox(index) {
+    currentLightbox = index;
+    lightboxImg.src = lightboxImages[index];
+    lightboxCounter.textContent = `${index + 1} / ${lightboxImages.length}`;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function navLightbox(dir) {
+    currentLightbox = (currentLightbox + dir + lightboxImages.length) % lightboxImages.length;
+    lightboxImg.style.opacity = '0';
+    setTimeout(() => {
+      lightboxImg.src = lightboxImages[currentLightbox];
+      lightboxCounter.textContent = `${currentLightbox + 1} / ${lightboxImages.length}`;
+      lightboxImg.style.opacity = '1';
+    }, 200);
+  }
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => openLightbox(parseInt(item.dataset.index)));
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', () => navLightbox(-1));
+  document.getElementById('lightboxNext').addEventListener('click', () => navLightbox(1));
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navLightbox(-1);
+    if (e.key === 'ArrowRight') navLightbox(1);
+  });
+
+  /* Lightbox image transition */
+  lightboxImg.style.transition = 'opacity 0.2s ease';
+
+  /* ── Filmstrip interaction ── */
+  const filmstripFrames = document.querySelectorAll('.filmstrip__frame');
+  const galleryTrack = document.getElementById('galleryTrack');
+
+  filmstripFrames.forEach(frame => {
+    frame.addEventListener('click', () => {
+      const idx = parseInt(frame.dataset.index);
+      filmstripFrames.forEach(f => f.classList.remove('active'));
+      frame.classList.add('active');
+      const targetItem = galleryTrack.children[idx];
+      if (targetItem) {
+        targetItem.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      }
+    });
+  });
+
+  /* ── Before/After Slider ── */
+  const sliderWrap = document.getElementById('compareSlider');
+  const afterImg = sliderWrap.querySelector('.compare__img--after');
+  const divider = document.getElementById('compareDivider');
+  const handle = document.getElementById('compareHandle');
+  let isDragging = false;
+
+  function updateSlider(x) {
+    const rect = sliderWrap.getBoundingClientRect();
+    let pct = ((x - rect.left) / rect.width) * 100;
+    pct = Math.max(2, Math.min(98, pct));
+    afterImg.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+    divider.style.left = pct + '%';
+    handle.style.left = pct + '%';
+  }
+
+  sliderWrap.addEventListener('mousedown', (e) => { isDragging = true; updateSlider(e.clientX); });
+  document.addEventListener('mousemove', (e) => { if (isDragging) updateSlider(e.clientX); });
+  document.addEventListener('mouseup', () => { isDragging = false; });
+  sliderWrap.addEventListener('touchstart', (e) => { isDragging = true; updateSlider(e.touches[0].clientX); }, { passive: true });
+  document.addEventListener('touchmove', (e) => { if (isDragging) updateSlider(e.touches[0].clientX); }, { passive: true });
+  document.addEventListener('touchend', () => { isDragging = false; });
+
+  /* ── Contact form handler ── */
+  window.handleSubmit = function(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.contact__btn');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = 'var(--color-accent)';
+    btn.style.borderColor = 'var(--color-accent)';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+      btn.textContent = 'Send Message';
+      btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+      e.target.reset();
+    }, 3000);
+  };
+
+  /* ── Smooth anchor offset ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

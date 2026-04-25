@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architect — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0a0a;
+  --white: #f5f4f1;
+  --warm-gray-100: #e8e6e3;
+  --warm-gray-200: #d1cdc8;
+  --warm-gray-300: #b5b0a8;
+  --warm-gray-400: #8a8580;
+  --warm-gray-500: #6b6560;
+  --warm-gray-600: #4a4540;
+  --warm-gray-700: #2d2a27;
+  --blueprint: rgba(160,175,190,0.12);
+  --blueprint-line: rgba(160,175,190,0.25);
+  --blueprint-accent: #7a9bb5;
+  --accent: #c4a882;
+  --accent-dark: #a08860;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-slow: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--white);
+  color: var(--warm-gray-700);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Utility ─── */
+.container { max-width: 1320px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 4rem); }
+.section-pad { padding: clamp(5rem, 10vw, 9rem) 0; }
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.section-label::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--accent);
+}
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Blueprint grid background ─── */
+.blueprint-bg {
+  background-image:
+    linear-gradient(var(--blueprint-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ─── Navigation ─── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.5rem 0;
+  transition: var(--transition);
+}
+.nav.scrolled {
+  background: rgba(245,244,241,0.95);
+  backdrop-filter: blur(12px);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--warm-gray-200);
+}
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--warm-gray-600);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: var(--transition);
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: var(--transition);
+}
+.nav-links a:hover { color: var(--black); }
+.nav-links a:hover::after { width: 100%; }
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-toggle span {
+  width: 24px;
+  height: 1.5px;
+  background: var(--black);
+  transition: var(--transition);
+}
+
+/* ─── Hero ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+.hero-blueprint {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+}
+.hero-blueprint svg {
+  width: 100%;
+  height: 100%;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+}
+.hero-text { max-width: 600px; }
+.hero-overline {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.hero-overline::before {
+  content: '';
+  width: 3rem;
+  height: 1px;
+  background: var(--accent);
+}
+.hero-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+.hero-heading em {
+  font-style: italic;
+  color: var(--accent-dark);
+}
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--warm-gray-500);
+  max-width: 440px;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+.hero-cta {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-primary {
+  background: var(--black);
+  color: var(--white);
+}
+.btn-primary:hover { background: var(--warm-gray-700); }
+.btn-outline {
+  background: transparent;
+  color: var(--warm-gray-600);
+  border: 1px solid var(--warm-gray-300);
+}
+.btn-outline:hover {
+  border-color: var(--black);
+  color: var(--black);
+}
+.btn svg { width: 16px; height: 16px; }
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-svg-wrap {
+  width: 100%;
+  max-width: 520px;
+}
+.hero-svg-wrap svg { width: 100%; height: auto; }
+.draw-line {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: drawIn 3s ease forwards;
+}
+.draw-line-delay1 { animation-delay: 0.3s; }
+.draw-line-delay2 { animation-delay: 0.6s; }
+.draw-line-delay3 { animation-delay: 0.9s; }
+.draw-line-delay4 { animation-delay: 1.2s; }
+@keyframes drawIn {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ─── Split Projects ─── */
+.split-projects { background: var(--warm-gray-100); }
+.split-project {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+  position: relative;
+  border-bottom: 1px solid var(--warm-gray-200);
+}
+.split-project:last-child { border-bottom: none; }
+.split-project-image {
+  position: relative;
+  overflow: hidden;
+  background: var(--warm-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.split-project-image .placeholder-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.split-project:hover .placeholder-img { transform: scale(1.03); }
+.split-project-image .img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10,10,10,0.1), transparent);
+}
+.split-project-image .corner-mark {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(196,168,130,0.4);
+}
+.corner-mark.tl { top: 1.5rem; left: 1.5rem; border-right: none; border-bottom: none; }
+.corner-mark.tr { top: 1.5rem; right: 1.5rem; border-left: none; border-bottom: none; }
+.corner-mark.bl { bottom: 1.5rem; left: 1.5rem; border-right: none; border-top: none; }
+.corner-mark.br { bottom: 1.5rem; right: 1.5rem; border-left: none; border-top: none; }
+.split-project-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 5rem);
+}
+.split-project-number {
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  color: var(--warm-gray-200);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.split-project-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 400;
+  color: var(--black);
+  margin-bottom: 1rem;
+}
+.split-project-meta {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 2rem;
+}
+.split-project-desc {
+  font-size: 1rem;
+  color: var(--warm-gray-500);
+  line-height: 1.8;
+  max-width: 420px;
+  margin-bottom: 2rem;
+}
+.split-project-link {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: var(--transition);
+}
+.split-project-link:hover { gap: 1.25rem; color: var(--accent-dark); }
+.split-project-link svg { width: 20px; height: 20px; transition: var(--transition); }
+.split-project:nth-child(even) .split-project-image { order: 2; }
+.split-project:nth-child(even) .split-project-info { order: 1; }
+
+/* ─── Process / Methodology ─── */
+.process { background: var(--white); }
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 4rem;
+  position: relative;
+}
+.process-step {
+  padding: 2.5rem 2rem;
+  border: 1px solid var(--warm-gray-200);
+  border-right: none;
+  position: relative;
+  transition: var(--transition);
+}
+.process-step:last-child { border-right: 1px solid var(--warm-gray-200); }
+.process-step:hover { background: var(--warm-gray-100); }
+.process-step-number {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  color: var(--warm-gray-200);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.process-step-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1.5rem;
+}
+.process-step-icon svg { width: 100%; height: 100%; }
+.process-step-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--black);
+  margin-bottom: 1rem;
+}
+.process-step-desc {
+  font-size: 0.9rem;
+  color: var(--warm-gray-500);
+  line-height: 1.7;
+}
+.process-connector {
+  position: absolute;
+  top: 50%;
+  right: -12px;
+  width: 24px;
+  height: 24px;
+  z-index: 2;
+}
+
+/* ─── Awards ─── */
+.awards { background: var(--black); color: var(--white); }
+.awards .section-label { color: var(--accent); }
+.awards .section-label::before { background: var(--accent); }
+.awards .section-title { color: var(--white); }
+.awards-list {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+.award-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 60px;
+  gap: 2rem;
+  align-items: center;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: var(--transition);
+}
+.award-item:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
+.award-item:hover { padding-left: 1rem; }
+.award-year {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.award-name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+.award-org {
+  font-size: 0.85rem;
+  color: var(--warm-gray-400);
+}
+.award-arrow {
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transition: var(--transition);
+}
+.award-item:hover .award-arrow { opacity: 1; }
+
+/* ─── Gallery ─── */
+.gallery { background: var(--warm-gray-100); }
+.gallery-filters {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+.gallery-filter {
+  padding: 0.6rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--warm-gray-300);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warm-gray-500);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.gallery-filter:hover,
+.gallery-filter.active {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--warm-gray-200);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 16/9; }
+.gallery-item:nth-child(5) { grid-column: span 2; aspect-ratio: 16/9; }
+.gallery-item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.gallery-item:hover .gallery-item-img { transform: scale(1.05); }
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,0.7), transparent 60%);
+  opacity: 0;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+}
+.gallery-item:hover .gallery-item-overlay { opacity: 1; }
+.gallery-item-overlay h3 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+}
+.gallery-item-overlay p {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ─── Clients Marquee ─── */
+.clients {
+  padding: 4rem 0;
+  background: var(--white);
+  overflow: hidden;
+  border-top: 1px solid var(--warm-gray-200);
+  border-bottom: 1px solid var(--warm-gray-200);
+}
+.clients-label {
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--warm-gray-400);
+  margin-bottom: 2.5rem;
+}
+.marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.client-logo {
+  flex-shrink: 0;
+  padding: 0 3rem;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--warm-gray-300);
+  white-space: nowrap;
+  transition: var(--transition);
+}
+.client-logo:hover { color: var(--black); }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─── Testimonials ─── */
+.testimonials { background: var(--white); }
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.testimonial-card {
+  padding: 2.5rem;
+  border: 1px solid var(--warm-gray-200);
+  transition: var(--transition);
+  position: relative;
+}
+.testimonial-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+.testimonial-quote-mark {
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  color: var(--warm-gray-200);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.testimonial-text {
+  font-size: 1rem;
+  color: var(--warm-gray-600);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.testimonial-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--warm-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--warm-gray-500);
+}
+.testimonial-name {
+  font-weight: 500;
+  color: var(--black);
+  font-size: 0.9rem;
+}
+.testimonial-role {
+  font-size: 0.75rem;
+  color: var(--warm-gray-400);
+  letter-spacing: 0.05em;
+}
+
+/* ─── Contact ─── */
+.contact { background: var(--warm-gray-100); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 3rem;
+}
+.contact-info { padding-right: 2rem; }
+.contact-info p {
+  font-size: 1.05rem;
+  color: var(--warm-gray-500);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+.contact-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.contact-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.contact-detail-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.contact-detail-value {
+  font-size: 1rem;
+  color: var(--black);
+}
+.contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.form-group { display: flex; flex-direction: column; }
+.form-group label {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--warm-gray-500);
+  margin-bottom: 0.5rem;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 0.9rem 1rem;
+  background: var(--white);
+  border: 1px solid var(--warm-gray-200);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--black);
+  transition: var(--transition);
+  outline: none;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--black);
+}
+.form-group textarea { resize: vertical; min-height: 140px; }
+.form-submit {
+  align-self: flex-start;
+  padding: 1rem 2.5rem;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.form-submit:hover { background: var(--warm-gray-700); }
+
+/* ─── Footer ─── */
+.footer {
+  background: var(--black);
+  color: var(--white);
+  padding: 4rem 0 2rem;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.footer-brand {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.footer-brand span { color: var(--accent); }
+.footer-desc {
+  font-size: 0.9rem;
+  color: var(--warm-gray-400);
+  line-height: 1.7;
+  max-width: 300px;
+}
+.footer-col-title {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.footer-links a {
+  text-decoration: none;
+  color: var(--warm-gray-400);
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+.footer-links a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--warm-gray-500);
+}
+.footer-socials { display: flex; gap: 1.5rem; }
+.footer-socials a {
+  color: var(--warm-gray-400);
+  text-decoration: none;
+  transition: var(--transition);
+}
+.footer-socials a:hover { color: var(--accent); }
+
+/* ─── Geometric decorations ─── */
+.geo-diamond {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--blueprint-line);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-visual { display: none; }
+  .split-project { grid-template-columns: 1fr; }
+  .split-project-image { min-height: 50vh; order: 0 !important; }
+  .split-project-info { order: 1 !important; }
+  .process-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-step:nth-child(2) { border-right: 1px solid var(--warm-gray-200); }
+  .process-step { border-right: 1px solid var(--warm-gray-200); }
+  .process-step:nth-child(odd) { border-right: none; }
+  .award-item { grid-template-columns: 1fr 2fr; }
+  .award-org, .award-arrow { display: none; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-item:nth-child(1),
+  .gallery-item:nth-child(5) { grid-column: span 1; aspect-ratio: 4/3; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(245,244,241,0.98);
+    backdrop-filter: blur(12px);
+    padding: 2rem;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--warm-gray-200);
+  }
+  .nav-toggle { display: flex; }
+  .testimonial-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr; }
+  .process-step { border-right: 1px solid var(--warm-gray-200) !important; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item:nth-child(1),
+  .gallery-item:nth-child(5) { grid-column: span 1; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  .award-item { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ Navigation ═══════ -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">Arch<span>.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════ Hero ═══════ -->
+<section class="hero" id="hero">
+  <div class="hero-blueprint">
+    <svg viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Isometric grid -->
+      <g opacity="0.15">
+        <line x1="0" y1="0" x2="1440" y2="900" stroke="#8a8580" stroke-width="0.5"/>
+        <line x1="1440" y1="0" x2="0" y2="900" stroke="#8a8580" stroke-width="0.5"/>
+        <line x1="720" y1="0" x2="720" y2="900" stroke="#8a8580" stroke-width="0.5"/>
+        <line x1="0" y1="450" x2="1440" y2="450" stroke="#8a8580" stroke-width="0.5"/>
+        <line x1="360" y1="0" x2="360" y2="900" stroke="#8a8580" stroke-width="0.3"/>
+        <line x1="1080" y1="0" x2="1080" y2="900" stroke="#8a8580" stroke-width="0.3"/>
+        <line x1="0" y1="225" x2="1440" y2="225" stroke="#8a8580" stroke-width="0.3"/>
+        <line x1="0" y1="675" x2="1440" y2="675" stroke="#8a8580" stroke-width="0.3"/>
+      </g>
+      <!-- Geometric accents -->
+      <rect class="draw-line" x="100" y="150" width="200" height="200" stroke="#c4a882" stroke-width="1" fill="none" transform="rotate(45 200 250)"/>
+      <rect class="draw-line draw-line-delay1" x="1100" y="600" width="160" height="160" stroke="#8a8580" stroke-width="0.8" fill="none" transform="rotate(15 1180 680)"/>
+      <circle class="draw-line draw-line-delay2" cx="1200" cy="200" r="80" stroke="#c4a882" stroke-width="0.8" fill="none"/>
+      <line class="draw-line draw-line-delay3" x1="80" y1="800" x2="400" y2="700" stroke="#8a8580" stroke-width="0.5"/>
+      <line class="draw-line draw-line-delay4" x1="1300" y1="100" x2="1400" y2="400" stroke="#c4a882" stroke-width="0.5"/>
+      <!-- Corner brackets -->
+      <polyline class="draw-line draw-line-delay2" points="50,50 50,20 80,20" stroke="#8a8580" stroke-width="1" fill="none"/>
+      <polyline class="draw-line draw-line-delay3" points="1390,50 1390,20 1360,20" stroke="#8a8580" stroke-width="1" fill="none"/>
+      <polyline class="draw-line draw-line-delay3" points="50,850 50,880 80,880" stroke="#8a8580" stroke-width="1" fill="none"/>
+      <polyline class="draw-line draw-line-delay4" points="1390,850 1390,880 1360,880" stroke="#8a8580" stroke-width="1" fill="none"/>
+    </svg>
+  </div>
+  <div class="container hero-content">
+    <div class="hero-text">
+      <div class="hero-overline">Architecture & Design Studio</div>
+      <h1 class="hero-heading">Designing <em>Spaces</em> That Define Tomorrow</h1>
+      <p class="hero-desc">We craft architectural experiences where structure meets soul—every line intentional, every space purposeful, every detail considered.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">
+          View Projects
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-svg-wrap">
+        <svg viewBox="0 0 520 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Architectural blueprint drawing -->
+          <!-- Building outline -->
+          <path class="draw-line" d="M60 420 L60 180 L260 60 L460 180 L460 420" stroke="#0a0a0a" stroke-width="1.5" fill="none"/>
+          <!-- Roof -->
+          <path class="draw-line draw-line-delay1" d="M40 190 L260 50 L480 190" stroke="#0a0a0a" stroke-width="1.2" fill="none"/>
+          <!-- Windows left -->
+          <rect class="draw-line draw-line-delay2" x="100" y="220" width="50" height="70" stroke="#8a8580" stroke-width="1" fill="none"/>
+          <rect class="draw-line draw-line-delay2" x="170" y="220" width="50" height="70" stroke="#8a8580" stroke-width="1" fill="none"/>
+          <!-- Windows right -->
+          <rect class="draw-line draw-line-delay3" x="300" y="220" width="50" height="70" stroke="#8a8580" stroke-width="1" fill="none"/>
+          <rect class="draw-line draw-line-delay3" x="370" y="220" width="50" height="70" stroke="#8a8580" stroke-width="1" fill="none"/>
+          <!-- Door -->
+          <rect class="draw-line draw-line-delay3" x="230" y="320" width="60" height="100" stroke="#0a0a0a" stroke-width="1.2" fill="none"/>
+          <path class="draw-line draw-line-delay4" d="M230 320 L260 305 L290 320" stroke="#0a0a0a" stroke-width="1" fill="none"/>
+          <!-- Ground line -->
+          <line class="draw-line draw-line-delay4" x1="20" y1="420" x2="500" y2="420" stroke="#0a0a0a" stroke-width="1"/>
+          <!-- Dimension lines -->
+          <line class="draw-line draw-line-delay4" x1="60" y1="445" x2="460" y2="445" stroke="#c4a882" stroke-width="0.5" stroke-dasharray="4 4"/>
+          <line class="draw-line draw-line-delay4" x1="60" y1="440" x2="60" y2="450" stroke="#c4a882" stroke-width="0.5"/>
+          <line class="draw-line draw-line-delay4" x1="460" y1="440" x2="460" y2="450" stroke="#c4a882" stroke-width="0.5"/>
+          <!-- Inner detail lines -->
+          <line class="draw-line draw-line-delay2" x1="60" y1="180" x2="460" y2="180" stroke="#8a8580" stroke-width="0.5" stroke-dasharray="8 4"/>
+          <line class="draw-line draw-line-delay3" x1="260" y1="60" x2="260" y2="420" stroke="#8a8580" stroke-width="0.3" stroke-dasharray="4 6"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ Split Projects ═══════ -->
+<section class="split-projects section-pad" id="projects">
+  <div class="container" style="padding-bottom: 2rem;">
+    <div class="section-label reveal">Selected Work</div>
+    <h2 class="section-title reveal">Featured Projects</h2>
+  </div>
+  <!-- Project 1 -->
+  <div class="split-project reveal">
+    <div class="split-project-image">
+      <svg class="placeholder-img" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="600" fill="#d1cdc8"/>
+        <rect x="200" y="100" width="400" height="350" fill="none" stroke="#8a8580" stroke-width="1"/>
+        <line x1="200" y1="100" x2="200" y2="450" stroke="#6b6560" stroke-width="0.5"/>
+        <line x1="600" y1="100" x2="600" y2="450" stroke="#6b6560" stroke-width="0.5"/>
+        <rect x="250" y="150" width="120" height="80" fill="none" stroke="#8a8580" stroke-width="0.5"/>
+        <rect x="430" y="150" width="120" height="80" fill="none" stroke="#8a8580" stroke-width="0.5"/>
+        <text x="400" y="530" text-anchor="middle" font-family="serif" font-size="18" fill="#6b6560">Horizon Pavilion</text>
+      </svg>
+      <div class="img-overlay"></div>
+      <div class="corner-mark tl"></div>
+      <div class="corner-mark tr"></div>
+      <div class="corner-mark bl"></div>
+      <div class="corner-mark br"></div>
+    </div>
+    <div class="split-project-info">
+      <div class="split-project-number">01</div>
+      <h3 class="split-project-title">Horizon Pavilion</h3>
+      <div class="split-project-meta">
+        <span>Residential</span>
+        <span>2024</span>
+        <span>Malibu, CA</span>
+      </div>
+      <p class="split-project-desc">A cantilevered residence that dissolves the boundary between interior comfort and the vast Pacific landscape. Steel and glass converge at the edge of the continent.</p>
+      <a href="#" class="split-project-link">
+        Explore Project
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <!-- Project 2 -->
+  <div class="split-project reveal">
+    <div class="split-project-image">
+      <svg class="placeholder-img" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="600" fill="#e8e6e3"/>
+        <polygon points="400,80 650,480 150,480" fill="none" stroke="#8a8580" stroke-width="1"/>
+        <line x1="400" y1="80" x2="400" y2="480" stroke="#6b6560" stroke-width="0.5" stroke-dasharray="4 4"/>
+        <text x="400" y="540" text-anchor="middle" font-family="serif" font-size="18" fill="#6b6560">Apex Tower</text>
+      </svg>
+      <div class="img-overlay"></div>
+      <div class="corner-mark tl"></div>
+      <div class="corner-mark tr"></div>
+      <div class="corner-mark bl"></div>
+      <div class="corner-mark br"></div>
+    </div>
+    <div class="split-project-info">
+      <div class="split-project-number">02</div>
+      <h3 class="split-project-title">Apex Tower</h3>
+      <div class="split-project-meta">
+        <span>Commercial</span>
+        <span>2023</span>
+        <span>Chicago, IL</span>
+      </div>
+      <p class="split-project-desc">A 52-storey commercial tower where structural expression becomes architectural poetry. The diagrid facade responds to wind loads while creating a landmark silhouette.</p>
+      <a href="#" class="split-project-link">
+        Explore Project
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <!-- Project 3 -->
+  <div class="split-project reveal">
+    <div class="split-project-image">
+      <svg class="placeholder-img" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="800" height="600" fill="#b5b0a8"/>
+        <circle cx="400" cy="280" r="180" fill="none" stroke="#4a4540" stroke-width="1"/>
+        <circle cx="400" cy="280" r="120" fill="none" stroke="#4a4540" stroke-width="0.5"/>
+        <line x1="220" y1="280" x2="580" y2="280" stroke="#4a4540" stroke-width="0.3" stroke-dasharray="6 4"/>
+        <text x="400" y="530" text-anchor="middle" font-family="serif" font-size="18" fill="#2d2a27">Meridian Cultural Center</text>
+      </svg>
+      <div class="img-overlay"></div>
+      <div class="corner-mark tl"></div>
+      <div class="corner-mark tr"></div>
+      <div class="corner-mark bl"></div>
+      <div class="corner-mark br"></div>
+    </div>
+    <div class="split-project-info">
+      <div class="split-project-number">03</div>
+      <h3 class="split-project-title">Meridian Cultural Center</h3>
+      <div class="split-project-meta">
+        <span>Cultural</span>
+        <span>2023</span>
+        <span>Barcelona, ES</span>
+      </div>
+      <p class="split-project-desc">A radial cultural complex that gathers the community under one sweeping roof. Concrete shells and light wells create contemplative spaces for art and assembly.</p>
+      <a href="#" class="split-project-link">
+        Explore Project
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ Process ═══════ -->
+<section class="process section-pad" id="process">
+  <div class="container">
+    <div class="section-label reveal">Methodology</div>
+    <h2 class="section-title reveal">Our Design Process</h2>
+    <div class="process-grid reveal">
+      <div class="process-step">
+        <div class="process-step-number">01</div>
+        <div class="process-step-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#0a0a0a" stroke-width="1.2">
+            <rect x="4" y="4" width="40" height="40" stroke-dasharray="4 3"/>
+            <circle cx="24" cy="24" r="8"/>
+            <line x1="24" y1="4" x2="24" y2="16"/>
+            <line x1="24" y1="32" x2="24" y2="44"/>
+            <line x1="4" y1="24" x2="16" y2="24"/>
+            <line x1="32" y1="24" x2="44" y2="24"/>
+          </svg>
+        </div>
+        <h4 class="process-step-title">Discover</h4>
+        <p class="process-step-desc">We begin with deep research—site analysis, cultural context, and client aspirations—to uncover the essence of every project.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-number">02</div>
+        <div class="process-step-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#0a0a0a" stroke-width="1.2">
+            <path d="M8 40 L20 8 L36 8 L24 40 Z"/>
+            <line x1="14" y1="24" x2="30" y2="24"/>
+          </svg>
+        </div>
+        <h4 class="process-step-title">Conceptualize</h4>
+        <p class="process-step-desc">Ideas take form through sketches, models, and iterative studies. Each concept is tested against function, beauty, and constructability.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-number">03</div>
+        <div class="process-step-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#0a0a0a" stroke-width="1.2">
+            <rect x="4" y="12" width="40" height="28"/>
+            <polyline points="4,12 24,4 44,12"/>
+            <rect x="14" y="22" width="8" height="18"/>
+            <rect x="26" y="22" width="8" height="10"/>
+          </svg>
+        </div>
+        <h4 class="process-step-title">Develop</h4>
+        <p class="process-step-desc">We transform concepts into precise documentation—technical drawings, material specifications, and coordination with engineering disciplines.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-number">04</div>
+        <div class="process-step-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#0a0a0a" stroke-width="1.2">
+            <path d="M4 44 L24 4 L44 44 Z"/>
+            <line x1="16" y1="28" x2="32" y2="28"/>
+            <line x1="20" y1="36" x2="28" y2="36"/>
+            <circle cx="24" cy="20" r="3"/>
+          </svg>
+        </div>
+        <h4 class="process-step-title">Realize</h4>
+        <p class="process-step-desc">From groundbreaking to final walkthrough, we oversee construction with meticulous care—ensuring the built result honors the design vision.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ Awards ═══════ -->
+<section class="awards section-pad" id="awards">
+  <div class="container">
+    <div class="section-label reveal">Recognition</div>
+    <h2 class="section-title reveal">Awards & Accolades</h2>
+    <div class="awards-list reveal">
+      <div class="award-item">
+        <span class="award-year">2024</span>
+        <span class="award-name">Pritzker Architecture Prize — Nominee</span>
+        <span class="award-org">Hyatt Foundation</span>
+        <svg class="award-arrow" viewBox="0 0 24 24" fill="none" stroke="#c4a882" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </div>
+      <div class="award-item">
+        <span class="award-year">2024</span>
+        <span class="award-name">AIA National Honor Award for Architecture</span>
+        <span class="award-org">American Institute of Architects</span>
+        <svg class="award-arrow" viewBox="0 0 24 24" fill="none" stroke="#c4a882" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </div>
+      <div class="award-item">
+        <span class="award-year">2023</span>
+        <span class="award-name">Riba International Prize — Shortlisted</span>
+        <span class="award-org">Royal Institute of British Architects</span>
+        <svg class="award-arrow" viewBox="0 0 24 24" fill="none" stroke="#c4a882" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </div>
+      <div class="award-item">
+        <span class="award-year">2023</span>
+        <span class="award-name">Architectural Review Future Projects — Winner</span>
+        <span class="award-org">The Architectural Review</span>
+        <svg class="award-arrow" viewBox="0 0 24 24" fill="none" stroke="#c4a882" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </div>
+      <div class="award-item">
+        <span class="award-year">2022</span>
+        <span class="award-name">World Architecture Festival — Building of the Year</span>
+        <span class="award-org">WAF</span>
+        <svg class="award-arrow" viewBox="0 0 24 24" fill="none" stroke="#c4a882" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </div>
+      <div class="award-item">
+        <span class="award-year">2022</span>
+        <span class="award-name">Dezeen Award — Residential Building of the Year</span>
+        <span class="award-org">Dezeen</span>
+        <svg class="award-arrow" viewBox="0 0 24 24" fill="none" stroke="#c4a882" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ Gallery ═══════ -->
+<section class="gallery section-pad" id="gallery">
+  <div class="container">
+    <div class="section-label reveal">Portfolio</div>
+    <h2 class="section-title reveal">Project Gallery</h2>
+    <div class="gallery-filters reveal">
+      <button class="gallery-filter active" data-filter="all">All</button>
+      <button class="gallery-filter" data-filter="residential">Residential</button>
+      <button class="gallery-filter" data-filter="commercial">Commercial</button>
+      <button class="gallery-filter" data-filter="cultural">Cultural</button>
+      <button class="gallery-filter" data-filter="interior">Interior</button>
+    </div>
+    <div class="gallery-grid reveal" id="galleryGrid">
+      <div class="gallery-item" data-category="residential">
+        <svg class="gallery-item-img" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="800" height="450" fill="#d1cdc8"/>
+          <rect x="150" y="80" width="500" height="280" fill="none" stroke="#6b6560" stroke-width="1"/>
+          <rect x="200" y="120" width="100" height="60" fill="none" stroke="#8a8580" stroke-width="0.5"/>
+          <rect x="350" y="120" width="100" height="60" fill="none" stroke="#8a8580" stroke-width="0.5"/>
+          <rect x="500" y="120" width="100" height="60" fill="none" stroke="#8a8580" stroke-width="0.5"/>
+          <text x="400" y="410" text-anchor="middle" font-family="serif" font-size="16" fill="#4a4540">Cliffside Residence</text>
+        </svg>
+        <div class="gallery-item-overlay">
+          <h3>Cliffside Residence</h3>
+          <p>Residential — 2024</p>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="commercial">
+        <svg class="gallery-item-img" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="800" height="600" fill="#e8e6e3"/>
+          <line x1="400" y1="60" x2="400" y2="500" stroke="#8a8580" stroke-width="0.5" stroke-dasharray="6 4"/>
+          <rect x="150" y="120" width="250" height="350" fill="none" stroke="#6b6560" stroke-width="0.8"/>
+          <rect x="420" y="200" width="230" height="270" fill="none" stroke="#6b6560" stroke-width="0.8"/>
+          <text x="400" y="560" text-anchor="middle" font-family="serif" font-size="16" fill="#4a4540">Sector HQ</text>
+        </svg>
+        <div class="gallery-item-overlay">
+          <h3>Sector HQ</h3>
+          <p>Commercial — 2023</p>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="cultural">
+        <svg class="gallery-item-img" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="800" height="600" fill="#b5b0a8"/>
+          <ellipse cx="400" cy="300" rx="220" ry="160" fill="none" stroke="#2d2a27" stroke-width="1"/>
+          <line x1="180" y1="300" x2="620" y2="300" stroke="#2d2a27" stroke-width="0.3" stroke-dasharray="4 6"/>
+          <text x="400" y="540" text-anchor="middle" font-family="serif" font-size="16" fill="#2d2a27">Rotunda Museum</text>
+        </svg>
+        <div class="gallery-item-overlay">
+          <h3>Rotunda Museum</h3>
+          <p>Cultural — 2023</p>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="interior">
+        <svg class="gallery-item-img" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="800" height="600" fill="#d1cdc8"/>
+          <rect x="100" y="50" width="600" height="400" fill="none" stroke="#6b6560" stroke-width="0.8"/>
+          <line x1="100" y1="50" x2="700" y2="50" stroke="#4a4540" stroke-width="1.2"/>
+          <rect x="200" y="100" width="150" height="200" fill="none" stroke="#8a8580" stroke-width="0.5" stroke-dasharray="3 3"/>
+          <circle cx="550" cy="200" r="60" fill="none" stroke="#8a8580" stroke-width="0.5" stroke-dasharray="3 3"/>
+          <text x="400" y="520" text-anchor="middle" font-family="serif" font-size="16" fill="#4a4540">Loft Interior</text>
+        </svg>
+        <div class="gallery-item-overlay">
+          <h3>Loft Interior</h3>
+          <p>Interior — 2024</p>
+        </div>
+      </div>
+      <div class="gallery-item" data-category="residential">
+        <svg class="gallery-item-img" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="800" height="450" fill="#e8e6e3"/>
+          <polygon points="400,40 700,350 100,350" fill="none" stroke="#6b6560" stroke-width="1"/>
+          <rect x="300" y="200" width="200" height="150" fill="none" stroke="#8a8580" stroke-width="0.5"/>
+          <text x="400" y="410" text-anchor="middle" font-family="serif" font-size="16" fill="#4a4540">Timber Frame House</text>
+        </svg>
+        <div class="gallery-item-overlay">
+          <h3>Timber Frame House</h3>
+          <p>Residential — 2022</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ Clients Marquee ═══════ -->
+<section class="clients">
+  <div class="clients-label">Trusted by Industry Leaders</div>
+  <div class="marquee-track">
+    <span class="client-logo">Zaha Hadid Architects</span>
+    <span class="client-logo">Foster + Partners</span>
+    <span class="client-logo">Herzog & de Meuron</span>
+    <span class="client-logo">OMA</span>
+    <span class="client-logo">BIG</span>
+    <span class="client-logo">Renzo Piano</span>
+    <span class="client-logo">MVRDV</span>
+    <span class="client-logo">Snøhetta</span>
+    <span class="client-logo">Kengo Kuma</span>
+    <span class="client-logo">Tadao Ando</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="client-logo">Zaha Hadid Architects</span>
+    <span class="client-logo">Foster + Partners</span>
+    <span class="client-logo">Herzog & de Meuron</span>
+    <span class="client-logo">OMA</span>
+    <span class="client-logo">BIG</span>
+    <span class="client-logo">Renzo Piano</span>
+    <span class="client-logo">MVRDV</span>
+    <span class="client-logo">Snøhetta</span>
+    <span class="client-logo">Kengo Kuma</span>
+    <span class="client-logo">Tadao Ando</span>
+  </div>
+</section>
+
+<!-- ═══════ Testimonials ═══════ -->
+<section class="testimonials section-pad" id="testimonials">
+  <div class="container">
+    <div class="section-label reveal">Client Voices</div>
+    <h2 class="section-title reveal">What They Say</h2>
+    <div class="testimonial-grid reveal">
+      <div class="testimonial-card">
+        <div class="testimonial-quote-mark">&ldquo;</div>
+        <p class="testimonial-text">Their ability to translate abstract aspirations into tangible spaces is unparalleled. Every meeting felt like a creative breakthrough.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">E</div>
+          <div>
+            <div class="testimonial-name">Elena Marchetti</div>
+            <div class="testimonial-role">CEO, Marchetti Holdings</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-quote-mark">&ldquo;</div>
+        <p class="testimonial-text">Working with Arch felt like a true partnership. They listened deeply, challenged thoughtfully, and delivered beyond our imagination.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">J</div>
+          <div>
+            <div class="testimonial-name">James Thornton</div>
+            <div class="testimonial-role">Director, Urban Futures</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-quote-mark">&ldquo;</div>
+        <p class="testimonial-text">The attention to detail is extraordinary. From the grand concept to the smallest material joint, everything was considered with care.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">S</div>
+          <div>
+            <div class="testimonial-name">Sarah Lindqvist</div>
+            <div class="testimonial-role">Curator, Nordic Art Museum</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ Contact ═══════ -->
+<section class="contact section-pad" id="contact">
+  <div class="container">
+    <div class="section-label reveal">Get in Touch</div>
+    <h2 class="section-title reveal">Start a Conversation</h2>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <p>Every great building begins with a conversation. Whether you have a site, a vision, or simply a question, we'd love to hear from you.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Studio</span>
+            <span class="contact-detail-value">42 North Bridge Street, Edinburgh EH1 1QL</span>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Email</span>
+            <span class="contact-detail-value">studio@arch-portfolio.com</span>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Phone</span>
+            <span class="contact-detail-value">+44 131 555 0147</span>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault();">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" placeholder="Elena">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" placeholder="Marchetti">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="elena@example.com">
+        </div>
+        <div class="form-group">
+          <label for="projectType">Project Type</label>
+          <select id="projectType">
+            <option value="">Select a category</option>
+            <option value="residential">Residential</option>
+            <option value="commercial">Commercial</option>
+            <option value="cultural">Cultural / Civic</option>
+            <option value="interior">Interior</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Tell Us About Your Project</label>
+          <textarea id="message" placeholder="Describe your vision, timeline, and any key requirements..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Inquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ Footer ═══════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Arch<span>.</span></div>
+        <p class="footer-desc">An architecture and design studio crafting spaces that endure. Founded on the principle that great design serves both people and place.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#awards">Awards</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Architecture</a></li>
+          <li><a href="#">Interior Design</a></li>
+          <li><a href="#">Urban Planning</a></li>
+          <li><a href="#">Feasibility Studies</a></li>
+          <li><a href="#">3D Visualization</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Behance</a></li>
+          <li><a href="#">ArchDaily</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2024 Arch. All rights reserved.</span>
+      <div class="footer-socials">
+        <a href="#">Ig</a>
+        <a href="#">Li</a>
+        <a href="#">Be</a>
+        <a href="#">Ad</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* ─── Scroll reveal ─── */
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach((el) => observer.observe(el));
+
+  /* ─── Nav scroll effect ─── */
+  const nav = document.getElementById('nav');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 80) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    lastScroll = y;
+  }, { passive: true });
+
+  /* ─── Mobile nav toggle ─── */
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+    const spans = toggle.querySelectorAll('span');
+    if (links.classList.contains('open')) {
+      spans[0].style.transform = 'rotate(45deg) translate(4px, 4px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translate(4px, -4px)';
+    } else {
+      spans[0].style.transform = '';
+      spans[1].style.opacity = '';
+      spans[2].style.transform = '';
+    }
+  });
+
+  /* Close nav on link click (mobile) */
+  links.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      const spans = toggle.querySelectorAll('span');
+      spans[0].style.transform = '';
+      spans[1].style.opacity = '';
+      spans[2].style.transform = '';
+    });
+  });
+
+  /* ─── Gallery filter ─── */
+  const filters = document.querySelectorAll('.gallery-filter');
+  const items = document.querySelectorAll('.gallery-item');
+  filters.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filters.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      items.forEach((item) => {
+        if (f === 'all' || item.dataset.category === f) {
+          item.style.display = '';
+          requestAnimationFrame(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; });
+        } else {
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.95)';
+          setTimeout(() => { item.style.display = 'none'; }, 300);
+        }
+      });
+    });
+  });
+
+  /* ─── Scroll-triggered blueprint draw for sections ─── */
+  const blueprintObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const lines = entry.target.querySelectorAll('.draw-line');
+        lines.forEach((line) => {
+          const len = line.getTotalLength ? line.getTotalLength() : 2000;
+          line.style.strokeDasharray = len;
+          line.style.strokeDashoffset = len;
+          line.style.animation = 'none';
+          void line.offsetWidth; // reflow
+          line.style.animation = `drawIn 2s ease forwards`;
+        });
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.split-project-image, .process-step, .gallery-item').forEach((el) => {
+    blueprintObserver.observe(el);
+  });
+
+  /* ─── Smooth scroll for anchor links ─── */
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

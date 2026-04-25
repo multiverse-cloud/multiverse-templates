@@ -1,0 +1,58 @@
+{
+  "id": "template-alex-morgan-dark-minimal-portfolio",
+  "slug": "alex-morgan-dark-minimal-portfolio",
+  "title": "Alex Morgan Dark Minimal Portfolio",
+  "summary": "A dark minimal portfolio template with editorial typography, custom cursor details, and a polished monochrome-first presentation.",
+  "description": "This portfolio template is ideal for designers, creative developers, and personal brands that want a calm premium look with darker surfaces, elegant type, and subtle motion.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Dark minimal editorial portfolio",
+  "audience": "designers, creative developers, and personal brand sites",
+  "tags": [
+    "dark portfolio",
+    "minimal portfolio",
+    "editorial portfolio",
+    "personal website",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Hero",
+    "Selected work",
+    "About",
+    "Services",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "The visual identity comes from typography, contrast, and spacing rather than busy UI framing.",
+    "This template works best when the creator wants a mature, design-led personal site."
+  ],
+  "responsiveNotes": [
+    "The dark editorial layout compresses neatly into a stacked mobile experience.",
+    "Typography and spacing remain readable without needing dense overlays on mobile."
+  ],
+  "bestFor": [
+    "Designer portfolios",
+    "Creative studios",
+    "Personal brand sites"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": true,
+  "updatedAt": "2026-04-25",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-25T12:29:34.436Z"
+}

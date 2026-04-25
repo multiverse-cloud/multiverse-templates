@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Interactive Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg-secondary: #12121a;
+    --fg: #e8e8f0;
+    --fg-muted: #8888a0;
+    --accent: #6c5ce7;
+    --accent-glow: #a29bfe;
+    --accent-secondary: #00cec9;
+    --accent-warm: #fd79a8;
+    --card: #16162a;
+    --card-hover: #1e1e38;
+    --border: rgba(108, 92, 231, 0.2);
+    --radius: 16px;
+    --shadow-deep: 0 25px 60px rgba(0,0,0,0.6), 0 10px 20px rgba(108,92,231,0.15);
+    --shadow-float: 0 30px 80px rgba(0,0,0,0.5), 0 5px 20px rgba(108,92,231,0.2);
+    --perspective: 1200px;
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Space Grotesk', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--fg);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+    padding: 1rem 2rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    perspective: var(--perspective);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.6rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    transform-style: preserve-3d;
+    transition: transform 0.4s;
+  }
+  .nav-logo:hover { transform: rotateY(15deg) rotateX(-5deg); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--fg-muted); text-decoration: none; font-size: 0.9rem;
+    font-weight: 500; position: relative; transition: color 0.3s, transform 0.3s;
+    transform-style: preserve-3d;
+  }
+  .nav-links a:hover {
+    color: var(--accent-glow);
+    transform: translateZ(10px);
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+    transition: width 0.3s;
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+  .nav-toggle span {
+    display: block; width: 28px; height: 2px; margin: 6px 0;
+    background: var(--fg); transition: 0.3s;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    position: relative; perspective: var(--perspective); overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(108,92,231,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 80%, rgba(0,206,201,0.1) 0%, transparent 50%);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(108,92,231,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108,92,231,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: perspective(500px) rotateX(60deg);
+    transform-origin: center top;
+    animation: gridScroll 20s linear infinite;
+  }
+
+  @keyframes gridScroll {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 60px; }
+  }
+
+  .floating-shapes {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    perspective: 800px;
+  }
+
+  .float-shape {
+    position: absolute; border: 2px solid; border-radius: 12px;
+    opacity: 0.3; animation: float3d 8s ease-in-out infinite;
+    transform-style: preserve-3d;
+  }
+
+  .float-shape:nth-child(1) {
+    width: 80px; height: 80px; top: 15%; left: 10%;
+    border-color: var(--accent); animation-delay: 0s;
+    animation-duration: 7s;
+  }
+  .float-shape:nth-child(2) {
+    width: 50px; height: 50px; top: 25%; right: 15%;
+    border-color: var(--accent-secondary); border-radius: 50%;
+    animation-delay: -2s; animation-duration: 9s;
+  }
+  .float-shape:nth-child(3) {
+    width: 100px; height: 100px; bottom: 20%; left: 20%;
+    border-color: var(--accent-warm); animation-delay: -4s;
+    animation-duration: 11s; border-radius: 50%;
+  }
+  .float-shape:nth-child(4) {
+    width: 60px; height: 60px; bottom: 30%; right: 10%;
+    border-color: var(--accent-glow); animation-delay: -1s;
+    animation-duration: 8s;
+  }
+  .float-shape:nth-child(5) {
+    width: 40px; height: 40px; top: 60%; left: 5%;
+    border-color: var(--accent-secondary); border-radius: 50%;
+    animation-delay: -3s; animation-duration: 10s;
+  }
+
+  @keyframes float3d {
+    0%, 100% { transform: translateY(0) rotateX(0) rotateY(0) translateZ(0); }
+    25% { transform: translateY(-30px) rotateX(15deg) rotateY(10deg) translateZ(40px); }
+    50% { transform: translateY(-15px) rotateX(-10deg) rotateY(20deg) translateZ(20px); }
+    75% { transform: translateY(-40px) rotateX(10deg) rotateY(-15deg) translateZ(50px); }
+  }
+
+  .hero-content {
+    position: relative; z-index: 2; text-align: center;
+    transform-style: preserve-3d;
+  }
+
+  .hero-badge {
+    display: inline-block; padding: 0.5rem 1.5rem;
+    border: 1px solid var(--border); border-radius: 50px;
+    font-size: 0.85rem; color: var(--accent-glow);
+    margin-bottom: 2rem; transform: translateZ(30px);
+    background: rgba(108,92,231,0.08);
+    animation: badgePulse 3s ease-in-out infinite;
+  }
+
+  @keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(108,92,231,0); }
+    50% { box-shadow: 0 0 30px rgba(108,92,231,0.3); }
+  }
+
+  .hero-title {
+    font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900; line-height: 1.05; margin-bottom: 1.5rem;
+    transform: translateZ(50px);
+  }
+  .hero-title .line1 { display: block; color: var(--fg); }
+  .hero-title .line2 {
+    display: block;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary), var(--accent-warm));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .hero-sub {
+    font-size: 1.15rem; color: var(--fg-muted); max-width: 540px;
+    margin: 0 auto 2.5rem; transform: translateZ(20px); font-weight: 300;
+  }
+
+  .hero-cta { display: flex; gap: 1rem; justify-content: center; transform: translateZ(40px); flex-wrap: wrap; }
+
+  .btn-3d {
+    padding: 0.9rem 2.2rem; border: none; border-radius: 12px;
+    font-family: var(--font-body); font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; transition: all 0.3s; transform-style: preserve-3d;
+    position: relative; text-decoration: none; display: inline-flex; align-items: center;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), #8b5cf6);
+    color: #fff; box-shadow: 0 8px 25px rgba(108,92,231,0.4);
+  }
+  .btn-primary:hover {
+    transform: translateY(-4px) translateZ(15px) rotateX(-5deg);
+    box-shadow: 0 15px 40px rgba(108,92,231,0.5);
+  }
+  .btn-secondary {
+    background: transparent; color: var(--fg);
+    border: 2px solid var(--border);
+  }
+  .btn-secondary:hover {
+    border-color: var(--accent); background: rgba(108,92,231,0.1);
+    transform: translateY(-4px) translateZ(15px);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; position: relative; }
+
+  .section-header { text-align: center; margin-bottom: 4rem; perspective: 600px; }
+  .section-label {
+    font-size: 0.85rem; color: var(--accent-glow); text-transform: uppercase;
+    letter-spacing: 3px; font-weight: 600; margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem; perspective: var(--perspective);
+  }
+
+  .tilt-card {
+    background: var(--card); border-radius: var(--radius);
+    border: 1px solid var(--border); overflow: hidden;
+    transform-style: preserve-3d; transition: box-shadow 0.4s;
+    cursor: pointer; position: relative;
+  }
+  .tilt-card:hover { box-shadow: var(--shadow-float); }
+
+  .tilt-card-img {
+    height: 220px; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #1a1a3e, #2a1a4e);
+    display: flex; align-items: center; justify-content: center;
+    transform: translateZ(0);
+  }
+  .tilt-card-img .placeholder-icon {
+    font-size: 3rem; opacity: 0.3;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+  .tilt-card:hover .placeholder-icon { transform: translateZ(40px) rotateY(10deg); }
+
+  .tilt-card-body { padding: 1.5rem; transform: translateZ(30px); }
+  .tilt-card-tag {
+    display: inline-block; padding: 0.25rem 0.75rem;
+    border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+    background: rgba(108,92,231,0.15); color: var(--accent-glow);
+    margin-bottom: 0.75rem;
+  }
+  .tilt-card-title {
+    font-family: var(--font-display); font-size: 1.3rem;
+    font-weight: 700; margin-bottom: 0.5rem;
+  }
+  .tilt-card-desc { font-size: 0.9rem; color: var(--fg-muted); line-height: 1.5; }
+
+  .tilt-card-shine {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%),
+      rgba(255,255,255,0.06) 0%, transparent 60%);
+    z-index: 5; border-radius: var(--radius);
+  }
+
+  /* ── SKILLS CUBE ── */
+  .skills-section { perspective: var(--perspective); overflow: visible; }
+  .cube-wrapper {
+    width: 260px; height: 260px; margin: 0 auto;
+    perspective: 900px; position: relative;
+  }
+  .skills-cube {
+    width: 100%; height: 100%;
+    position: relative; transform-style: preserve-3d;
+    animation: rotateCube 18s linear infinite;
+  }
+
+  @keyframes rotateCube {
+    0% { transform: rotateX(-15deg) rotateY(0deg); }
+    25% { transform: rotateX(-15deg) rotateY(90deg); }
+    50% { transform: rotateX(-15deg) rotateY(180deg); }
+    75% { transform: rotateX(-15deg) rotateY(270deg); }
+    100% { transform: rotateX(-15deg) rotateY(360deg); }
+  }
+
+  .cube-face {
+    position: absolute; width: 260px; height: 260px;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 1rem;
+    background: rgba(22,22,42,0.92); border: 1px solid var(--border);
+    border-radius: 16px; backdrop-filter: blur(10px);
+    padding: 2rem;
+  }
+  .cube-face-front  { transform: rotateY(0deg)   translateZ(130px); }
+  .cube-face-right  { transform: rotateY(90deg)   translateZ(130px); }
+  .cube-face-back   { transform: rotateY(180deg)  translateZ(130px); }
+  .cube-face-left   { transform: rotateY(270deg)  translateZ(130px); }
+  .cube-face-top    { transform: rotateX(90deg)   translateZ(130px); }
+  .cube-face-bottom { transform: rotateX(-90deg)  translateZ(130px); }
+
+  .cube-face-icon { font-size: 2.5rem; }
+  .cube-face-label {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 1.1rem; text-align: center;
+  }
+  .cube-face-items { font-size: 0.8rem; color: var(--fg-muted); text-align: center; line-height: 1.8; }
+
+  .skills-list {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem; margin-top: 3rem;
+  }
+  .skill-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.2rem; text-align: center;
+    transform-style: preserve-3d; transition: all 0.3s;
+    cursor: default;
+  }
+  .skill-item:hover {
+    transform: translateY(-6px) rotateX(5deg);
+    box-shadow: 0 15px 40px rgba(108,92,231,0.2);
+    border-color: var(--accent);
+  }
+  .skill-item-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .skill-item-name { font-weight: 600; font-size: 0.9rem; }
+
+  /* ── ISOMETRIC STATS ── */
+  .stats-section { perspective: var(--perspective); }
+  .iso-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+  .iso-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem; text-align: center;
+    transform-style: preserve-3d; transition: all 0.5s;
+    position: relative;
+  }
+  .iso-card::before {
+    content: ''; position: absolute; inset: 0; border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(108,92,231,0.1), transparent);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .iso-card:hover::before { opacity: 1; }
+  .iso-card:hover {
+    transform: rotateX(-8deg) rotateY(8deg) translateZ(30px);
+    box-shadow: var(--shadow-deep);
+  }
+  .iso-number {
+    font-family: var(--font-display); font-size: 3rem; font-weight: 900;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    transform: translateZ(20px);
+  }
+  .iso-label { font-size: 0.95rem; color: var(--fg-muted); margin-top: 0.5rem; }
+
+  /* ── 3D FLIP CARDS (Team) ── */
+  .team-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem; perspective: var(--perspective);
+  }
+  .flip-card { height: 380px; cursor: pointer; }
+  .flip-inner {
+    width: 100%; height: 100%; position: relative;
+    transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);
+  }
+  .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+  .flip-front, .flip-back {
+    position: absolute; inset: 0; backface-visibility: hidden;
+    border-radius: var(--radius); border: 1px solid var(--border);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  .flip-front { background: var(--card); }
+  .flip-back {
+    background: linear-gradient(135deg, #1a1a3e, #16162a);
+    transform: rotateY(180deg);
+    border-color: var(--accent);
+  }
+  .flip-avatar {
+    width: 90px; height: 90px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem; margin-bottom: 1.2rem;
+    box-shadow: 0 8px 25px rgba(108,92,231,0.3);
+  }
+  .flip-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; }
+  .flip-role { color: var(--accent-glow); font-size: 0.9rem; margin-top: 0.3rem; }
+  .flip-back-title {
+    font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 1rem; color: var(--accent-glow);
+  }
+  .flip-back-text { font-size: 0.9rem; color: var(--fg-muted); text-align: center; line-height: 1.6; }
+  .flip-back-socials { display: flex; gap: 1rem; margin-top: 1.5rem; }
+  .flip-back-socials a {
+    width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--fg-muted); text-decoration: none; font-size: 0.85rem;
+    transition: all 0.3s;
+  }
+  .flip-back-socials a:hover {
+    border-color: var(--accent); color: var(--accent-glow);
+    transform: translateZ(10px);
+  }
+
+  /* ── 3D TIMELINE ── */
+  .timeline-wrap { perspective: var(--perspective); position: relative; }
+  .timeline-line {
+    position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 3px; background: linear-gradient(to bottom, var(--accent), var(--accent-secondary), var(--accent-warm));
+    transform: translateX(-50%) rotateY(8deg);
+  }
+  .timeline-item {
+    display: flex; align-items: center; margin-bottom: 3rem;
+    position: relative; transform-style: preserve-3d;
+  }
+  .timeline-item:nth-child(odd) { flex-direction: row; }
+  .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+
+  .timeline-content {
+    width: 45%; background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.8rem;
+    transform-style: preserve-3d; transition: all 0.5s;
+  }
+  .timeline-content:hover {
+    transform: translateZ(30px) rotateY(5deg);
+    box-shadow: var(--shadow-deep);
+  }
+  .timeline-dot {
+    width: 50px; height: 50px; border-radius: 50%;
+    background: var(--card); border: 3px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; position: absolute; left: 50%;
+    transform: translateX(-50%) translateZ(20px);
+    z-index: 2; box-shadow: 0 0 20px rgba(108,92,231,0.3);
+  }
+  .timeline-year {
+    font-family: var(--font-display); font-weight: 800; font-size: 0.85rem;
+    color: var(--accent-glow); margin-bottom: 0.5rem;
+  }
+  .timeline-heading {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin-bottom: 0.4rem;
+  }
+  .timeline-text { font-size: 0.88rem; color: var(--fg-muted); line-height: 1.6; }
+
+  .timeline-spacer { width: 45%; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem; perspective: var(--perspective);
+  }
+  .testimonial-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem;
+    transform-style: preserve-3d; transition: all 0.5s;
+    position: relative; overflow: hidden;
+  }
+  .testimonial-card::before {
+    content: '\201C'; position: absolute; top: -10px; right: 20px;
+    font-size: 8rem; font-family: Georgia, serif; color: var(--accent);
+    opacity: 0.06; transform: translateZ(0);
+  }
+  .testimonial-card:hover {
+    transform: translateY(-8px) rotateX(5deg) translateZ(20px);
+    box-shadow: var(--shadow-float);
+  }
+  .testimonial-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.7; margin-bottom: 1.5rem; }
+  .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+  .testimonial-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .testimonial-name { font-weight: 700; font-size: 0.95rem; }
+  .testimonial-role { font-size: 0.8rem; color: var(--fg-muted); }
+
+  .testimonial-stars { color: #f9ca24; font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 2px; }
+
+  /* ── CONTACT ── */
+  .contact-wrapper {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    align-items: start; perspective: var(--perspective);
+  }
+
+  .contact-info { transform-style: preserve-3d; }
+  .contact-info-title {
+    font-family: var(--font-display); font-size: 2rem; font-weight: 800; margin-bottom: 1rem;
+  }
+  .contact-info-text { color: var(--fg-muted); margin-bottom: 2rem; line-height: 1.7; }
+  .contact-detail {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.2rem; transform-style: preserve-3d;
+    transition: transform 0.3s;
+  }
+  .contact-detail:hover { transform: translateZ(15px) rotateY(-3deg); }
+  .contact-detail-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(108,92,231,0.12); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-detail-label { font-size: 0.8rem; color: var(--fg-muted); }
+  .contact-detail-value { font-weight: 600; font-size: 0.95rem; }
+
+  .contact-form-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2.5rem;
+    transform-style: preserve-3d; transition: all 0.5s;
+    position: relative;
+  }
+  .contact-form-card::after {
+    content: ''; position: absolute; inset: -1px; border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    z-index: -1; opacity: 0; transition: opacity 0.4s;
+    filter: blur(20px);
+  }
+  .contact-form-card:hover::after { opacity: 0.3; }
+  .contact-form-card:hover {
+    transform: translateZ(20px);
+    box-shadow: var(--shadow-deep);
+  }
+
+  .form-group { margin-bottom: 1.3rem; transform-style: preserve-3d; }
+  .form-group label {
+    display: block; font-size: 0.85rem; font-weight: 600;
+    margin-bottom: 0.4rem; color: var(--fg-muted);
+  }
+  .form-input {
+    width: 100%; padding: 0.85rem 1rem; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--bg-secondary);
+    color: var(--fg); font-family: var(--font-body); font-size: 0.95rem;
+    transition: all 0.3s; outline: none;
+  }
+  .form-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(108,92,231,0.15);
+    transform: translateZ(5px);
+  }
+  textarea.form-input { min-height: 120px; resize: vertical; }
+
+  .form-submit {
+    width: 100%; padding: 0.9rem; border: none; border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent), #8b5cf6);
+    color: #fff; font-family: var(--font-body); font-size: 1rem;
+    font-weight: 700; cursor: pointer; transition: all 0.3s;
+    transform-style: preserve-3d;
+  }
+  .form-submit:hover {
+    transform: translateY(-3px) translateZ(10px) rotateX(-3deg);
+    box-shadow: 0 12px 30px rgba(108,92,231,0.4);
+  }
+
+  /* ── FOOTER ── */
+  .footer-3d {
+    padding: 4rem 2rem 2rem; border-top: 1px solid var(--border);
+    position: relative; perspective: var(--perspective);
+    background: linear-gradient(to top, rgba(108,92,231,0.03), transparent);
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem; max-width: 1200px; margin: 0 auto;
+    transform-style: preserve-3d;
+  }
+  .footer-brand { transform-style: preserve-3d; }
+  .footer-logo {
+    font-family: var(--font-display); font-size: 1.5rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 0.75rem;
+  }
+  .footer-desc { font-size: 0.88rem; color: var(--fg-muted); line-height: 1.6; max-width: 300px; }
+  .footer-heading {
+    font-family: var(--font-display); font-weight: 700; font-size: 1rem;
+    margin-bottom: 1rem; transform: translateZ(5px);
+  }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.6rem; }
+  .footer-links a {
+    color: var(--fg-muted); text-decoration: none; font-size: 0.88rem;
+    transition: all 0.3s; display: inline-block; transform-style: preserve-3d;
+  }
+  .footer-links a:hover {
+    color: var(--accent-glow); transform: translateZ(8px) translateX(4px);
+  }
+  .footer-bottom {
+    text-align: center; padding-top: 2rem; margin-top: 3rem;
+    border-top: 1px solid var(--border); font-size: 0.82rem; color: var(--fg-muted);
+  }
+  .footer-cube {
+    position: absolute; right: 5%; top: 20%; width: 60px; height: 60px;
+    transform-style: preserve-3d; animation: footerCubeRotate 12s linear infinite;
+    opacity: 0.15;
+  }
+  @keyframes footerCubeRotate {
+    from { transform: rotateX(0) rotateY(0); }
+    to { transform: rotateX(360deg) rotateY(360deg); }
+  }
+  .footer-cube-face {
+    position: absolute; width: 60px; height: 60px;
+    border: 1px solid var(--accent);
+  }
+  .footer-cube-face:nth-child(1) { transform: rotateY(0deg) translateZ(30px); }
+  .footer-cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(30px); }
+  .footer-cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(30px); }
+  .footer-cube-face:nth-child(4) { transform: rotateY(270deg) translateZ(30px); }
+  .footer-cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(30px); }
+  .footer-cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(30px); }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(40px) rotateX(5deg);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0) rotateX(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 100%; left: 0; width: 100%;
+      background: rgba(10,10,15,0.95); padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border); gap: 1rem;
+    }
+    .contact-wrapper { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .timeline-line { left: 24px; }
+    .timeline-item, .timeline-item:nth-child(even) { flex-direction: row; }
+    .timeline-dot { left: 24px; }
+    .timeline-content { width: calc(100% - 70px); margin-left: 70px; }
+    .timeline-spacer { display: none; }
+    .cube-wrapper { width: 200px; height: 200px; }
+    .cube-face { width: 200px; height: 200px; }
+    .cube-face-front  { transform: rotateY(0deg)   translateZ(100px); }
+    .cube-face-right  { transform: rotateY(90deg)   translateZ(100px); }
+    .cube-face-back   { transform: rotateY(180deg)  translateZ(100px); }
+    .cube-face-left   { transform: rotateY(270deg)  translateZ(100px); }
+    .cube-face-top    { transform: rotateX(90deg)   translateZ(100px); }
+    .cube-face-bottom { transform: rotateX(-90deg)  translateZ(100px); }
+  }
+
+  @media (max-width: 600px) {
+    .projects-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    section { padding: 4rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════ NAV ════════ -->
+<nav>
+  <div class="nav-logo">D3XTER</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#stats">Stats</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="floating-shapes">
+    <div class="float-shape"></div>
+    <div class="float-shape"></div>
+    <div class="float-shape"></div>
+    <div class="float-shape"></div>
+    <div class="float-shape"></div>
+  </div>
+  <div class="hero-content" id="heroContent">
+    <div class="hero-badge">&#9670; Available for 3D Experiences</div>
+    <h1 class="hero-title">
+      <span class="line1">Crafting Immersive</span>
+      <span class="line2">3D Digital Worlds</span>
+    </h1>
+    <p class="hero-sub">Pushing the boundaries of web interaction with perspective transforms, depth layers, and dimensional storytelling.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-3d btn-primary">Explore in 3D &#8594;</a>
+      <a href="#contact" class="btn-3d btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PROJECTS ════════ -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Selected Work</div>
+      <h2 class="section-title">3D Project Showcase</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="tilt-card reveal" data-tilt>
+        <div class="tilt-card-img" style="background:linear-gradient(135deg,#1a1040,#2d1b69)">
+          <div class="placeholder-icon">&#9881;</div>
+        </div>
+        <div class="tilt-card-shine"></div>
+        <div class="tilt-card-body">
+          <span class="tilt-card-tag">Three.js</span>
+          <h3 class="tilt-card-title">Quantum Visualizer</h3>
+          <p class="tilt-card-desc">Interactive 3D particle system visualizing quantum entanglement with real-time physics simulation.</p>
+        </div>
+      </div>
+      <div class="tilt-card reveal" data-tilt>
+        <div class="tilt-card-img" style="background:linear-gradient(135deg,#0d2137,#1a3a5c)">
+          <div class="placeholder-icon">&#9733;</div>
+        </div>
+        <div class="tilt-card-shine"></div>
+        <div class="tilt-card-body">
+          <span class="tilt-card-tag">WebGL</span>
+          <h3 class="tilt-card-title">Nebula Dashboard</h3>
+          <p class="tilt-card-desc">Spatial analytics platform with 3D data landscapes and immersive information architecture.</p>
+        </div>
+      </div>
+      <div class="tilt-card reveal" data-tilt>
+        <div class="tilt-card-img" style="background:linear-gradient(135deg,#1a0d2e,#3d1a5c)">
+          <div class="placeholder-icon">&#9830;</div>
+        </div>
+        <div class="tilt-card-shine"></div>
+        <div class="tilt-card-body">
+          <span class="tilt-card-tag">React 3Fiber</span>
+          <h3 class="tilt-card-title">MorphOS Interface</h3>
+          <p class="tilt-card-desc">Adaptive 3D user interface that morphs between states with fluid dimensional transitions.</p>
+        </div>
+      </div>
+      <div class="tilt-card reveal" data-tilt>
+        <div class="tilt-card-img" style="background:linear-gradient(135deg,#0d2e1a,#1a5c3d)">
+          <div class="placeholder-icon">&#9650;</div>
+        </div>
+        <div class="tilt-card-shine"></div>
+        <div class="tilt-card-body">
+          <span class="tilt-card-tag">GLSL Shaders</span>
+          <h3 class="tilt-card-title">Terraform Engine</h3>
+          <p class="tilt-card-desc">Procedural terrain generation with real-time erosion simulation and atmospheric rendering.</p>
+        </div>
+      </div>
+      <div class="tilt-card reveal" data-tilt>
+        <div class="tilt-card-img" style="background:linear-gradient(135deg,#2e1a0d,#5c3d1a)">
+          <div class="placeholder-icon">&#9827;</div>
+        </div>
+        <div class="tilt-card-shine"></div>
+        <div class="tilt-card-body">
+          <span class="tilt-card-tag">Babylon.js</span>
+          <h3 class="tilt-card-title">Chronos Portal</h3>
+          <p class="tilt-card-desc">Time-travel themed 3D experience with portal mechanics and dimensional rift effects.</p>
+        </div>
+      </div>
+      <div class="tilt-card reveal" data-tilt>
+        <div class="tilt-card-img" style="background:linear-gradient(135deg,#2e0d1a,#5c1a3d)">
+          <div class="placeholder-icon">&#9674;</div>
+        </div>
+        <div class="tilt-card-shine"></div>
+        <div class="tilt-card-body">
+          <span class="tilt-card-tag">CSS 3D</span>
+          <h3 class="tilt-card-title">Dimensional Fold</h3>
+          <p class="tilt-card-desc">Pure CSS 3D transforms creating impossible geometry and Escher-inspired spatial illusions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SKILLS CUBE ════════ -->
+<section id="skills" class="skills-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Expertise</div>
+      <h2 class="section-title">Rotating Skills Cube</h2>
+    </div>
+    <div class="cube-wrapper reveal">
+      <div class="skills-cube">
+        <div class="cube-face cube-face-front">
+          <div class="cube-face-icon">&#9881;</div>
+          <div class="cube-face-label">3D Development</div>
+          <div class="cube-face-items">Three.js &bull; WebGL &bull; GLSL</div>
+        </div>
+        <div class="cube-face cube-face-right">
+          <div class="cube-face-icon">&#9998;</div>
+          <div class="cube-face-label">UI/UX Design</div>
+          <div class="cube-face-items">Figma &bull; Prototyping &bull; Motion</div>
+        </div>
+        <div class="cube-face cube-face-back">
+          <div class="cube-face-icon">&#9729;</div>
+          <div class="cube-face-label">Cloud & DevOps</div>
+          <div class="cube-face-items">AWS &bull; Docker &bull; CI/CD</div>
+        </div>
+        <div class="cube-face cube-face-left">
+          <div class="cube-face-icon">&#9889;</div>
+          <div class="cube-face-label">Performance</div>
+          <div class="cube-face-items">Optimization &bull; GPU &bull; WASM</div>
+        </div>
+        <div class="cube-face cube-face-top">
+          <div class="cube-face-icon">&#9733;</div>
+          <div class="cube-face-label">Creative Coding</div>
+          <div class="cube-face-items">Shaders &bull; Particles &bull; Audio</div>
+        </div>
+        <div class="cube-face cube-face-bottom">
+          <div class="cube-face-icon">&#9775;</div>
+          <div class="cube-face-label">Full Stack</div>
+          <div class="cube-face-items">React &bull; Node &bull; TypeScript</div>
+        </div>
+      </div>
+    </div>
+    <div class="skills-list">
+      <div class="skill-item reveal">&#9881; Three.js</div>
+      <div class="skill-item reveal">&#9729; WebGL</div>
+      <div class="skill-item reveal">&#9889; GLSL</div>
+      <div class="skill-item reveal">&#9830; React</div>
+      <div class="skill-item reveal">&#9733; TypeScript</div>
+      <div class="skill-item reveal">&#9674; Node.js</div>
+      <div class="skill-item reveal">&#9998; Figma</div>
+      <div class="skill-item reveal">&#9775; Docker</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ ISOMETRIC STATS ════════ -->
+<section id="stats" class="stats-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Impact</div>
+      <h2 class="section-title">By the Numbers</h2>
+    </div>
+    <div class="iso-grid">
+      <div class="iso-card reveal">
+        <div class="iso-number">147+</div>
+        <div class="iso-label">3D Projects Delivered</div>
+      </div>
+      <div class="iso-card reveal">
+        <div class="iso-number">2.8M</div>
+        <div class="iso-label">Interactive Sessions</div>
+      </div>
+      <div class="iso-card reveal">
+        <div class="iso-number">60fps</div>
+        <div class="iso-label">Smooth Performance</div>
+      </div>
+      <div class="iso-card reveal">
+        <div class="iso-number">99%</div>
+        <div class="iso-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TEAM FLIP CARDS ════════ -->
+<section id="team">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">The Crew</div>
+      <h2 class="section-title">Flip to Discover</h2>
+    </div>
+    <div class="team-grid">
+      <div class="flip-card reveal">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="flip-avatar">&#9883;</div>
+            <div class="flip-name">Alex Mercer</div>
+            <div class="flip-role">3D Architect</div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-title">Alex Mercer</div>
+            <div class="flip-back-text">Specializes in immersive spatial design, transforming concepts into interactive 3D experiences that push boundaries.</div>
+            <div class="flip-back-socials">
+              <a href="#">&#9679;</a><a href="#">&#9679;</a><a href="#">&#9679;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card reveal">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="flip-avatar">&#9733;</div>
+            <div class="flip-name">Kira Tanaka</div>
+            <div class="flip-role">Shader Alchemist</div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-title">Kira Tanaka</div>
+            <div class="flip-back-text">Crafts mesmerizing GLSL shaders and visual effects that bring depth and dimension to every pixel on screen.</div>
+            <div class="flip-back-socials">
+              <a href="#">&#9679;</a><a href="#">&#9679;</a><a href="#">&#9679;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card reveal">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="flip-avatar">&#9830;</div>
+            <div class="flip-name">Rico Valdez</div>
+            <div class="flip-role">Motion Engineer</div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-title">Rico Valdez</div>
+            <div class="flip-back-text">Engineers fluid motion systems and physics simulations that make 3D interactions feel natural and responsive.</div>
+            <div class="flip-back-socials">
+              <a href="#">&#9679;</a><a href="#">&#9679;</a><a href="#">&#9679;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 3D TIMELINE ════════ -->
+<section id="journey">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Evolution</div>
+      <h2 class="section-title">Dimensional Journey</h2>
+    </div>
+    <div class="timeline-wrap">
+      <div class="timeline-line"></div>
+      <div class="timeline-item reveal">
+        <div class="timeline-content">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-heading">Launched Spatial Studio</div>
+          <div class="timeline-text">Founded a creative studio dedicated to immersive web experiences and 3D interface design.</div>
+        </div>
+        <div class="timeline-dot">&#9650;</div>
+        <div class="timeline-spacer"></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-spacer"></div>
+        <div class="timeline-dot">&#9670;</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2022</div>
+          <div class="timeline-heading">WebGL Breakthrough</div>
+          <div class="timeline-text">Pioneered real-time 3D rendering techniques for browser-based architectural visualization.</div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-content">
+          <div class="timeline-year">2020</div>
+          <div class="timeline-heading">Joined Dimension Labs</div>
+          <div class="timeline-text">Led the interactive team building next-gen 3D product configurators for enterprise clients.</div>
+        </div>
+        <div class="timeline-dot">&#9733;</div>
+        <div class="timeline-spacer"></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-spacer"></div>
+        <div class="timeline-dot">&#9830;</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2018</div>
+          <div class="timeline-heading">First 3D Experiment</div>
+          <div class="timeline-text">Discovered the magic of CSS 3D transforms and began exploring WebGL possibilities.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TESTIMONIALS ════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Voices</div>
+      <h2 class="section-title">Depth of Feedback</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="testimonial-text">The 3D product configurator they built transformed our e-commerce conversion rates. Users spend 3x longer engaging with products now.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">&#9883;</div>
+          <div>
+            <div class="testimonial-name">Sarah Chen</div>
+            <div class="testimonial-role">CEO, TechVault</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="testimonial-text">Their spatial design thinking is unmatched. The immersive experience they created felt like stepping into another dimension entirely.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">&#9733;</div>
+          <div>
+            <div class="testimonial-name">Marcus Rivera</div>
+            <div class="testimonial-role">Creative Director, NovaCorp</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="testimonial-text">Not just visually stunning &mdash; the performance optimization at 60fps with complex 3D scenes is engineering excellence.</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">&#9830;</div>
+          <div>
+            <div class="testimonial-name">Elena Volkov</div>
+            <div class="testimonial-role">CTO, PrismWorks</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CONTACT ════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Connect</div>
+      <h2 class="section-title">Enter the Dimension</h2>
+    </div>
+    <div class="contact-wrapper">
+      <div class="contact-info reveal">
+        <h3 class="contact-info-title">Let's Build<br>Something 3D</h3>
+        <p class="contact-info-text">Ready to transform your digital presence with immersive 3D experiences? Reach out and let's discuss your next dimensional project.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">&#9993;</div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-value">hello@d3xter.studio</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">&#9742;</div>
+          <div>
+            <div class="contact-detail-label">Phone</div>
+            <div class="contact-detail-value">+1 (555) 3DX-DEPT</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">&#9873;</div>
+          <div>
+            <div class="contact-detail-label">Location</div>
+            <div class="contact-detail-value">Dimension X, Virtual Space</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-card reveal">
+        <form onsubmit="event.preventDefault();">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" class="form-input" placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" class="form-input" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" class="form-input" placeholder="Project inquiry">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" class="form-input" placeholder="Describe your 3D vision..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send into the Void &#8594;</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer class="footer-3d">
+  <div class="footer-cube">
+    <div class="footer-cube-face"></div>
+    <div class="footer-cube-face"></div>
+    <div class="footer-cube-face"></div>
+    <div class="footer-cube-face"></div>
+    <div class="footer-cube-face"></div>
+    <div class="footer-cube-face"></div>
+  </div>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">D3XTER</div>
+      <p class="footer-desc">Crafting immersive 3D digital experiences that transcend the flat web and enter new dimensions.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Services</div>
+      <ul class="footer-links">
+        <li><a href="#">3D Web Design</a></li>
+        <li><a href="#">WebGL Development</a></li>
+        <li><a href="#">Interactive Experiences</a></li>
+        <li><a href="#">VR/AR Solutions</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Connect</div>
+      <ul class="footer-links">
+        <li><a href="#">Twitter / X</a></li>
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">Dribbble</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2024 D3XTER Studio. All rights reserved. Built with perspective and depth.</div>
+</footer>
+
+<script>
+(function() {
+  // ── Nav toggle ──
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // ── Hero parallax on mouse ──
+  const heroContent = document.getElementById('heroContent');
+  const hero = document.getElementById('hero');
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    heroContent.style.transform = `rotateY(${x * 8}deg) rotateX(${-y * 6}deg) translateZ(0)`;
+  });
+  hero.addEventListener('mouseleave', () => {
+    heroContent.style.transform = 'rotateY(0) rotateX(0) translateZ(0)';
+    heroContent.style.transition = 'transform 0.5s';
+  });
+  hero.addEventListener('mouseenter', () => {
+    heroContent.style.transition = 'transform 0.1s';
+  });
+
+  // ── 3D tilt on project cards ──
+  document.querySelectorAll('[data-tilt]').forEach(card => {
+    const shine = card.querySelector('.tilt-card-shine');
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      const tiltX = (y - 0.5) * -18;
+      const tiltY = (x - 0.5) * 18;
+      card.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.03,1.03,1.03)`;
+      if (shine) {
+        shine.style.setProperty('--mx', (x * 100) + '%');
+        shine.style.setProperty('--my', (y * 100) + '%');
+      }
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale3d(1,1,1)';
+      card.style.transition = 'transform 0.5s';
+    });
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'transform 0.1s';
+    });
+  });
+
+  // ── Scroll reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Floating shapes depth on scroll ──
+  const floatShapes = document.querySelectorAll('.float-shape');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    floatShapes.forEach((shape, i) => {
+      const speed = 0.03 + (i * 0.01);
+      const offset = scrollY * speed;
+      shape.style.transform = `translateY(${-offset}px) rotateX(${offset * 0.1}deg)`;
+    });
+  });
+
+  // ── Pause cube on hover ──
+  const cube = document.querySelector('.skills-cube');
+  if (cube) {
+    cube.addEventListener('mouseenter', () => {
+      cube.style.animationPlayState = 'paused';
+    });
+    cube.addEventListener('mouseleave', () => {
+      cube.style.animationPlayState = 'running';
+    });
+  }
+
+  // ── Subtle tilt on iso-cards ──
+  document.querySelectorAll('.iso-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `rotateX(${-y * 16}deg) rotateY(${x * 16}deg) translateZ(30px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

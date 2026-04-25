@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creative Agency — Bold. Vibrant. Unstoppable.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #6C2FE8;
+  --primary-light: #A855F7;
+  --secondary: #FF3D71;
+  --accent: #00D4AA;
+  --accent-yellow: #FFD600;
+  --dark: #0A0A0F;
+  --dark-card: #12121A;
+  --dark-surface: #1A1A26;
+  --light: #F0EEF5;
+  --gray: #8A8A9B;
+  --gradient-hero: linear-gradient(135deg, #6C2FE8 0%, #FF3D71 50%, #FFD600 100%);
+  --gradient-card: linear-gradient(145deg, #6C2FE8, #00D4AA);
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  font-family: var(--font-body);
+  background: var(--dark);
+  color: var(--light);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* ─── PRELOADER ─── */
+.preloader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--dark);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.preloader.loaded { opacity: 0; visibility: hidden; pointer-events: none; }
+.preloader__bar-track {
+  width: 200px; height: 3px;
+  background: var(--dark-surface); border-radius: 3px;
+  overflow: hidden; margin-top: 20px;
+}
+.preloader__bar-fill {
+  height: 100%; width: 0%; border-radius: 3px;
+  background: var(--gradient-hero);
+  transition: width 0.1s linear;
+}
+.preloader__percent {
+  font-family: var(--font-display);
+  font-size: 4rem; font-weight: 800;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  padding: 1.2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  backdrop-filter: blur(20px);
+  background: rgba(10,10,15,0.7);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: var(--transition);
+}
+.nav.scrolled { padding: 0.8rem 3rem; background: rgba(10,10,15,0.92); }
+.nav__logo {
+  font-family: var(--font-display); font-size: 1.5rem; font-weight: 800;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nav__links { display: flex; gap: 2.5rem; }
+.nav__links a {
+  font-size: 0.9rem; font-weight: 500; color: var(--gray);
+  position: relative; transition: color 0.3s;
+}
+.nav__links a:hover { color: var(--light); }
+.nav__links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 2px; background: var(--secondary);
+  transition: width 0.3s;
+}
+.nav__links a:hover::after { width: 100%; }
+.nav__cta {
+  padding: 0.6rem 1.8rem; border: 2px solid var(--primary);
+  border-radius: 50px; font-weight: 600; font-size: 0.85rem;
+  transition: var(--transition); cursor: pointer; background: none; color: var(--light);
+}
+.nav__cta:hover { background: var(--primary); }
+.nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+.nav__hamburger span { width: 28px; height: 2px; background: var(--light); transition: var(--transition); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 8rem 3rem 4rem; position: relative; overflow: hidden;
+}
+.hero__bg-shapes { position: absolute; inset: 0; pointer-events: none; }
+.hero__shape {
+  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3;
+  animation: floatShape 8s ease-in-out infinite;
+}
+.hero__shape--1 { width: 500px; height: 500px; background: var(--primary); top: -10%; right: -5%; animation-delay: 0s; }
+.hero__shape--2 { width: 400px; height: 400px; background: var(--secondary); bottom: -5%; left: -5%; animation-delay: -3s; }
+.hero__shape--3 { width: 300px; height: 300px; background: var(--accent); top: 40%; left: 30%; animation-delay: -5s; }
+@keyframes floatShape {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+.hero__content { position: relative; z-index: 2; max-width: 900px; }
+.hero__tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 1.2rem; border-radius: 50px;
+  background: rgba(108,47,232,0.15); border: 1px solid rgba(108,47,232,0.3);
+  font-size: 0.85rem; font-weight: 500; color: var(--primary-light);
+  margin-bottom: 2rem;
+}
+.hero__tag::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+/* Glitch Text */
+.glitch {
+  font-family: var(--font-display); font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 800; line-height: 1.05; position: relative;
+  display: inline-block;
+}
+.glitch::before, .glitch::after {
+  content: attr(data-text); position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%; overflow: hidden;
+}
+.glitch::before {
+  color: var(--secondary);
+  clip-path: inset(0 0 65% 0);
+  animation: glitchTop 3s infinite linear alternate-reverse;
+}
+.glitch::after {
+  color: var(--accent);
+  clip-path: inset(65% 0 0 0);
+  animation: glitchBottom 2.5s infinite linear alternate-reverse;
+}
+@keyframes glitchTop {
+  0% { transform: translate(0); }
+  20% { transform: translate(-3px, 3px); }
+  40% { transform: translate(3px, -2px); }
+  60% { transform: translate(-2px, 1px); }
+  80% { transform: translate(2px, -3px); }
+  100% { transform: translate(0); }
+}
+@keyframes glitchBottom {
+  0% { transform: translate(0); }
+  25% { transform: translate(2px, -2px); }
+  50% { transform: translate(-3px, 3px); }
+  75% { transform: translate(3px, -1px); }
+  100% { transform: translate(0); }
+}
+.hero__sub {
+  font-size: 1.2rem; color: var(--gray); margin: 1.5rem 0 2.5rem;
+  max-width: 550px; line-height: 1.7;
+}
+.hero__btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  padding: 0.9rem 2.2rem; border-radius: 50px; font-weight: 600;
+  font-size: 0.95rem; cursor: pointer; transition: var(--transition);
+  border: none; font-family: var(--font-body);
+}
+.btn--primary {
+  background: var(--gradient-hero); color: #fff;
+  box-shadow: 0 8px 30px rgba(108,47,232,0.4);
+}
+.btn--primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(108,47,232,0.5); }
+.btn--outline {
+  background: transparent; color: var(--light);
+  border: 2px solid rgba(255,255,255,0.15);
+}
+.btn--outline:hover { border-color: var(--primary-light); color: var(--primary-light); }
+
+/* ─── CLIP-PATH DECORATIONS ─── */
+.clip-shape {
+  position: absolute; z-index: 1; opacity: 0.1; pointer-events: none;
+}
+.clip-shape--diamond {
+  width: 200px; height: 200px; background: var(--secondary);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  top: 20%; right: 8%; animation: spinSlow 20s linear infinite;
+}
+.clip-shape--triangle {
+  width: 150px; height: 150px; background: var(--accent);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  bottom: 15%; right: 15%; animation: spinSlow 15s linear infinite reverse;
+}
+.clip-shape--hex {
+  width: 120px; height: 120px; background: var(--accent-yellow);
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  top: 50%; right: 25%; animation: spinSlow 25s linear infinite;
+}
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+
+/* ─── SECTION SHARED ─── */
+.section { padding: 6rem 3rem; position: relative; }
+.section__header { text-align: center; margin-bottom: 4rem; }
+.section__tag {
+  font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 3px; color: var(--primary-light); margin-bottom: 1rem;
+  display: block;
+}
+.section__title {
+  font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800; line-height: 1.15;
+}
+.section__title span {
+  background: var(--gradient-hero);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── STATS ─── */
+.stats {
+  background: var(--dark-card);
+  border-top: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.stats__grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2rem; max-width: 1000px; margin: 0 auto; text-align: center;
+}
+.stat__item { padding: 1.5rem; }
+.stat__number {
+  font-family: var(--font-display); font-size: 3.5rem; font-weight: 800;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat__label { color: var(--gray); font-size: 0.95rem; margin-top: 0.3rem; }
+
+/* ─── SERVICES ─── */
+.services__tabs {
+  display: flex; justify-content: center; gap: 0.5rem;
+  flex-wrap: wrap; margin-bottom: 3rem;
+}
+.tab-btn {
+  padding: 0.7rem 1.6rem; border-radius: 50px;
+  background: var(--dark-surface); border: 1px solid rgba(255,255,255,0.06);
+  color: var(--gray); font-weight: 500; font-size: 0.9rem;
+  cursor: pointer; transition: var(--transition); font-family: var(--font-body);
+}
+.tab-btn.active, .tab-btn:hover {
+  background: var(--primary); color: #fff; border-color: var(--primary);
+}
+.services__panels { max-width: 1100px; margin: 0 auto; }
+.service-panel {
+  display: none; grid-template-columns: 1fr 1fr; gap: 3rem;
+  align-items: center; animation: fadeUp 0.5s ease;
+}
+.service-panel.active { display: grid; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.service-panel__visual {
+  border-radius: var(--radius); overflow: hidden;
+  aspect-ratio: 4/3; position: relative;
+}
+.service-panel__visual img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.service-panel__visual::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(108,47,232,0.4), rgba(255,61,113,0.2));
+}
+.service-panel__content h3 {
+  font-family: var(--font-display); font-size: 2rem; font-weight: 700;
+  margin-bottom: 1rem;
+}
+.service-panel__content p { color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8; }
+.service-panel__list { display: flex; flex-direction: column; gap: 0.6rem; }
+.service-panel__list li {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.95rem; color: var(--light);
+}
+.service-panel__list li::before {
+  content: '✦'; color: var(--accent); font-size: 0.8rem;
+}
+
+/* ─── MASONRY PROJECTS ─── */
+.projects__grid {
+  columns: 3; column-gap: 1.5rem;
+  max-width: 1200px; margin: 0 auto;
+}
+.project-card {
+  break-inside: avoid; margin-bottom: 1.5rem;
+  border-radius: var(--radius); overflow: hidden;
+  position: relative; cursor: pointer;
+  transform-style: preserve-3d; transition: transform 0.5s ease;
+}
+.project-card__img { width: 100%; display: block; transition: transform 0.6s ease; }
+.project-card:hover .project-card__img { transform: scale(1.08); }
+.project-card__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,10,15,0.95) 0%, transparent 60%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 1.5rem; opacity: 0; transition: opacity 0.4s;
+}
+.project-card:hover .project-card__overlay { opacity: 1; }
+.project-card__cat {
+  font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--accent); margin-bottom: 0.3rem;
+}
+.project-card__name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; }
+
+/* ─── TEAM ─── */
+.team__grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2rem; max-width: 1100px; margin: 0 auto;
+}
+.team-card { perspective: 1000px; height: 380px; cursor: pointer; }
+.team-card__inner {
+  position: relative; width: 100%; height: 100%;
+  transition: transform 0.7s; transform-style: preserve-3d;
+}
+.team-card:hover .team-card__inner { transform: rotateY(180deg); }
+.team-card__front, .team-card__back {
+  position: absolute; inset: 0; border-radius: var(--radius);
+  backface-visibility: hidden; overflow: hidden;
+}
+.team-card__front img { width: 100%; height: 100%; object-fit: cover; }
+.team-card__front-info {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 1.5rem; background: linear-gradient(to top, rgba(10,10,15,0.9), transparent);
+}
+.team-card__front-info h4 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; }
+.team-card__front-info p { color: var(--accent); font-size: 0.85rem; }
+.team-card__back {
+  background: var(--gradient-card); transform: rotateY(180deg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 2rem; text-align: center;
+}
+.team-card__back h4 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+.team-card__back p { font-size: 0.9rem; opacity: 0.9; margin-bottom: 1.5rem; }
+.team-card__socials { display: flex; gap: 1rem; }
+.team-card__socials a {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,0.2); display: flex;
+  align-items: center; justify-content: center;
+  font-size: 0.85rem; transition: var(--transition);
+}
+.team-card__socials a:hover { background: #fff; color: var(--primary); }
+
+/* ─── TESTIMONIALS ─── */
+.testimonials { background: var(--dark-card); }
+.testimonials__track {
+  max-width: 800px; margin: 0 auto; position: relative;
+  overflow: hidden; min-height: 300px;
+}
+.testimonial {
+  text-align: center; padding: 2rem;
+  animation: fadeUp 0.6s ease;
+  display: none;
+}
+.testimonial.active { display: block; }
+.testimonial__quote {
+  font-size: 1.3rem; line-height: 1.8; color: var(--light);
+  margin-bottom: 2rem; font-style: italic; position: relative;
+}
+.testimonial__quote::before {
+  content: '"'; font-family: var(--font-display); font-size: 5rem;
+  position: absolute; top: -2.5rem; left: 50%; transform: translateX(-50%);
+  background: var(--gradient-hero);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; opacity: 0.3;
+}
+.testimonial__avatar {
+  width: 64px; height: 64px; border-radius: 50%;
+  margin: 0 auto 0.8rem; border: 3px solid var(--primary);
+  overflow: hidden;
+}
+.testimonial__avatar img { width: 100%; height: 100%; object-fit: cover; }
+.testimonial__name { font-weight: 600; }
+.testimonial__role { color: var(--gray); font-size: 0.85rem; }
+.testimonials__dots {
+  display: flex; justify-content: center; gap: 0.6rem; margin-top: 2rem;
+}
+.testimonials__dots button {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--dark-surface); border: none; cursor: pointer;
+  transition: var(--transition);
+}
+.testimonials__dots button.active { background: var(--primary); width: 30px; border-radius: 5px; }
+
+/* ─── CONTACT ─── */
+.contact__grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3rem; max-width: 1100px; margin: 0 auto;
+}
+.contact__info { display: flex; flex-direction: column; gap: 2rem; }
+.contact__info-item { display: flex; gap: 1rem; align-items: flex-start; }
+.contact__info-icon {
+  width: 50px; height: 50px; border-radius: var(--radius-sm);
+  background: rgba(108,47,232,0.15); display: flex;
+  align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.contact__info-text h4 { font-weight: 600; margin-bottom: 0.2rem; }
+.contact__info-text p { color: var(--gray); font-size: 0.9rem; }
+.contact__form { display: flex; flex-direction: column; gap: 1.2rem; }
+.contact__form input, .contact__form textarea {
+  padding: 1rem 1.2rem; border-radius: var(--radius-sm);
+  background: var(--dark-surface); border: 1px solid rgba(255,255,255,0.06);
+  color: var(--light); font-family: var(--font-body); font-size: 0.95rem;
+  transition: var(--transition); outline: none;
+}
+.contact__form input:focus, .contact__form textarea:focus {
+  border-color: var(--primary); box-shadow: 0 0 0 3px rgba(108,47,232,0.15);
+}
+.contact__form textarea { min-height: 140px; resize: vertical; }
+.contact__form .btn { align-self: flex-start; }
+.contact__map {
+  margin-top: 3rem; border-radius: var(--radius); overflow: hidden;
+  height: 250px; background: var(--dark-surface);
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed rgba(255,255,255,0.1);
+  color: var(--gray); font-size: 0.9rem;
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  padding: 4rem 3rem 2rem; border-top: 1px solid rgba(255,255,255,0.04);
+}
+.footer__grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem; max-width: 1200px; margin: 0 auto 3rem;
+}
+.footer__brand p { color: var(--gray); margin-top: 1rem; max-width: 300px; font-size: 0.9rem; line-height: 1.7; }
+.footer__col h5 {
+  font-family: var(--font-display); font-weight: 700;
+  margin-bottom: 1.2rem; font-size: 1rem;
+}
+.footer__col a {
+  display: block; color: var(--gray); font-size: 0.9rem;
+  margin-bottom: 0.7rem; transition: color 0.3s;
+}
+.footer__col a:hover { color: var(--primary-light); }
+.footer__bottom {
+  text-align: center; padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  color: var(--gray); font-size: 0.85rem;
+  max-width: 1200px; margin: 0 auto;
+}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .projects__grid { columns: 2; }
+  .team__grid { grid-template-columns: repeat(2, 1fr); }
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav__links, .nav__cta { display: none; }
+  .nav__hamburger { display: flex; }
+  .hero { padding: 7rem 1.5rem 3rem; }
+  .section { padding: 4rem 1.5rem; }
+  .stats__grid { grid-template-columns: repeat(2, 1fr); }
+  .service-panel { grid-template-columns: 1fr; }
+  .projects__grid { columns: 1; }
+  .team__grid { grid-template-columns: 1fr; max-width: 320px; }
+  .contact__grid { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ PRELOADER ════════ -->
+<div class="preloader" id="preloader">
+  <div class="preloader__percent" id="preloaderPercent">0</div>
+  <div class="preloader__bar-track">
+    <div class="preloader__bar-fill" id="preloaderBar"></div>
+  </div>
+</div>
+
+<!-- ════════ NAV ════════ -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav__logo">CREA·AGENCY</a>
+  <ul class="nav__links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav__cta">Let's Talk</button>
+  <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero" id="hero">
+  <div class="hero__bg-shapes">
+    <div class="hero__shape hero__shape--1"></div>
+    <div class="hero__shape hero__shape--2"></div>
+    <div class="hero__shape hero__shape--3"></div>
+  </div>
+  <div class="clip-shape clip-shape--diamond"></div>
+  <div class="clip-shape clip-shape--triangle"></div>
+  <div class="clip-shape clip-shape--hex"></div>
+  <div class="hero__content">
+    <div class="hero__tag">Available for projects 2025</div>
+    <h1 class="glitch" data-text="We Craft Digital Experiences">We Craft Digital Experiences</h1>
+    <p class="hero__sub">We are a fearless creative agency that transforms bold ideas into extraordinary digital realities. Strategy, design, and technology — fused into one.</p>
+    <div class="hero__btns">
+      <a href="#projects" class="btn btn--primary">View Our Work</a>
+      <a href="#contact" class="btn btn--outline">Start a Project</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ STATS ════════ -->
+<section class="stats section" id="stats">
+  <div class="stats__grid">
+    <div class="stat__item reveal">
+      <div class="stat__number" data-target="347">0</div>
+      <div class="stat__label">Projects Completed</div>
+    </div>
+    <div class="stat__item reveal">
+      <div class="stat__number" data-target="120">0</div>
+      <div class="stat__label">Happy Clients</div>
+    </div>
+    <div class="stat__item reveal">
+      <div class="stat__number" data-target="15">0</div>
+      <div class="stat__label">Awards Won</div>
+    </div>
+    <div class="stat__item reveal">
+      <div class="stat__number" data-target="8">0</div>
+      <div class="stat__label">Years of Craft</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SERVICES ════════ -->
+<section class="section" id="services">
+  <div class="section__header reveal">
+    <span class="section__tag">What We Do</span>
+    <h2 class="section__title">Services That <span>Move Needles</span></h2>
+  </div>
+  <div class="services__tabs reveal">
+    <button class="tab-btn active" data-tab="branding">Branding</button>
+    <button class="tab-btn" data-tab="web">Web Design</button>
+    <button class="tab-btn" data-tab="motion">Motion</button>
+    <button class="tab-btn" data-tab="strategy">Strategy</button>
+  </div>
+  <div class="services__panels">
+    <div class="service-panel active" data-panel="branding">
+      <div class="service-panel__visual">
+        <img src="https://picsum.photos/seed/brand42/800/600" alt="Branding">
+      </div>
+      <div class="service-panel__content">
+        <h3>Brand Identity & Systems</h3>
+        <p>We distill your essence into a visual language that commands attention and builds lasting connections with your audience.</p>
+        <ul class="service-panel__list">
+          <li>Logo & Visual Identity</li>
+          <li>Brand Guidelines & Toolkits</li>
+          <li>Typography & Color Systems</li>
+          <li>Brand Voice & Messaging</li>
+        </ul>
+      </div>
+    </div>
+    <div class="service-panel" data-panel="web">
+      <div class="service-panel__visual">
+        <img src="https://picsum.photos/seed/web77/800/600" alt="Web Design">
+      </div>
+      <div class="service-panel__content">
+        <h3>Web Design & Development</h3>
+        <p>Pixel-perfect, performance-driven websites that captivate users and convert visitors into loyal customers.</p>
+        <ul class="service-panel__list">
+          <li>UI/UX Design</li>
+          <li>Responsive Development</li>
+          <li>E-Commerce Solutions</li>
+          <li>CMS Integration</li>
+        </ul>
+      </div>
+    </div>
+    <div class="service-panel" data-panel="motion">
+      <div class="service-panel__visual">
+        <img src="https://picsum.photos/seed/motion55/800/600" alt="Motion">
+      </div>
+      <div class="service-panel__content">
+        <h3>Motion & Animation</h3>
+        <p>Breathe life into your brand with cinematic motion design that tells stories and creates unforgettable moments.</p>
+        <ul class="service-panel__list">
+          <li>Explainer Videos</li>
+          <li>UI Animations</li>
+          <li>3D & CGI</li>
+          <li>Social Media Content</li>
+        </ul>
+      </div>
+    </div>
+    <div class="service-panel" data-panel="strategy">
+      <div class="service-panel__visual">
+        <img src="https://picsum.photos/seed/strat99/800/600" alt="Strategy">
+      </div>
+      <div class="service-panel__content">
+        <h3>Digital Strategy</h3>
+        <p>Data-informed strategies that align your brand with market opportunities and drive measurable growth.</p>
+        <ul class="service-panel__list">
+          <li>Market Research</li>
+          <li>Growth Strategy</li>
+          <li>Content Strategy</li>
+          <li>Performance Analytics</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PROJECTS ════════ -->
+<section class="section" id="projects">
+  <div class="section__header reveal">
+    <span class="section__tag">Selected Work</span>
+    <h2 class="section__title">Projects We're <span>Proud Of</span></h2>
+  </div>
+  <div class="projects__grid reveal">
+    <div class="project-card" data-tilt>
+      <img class="project-card__img" src="https://picsum.photos/seed/proj1/600/800" alt="Project">
+      <div class="project-card__overlay">
+        <span class="project-card__cat">Branding</span>
+        <span class="project-card__name">Solaris Rebrand</span>
+      </div>
+    </div>
+    <div class="project-card" data-tilt>
+      <img class="project-card__img" src="https://picsum.photos/seed/proj2/600/450" alt="Project">
+      <div class="project-card__overlay">
+        <span class="project-card__cat">Web Design</span>
+        <span class="project-card__name">Vertex Platform</span>
+      </div>
+    </div>
+    <div class="project-card" data-tilt>
+      <img class="project-card__img" src="https://picsum.photos/seed/proj3/600/700" alt="Project">
+      <div class="project-card__overlay">
+        <span class="project-card__cat">Motion</span>
+        <span class="project-card__name">Kinetic Futures</span>
+      </div>
+    </div>
+    <div class="project-card" data-tilt>
+      <img class="project-card__img" src="https://picsum.photos/seed/proj4/600/500" alt="Project">
+      <div class="project-card__overlay">
+        <span class="project-card__cat">Strategy</span>
+        <span class="project-card__name">Nova Campaign</span>
+      </div>
+    </div>
+    <div class="project-card" data-tilt>
+      <img class="project-card__img" src="https://picsum.photos/seed/proj5/600/900" alt="Project">
+      <div class="project-card__overlay">
+        <span class="project-card__cat">Branding</span>
+        <span class="project-card__name">Ember Identity</span>
+      </div>
+    </div>
+    <div class="project-card" data-tilt>
+      <img class="project-card__img" src="https://picsum.photos/seed/proj6/600/550" alt="Project">
+      <div class="project-card__overlay">
+        <span class="project-card__cat">Web Design</span>
+        <span class="project-card__name">Flux Commerce</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TEAM ════════ -->
+<section class="section" id="team">
+  <div class="section__header reveal">
+    <span class="section__tag">The People</span>
+    <h2 class="section__title">Meet Our <span>Creative Minds</span></h2>
+  </div>
+  <div class="team__grid reveal">
+    <div class="team-card">
+      <div class="team-card__inner">
+        <div class="team-card__front">
+          <img src="https://picsum.photos/seed/team1/400/500" alt="Team member">
+          <div class="team-card__front-info">
+            <h4>Alex Rivera</h4>
+            <p>Creative Director</p>
+          </div>
+        </div>
+        <div class="team-card__back">
+          <h4>Alex Rivera</h4>
+          <p>Visionary leader with 12+ years shaping iconic brands across tech and luxury sectors.</p>
+          <div class="team-card__socials">
+            <a href="#">Tw</a><a href="#">Li</a><a href="#">Dr</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-card__inner">
+        <div class="team-card__front">
+          <img src="https://picsum.photos/seed/team2/400/500" alt="Team member">
+          <div class="team-card__front-info">
+            <h4>Maya Chen</h4>
+            <p>Lead Designer</p>
+          </div>
+        </div>
+        <div class="team-card__back">
+          <h4>Maya Chen</h4>
+          <p>Award-winning designer obsessed with pixel perfection and meaningful visual systems.</p>
+          <div class="team-card__socials">
+            <a href="#">Tw</a><a href="#">Li</a><a href="#">Be</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-card__inner">
+        <div class="team-card__front">
+          <img src="https://picsum.photos/seed/team3/400/500" alt="Team member">
+          <div class="team-card__front-info">
+            <h4>Kai Nakamura</h4>
+            <p>Motion Lead</p>
+          </div>
+        </div>
+        <div class="team-card__back">
+          <h4>Kai Nakamura</h4>
+          <p>Cinematic storyteller bringing static designs to life through animation and 3D.</p>
+          <div class="team-card__socials">
+            <a href="#">Tw</a><a href="#">Li</a><a href="#">Vd</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-card__inner">
+        <div class="team-card__front">
+          <img src="https://picsum.photos/seed/team4/400/500" alt="Team member">
+          <div class="team-card__front-info">
+            <h4>Sofia Torres</h4>
+            <p>Strategy Lead</p>
+          </div>
+        </div>
+        <div class="team-card__back">
+          <h4>Sofia Torres</h4>
+          <p>Data-driven strategist who transforms market insights into actionable growth plans.</p>
+          <div class="team-card__socials">
+            <a href="#">Tw</a><a href="#">Li</a><a href="#">Md</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TESTIMONIALS ════════ -->
+<section class="testimonials section" id="testimonials">
+  <div class="section__header reveal">
+    <span class="section__tag">Client Love</span>
+    <h2 class="section__title">Words From Our <span>Partners</span></h2>
+  </div>
+  <div class="testimonials__track reveal">
+    <div class="testimonial active">
+      <p class="testimonial__quote">CREA·AGENCY didn't just design our brand — they gave it a soul. Their creative vision transformed our entire market position and the results speak for themselves.</p>
+      <div class="testimonial__avatar"><img src="https://picsum.photos/seed/av1/128/128" alt=""></div>
+      <div class="testimonial__name">Jordan Blake</div>
+      <div class="testimonial__role">CEO, Solaris Tech</div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial__quote">Working with this team felt like having an in-house creative department. They understood our vision from day one and exceeded every expectation.</p>
+      <div class="testimonial__avatar"><img src="https://picsum.photos/seed/av2/128/128" alt=""></div>
+      <div class="testimonial__name">Priya Sharma</div>
+      <div class="testimonial__role">Founder, Ember Health</div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial__quote">The attention to detail is unmatched. Every pixel, every animation, every word — carefully crafted. They're not just designers, they're artists with strategy.</p>
+      <div class="testimonial__avatar"><img src="https://picsum.photos/seed/av3/128/128" alt=""></div>
+      <div class="testimonial__name">Marcus Webb</div>
+      <div class="testimonial__role">CMO, Vertex Labs</div>
+    </div>
+  </div>
+  <div class="testimonials__dots reveal">
+    <button class="active" data-slide="0"></button>
+    <button data-slide="1"></button>
+    <button data-slide="2"></button>
+  </div>
+</section>
+
+<!-- ════════ CONTACT ════════ -->
+<section class="section" id="contact">
+  <div class="section__header reveal">
+    <span class="section__tag">Get In Touch</span>
+    <h2 class="section__title">Let's Build Something <span>Amazing</span></h2>
+  </div>
+  <div class="contact__grid reveal">
+    <div class="contact__info">
+      <div class="contact__info-item">
+        <div class="contact__info-icon">📍</div>
+        <div class="contact__info-text">
+          <h4>Office</h4>
+          <p>123 Creative Blvd, Suite 400<br>San Francisco, CA 94102</p>
+        </div>
+      </div>
+      <div class="contact__info-item">
+        <div class="contact__info-icon">📧</div>
+        <div class="contact__info-text">
+          <h4>Email</h4>
+          <p>hello@crea-agency.com</p>
+        </div>
+      </div>
+      <div class="contact__info-item">
+        <div class="contact__info-icon">📱</div>
+        <div class="contact__info-text">
+          <h4>Phone</h4>
+          <p>+1 (415) 555-0192</p>
+        </div>
+      </div>
+      <div class="contact__map">🗺 Map Placeholder — Your Location Here</div>
+    </div>
+    <form class="contact__form" onsubmit="event.preventDefault(); alert('Message sent!');">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <input type="text" placeholder="Subject">
+      <textarea placeholder="Tell us about your project..."></textarea>
+      <button type="submit" class="btn btn--primary">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer class="footer">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <a href="#" class="nav__logo">CREA·AGENCY</a>
+      <p>Bold creative agency turning ambitious ideas into digital masterpieces since 2017.</p>
+    </div>
+    <div class="footer__col">
+      <h5>Services</h5>
+      <a href="#">Branding</a>
+      <a href="#">Web Design</a>
+      <a href="#">Motion Design</a>
+      <a href="#">Digital Strategy</a>
+    </div>
+    <div class="footer__col">
+      <h5>Company</h5>
+      <a href="#">About</a>
+      <a href="#">Careers</a>
+      <a href="#">Blog</a>
+      <a href="#">Press Kit</a>
+    </div>
+    <div class="footer__col">
+      <h5>Connect</h5>
+      <a href="#">Twitter / X</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Dribbble</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    &copy; 2025 CREA·AGENCY. All rights reserved. Crafted with passion.
+  </div>
+</footer>
+
+<!-- ════════ SCRIPTS ════════ -->
+<script>
+(function() {
+  // ── Preloader ──
+  const preloader = document.getElementById('preloader');
+  const percentEl = document.getElementById('preloaderPercent');
+  const barEl = document.getElementById('preloaderBar');
+  let progress = 0;
+  const preloaderInterval = setInterval(() => {
+    progress += Math.random() * 8 + 2;
+    if (progress >= 100) { progress = 100; clearInterval(preloaderInterval); }
+    percentEl.textContent = Math.floor(progress);
+    barEl.style.width = progress + '%';
+    if (progress >= 100) {
+      setTimeout(() => preloader.classList.add('loaded'), 400);
+    }
+  }, 60);
+
+  // ── Nav scroll effect ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // ── Stats Counter Animation ──
+  let statsCounted = false;
+  function animateCounters() {
+    document.querySelectorAll('.stat__number').forEach(el => {
+      const target = +el.dataset.target;
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = Math.floor(current) + (target > 20 ? '+' : '+');
+      }, 16);
+    });
+  }
+
+  // ── Scroll Reveal ──
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Trigger stats once
+        if (entry.target.closest('#stats') && !statsCounted) {
+          statsCounted = true;
+          animateCounters();
+        }
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ── Services Tabs ──
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.service-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelector(`[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+    });
+  });
+
+  // ── 3D Tilt on Project Cards ──
+  document.querySelectorAll('[data-tilt]').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -8;
+      const rotateY = ((x - centerX) / centerX) * 8;
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)';
+    });
+  });
+
+  // ── Testimonials Carousel ──
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.testimonial');
+  const dots = document.querySelectorAll('.testimonials__dots button');
+  function showSlide(index) {
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+    currentSlide = index;
+  }
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => showSlide(+dot.dataset.slide));
+  });
+  setInterval(() => {
+    showSlide((currentSlide + 1) % slides.length);
+  }, 5000);
+
+  // ── Parallax on Hero Shapes ──
+  const heroShapes = document.querySelectorAll('.hero__shape');
+  window.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 2;
+    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+    heroShapes.forEach((shape, i) => {
+      const speed = (i + 1) * 15;
+      shape.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

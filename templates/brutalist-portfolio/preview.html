@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRUTALIST — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           CSS CUSTOM PROPERTIES
+           ============================================ */
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --yellow: #FFE600;
+            --red: #FF3B3B;
+            --blue: #3B5EFF;
+            --lime: #BFFF00;
+            --orange: #FF8A00;
+            --pink: #FF69B4;
+            --cyan: #00FFFF;
+            --gray: #E0E0E0;
+            --dark-gray: #333333;
+
+            --font-display: 'Archivo Black', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+
+            --border-thick: 4px solid var(--black);
+            --border-medium: 3px solid var(--black);
+            --border-thin: 2px solid var(--black);
+
+            --shadow-brutal: 6px 6px 0 var(--black);
+            --shadow-brutal-sm: 4px 4px 0 var(--black);
+            --shadow-brutal-lg: 8px 8px 0 var(--black);
+
+            --rotation-1: -2deg;
+            --rotation-2: 1.5deg;
+            --rotation-3: -1deg;
+            --rotation-4: 3deg;
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: var(--font-mono);
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            cursor: crosshair;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+           ============================================ */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .rotate-1 { transform: rotate(var(--rotation-1)); }
+        .rotate-2 { transform: rotate(var(--rotation-2)); }
+        .rotate-3 { transform: rotate(var(--rotation-3)); }
+        .rotate-4 { transform: rotate(var(--rotation-4)); }
+
+        .sticker {
+            display: inline-block;
+            padding: 6px 16px;
+            border: var(--border-thick);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: var(--shadow-brutal-sm);
+            position: relative;
+        }
+
+        .sticker::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 2px dashed rgba(0,0,0,0.2);
+            pointer-events: none;
+        }
+
+        .sticker-yellow { background: var(--yellow); }
+        .sticker-red { background: var(--red); color: var(--white); }
+        .sticker-blue { background: var(--blue); color: var(--white); }
+        .sticker-lime { background: var(--lime); }
+        .sticker-orange { background: var(--orange); }
+        .sticker-pink { background: var(--pink); }
+        .sticker-cyan { background: var(--cyan); }
+
+        .section-divider {
+            width: 100%;
+            height: 4px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--black) 0px,
+                var(--black) 20px,
+                var(--yellow) 20px,
+                var(--yellow) 40px,
+                var(--red) 40px,
+                var(--red) 60px,
+                var(--blue) 60px,
+                var(--blue) 80px
+            );
+        }
+
+        .section-label {
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 4px 12px;
+            border: var(--border-medium);
+            background: var(--black);
+            color: var(--white);
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--yellow);
+            border-bottom: var(--border-thick);
+        }
+
+        .nav__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav__logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            border: var(--border-thick);
+            padding: 4px 12px;
+            background: var(--white);
+            box-shadow: var(--shadow-brutal-sm);
+        }
+
+        .nav__links {
+            display: flex;
+            gap: 4px;
+            list-style: none;
+        }
+
+        .nav__links a {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border: var(--border-medium);
+            background: var(--white);
+            box-shadow: var(--shadow-brutal-sm);
+            transition: transform 0.15s, box-shadow 0.15s;
+            display: block;
+        }
+
+        .nav__links a:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0 var(--black);
+            background: var(--lime);
+        }
+
+        .nav__toggle {
+            display: none;
+            background: var(--white);
+            border: var(--border-thick);
+            font-size: 1.5rem;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            box-shadow: var(--shadow-brutal-sm);
+        }
+
+        @media (max-width: 768px) {
+            .nav__links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--yellow);
+                border-bottom: var(--border-thick);
+                flex-direction: column;
+                padding: 8px;
+                gap: 6px;
+            }
+
+            .nav__links.active {
+                display: flex;
+            }
+
+            .nav__toggle {
+                display: block;
+            }
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            border-bottom: var(--border-thick);
+            padding-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero__tag {
+            grid-column: 1 / -1;
+            padding: 12px 24px;
+            border-bottom: var(--border-thick);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero__tag-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--red);
+            border: var(--border-thin);
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hero__left {
+            padding: 60px 40px;
+            border-right: var(--border-thick);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero__greeting {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 16px;
+            padding: 4px 10px;
+            background: var(--lime);
+            border: var(--border-medium);
+            display: inline-block;
+            align-self: flex-start;
+        }
+
+        .hero__name {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 0.95;
+            margin-bottom: 12px;
+            letter-spacing: -0.03em;
+        }
+
+        .hero__name span {
+            display: block;
+            color: var(--blue);
+            -webkit-text-stroke: 2px var(--black);
+        }
+
+        .hero__title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            line-height: 1.1;
+            background: var(--yellow);
+            padding: 8px 16px;
+            border: var(--border-thick);
+            display: inline-block;
+            transform: rotate(var(--rotation-2));
+            box-shadow: var(--shadow-brutal);
+            margin-bottom: 24px;
+        }
+
+        .hero__desc {
+            font-size: 1rem;
+            max-width: 500px;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .hero__cta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-brutal {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            padding: 14px 28px;
+            border: var(--border-thick);
+            cursor: pointer;
+            box-shadow: var(--shadow-brutal);
+            transition: transform 0.15s, box-shadow 0.15s;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-brutal:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 var(--black);
+        }
+
+        .btn-brutal:active {
+            transform: translate(3px, 3px);
+            box-shadow: 0 0 0 var(--black);
+        }
+
+        .btn-primary { background: var(--red); color: var(--white); }
+        .btn-secondary { background: var(--white); }
+
+        .hero__right {
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background:
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(0,0,0,0.03) 20px,
+                    rgba(0,0,0,0.03) 40px
+                );
+        }
+
+        .hero__image-frame {
+            width: 80%;
+            max-width: 400px;
+            aspect-ratio: 3/4;
+            border: var(--border-thick);
+            box-shadow: var(--shadow-brutal-lg);
+            background: var(--gray);
+            transform: rotate(var(--rotation-3));
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero__image-frame::after {
+            content: 'YOUR\nPHOTO\nHERE';
+            font-family: var(--font-display);
+            font-size: 2rem;
+            text-align: center;
+            line-height: 1.3;
+            color: var(--dark-gray);
+            white-space: pre-line;
+        }
+
+        .hero__image-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 90px;
+            height: 90px;
+            background: var(--orange);
+            border: var(--border-thick);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            text-align: center;
+            transform: rotate(15deg);
+            box-shadow: var(--shadow-brutal-sm);
+            line-height: 1.2;
+        }
+
+        .hero__bottom {
+            grid-column: 1 / -1;
+            border-top: var(--border-thick);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .hero__stat {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .hero__stat strong {
+            font-size: 1.4rem;
+            font-family: var(--font-display);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .hero__left {
+                border-right: none;
+                border-bottom: var(--border-thick);
+                padding: 40px 24px;
+            }
+            .hero__right {
+                padding: 40px 24px;
+            }
+            .hero__image-frame {
+                width: 60%;
+            }
+        }
+
+        /* ============================================
+           MARQUEE
+           ============================================ */
+        .marquee {
+            overflow: hidden;
+            border-top: var(--border-thick);
+            border-bottom: var(--border-thick);
+            background: var(--black);
+            color: var(--white);
+            padding: 14px 0;
+            white-space: nowrap;
+        }
+
+        .marquee__track {
+            display: inline-flex;
+            animation: marquee-scroll 20s linear infinite;
+        }
+
+        .marquee__item {
+            font-family: var(--font-display);
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            text-transform: uppercase;
+            padding: 0 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .marquee__item .sep {
+            width: 12px;
+            height: 12px;
+            background: var(--yellow);
+            border-radius: 0;
+            transform: rotate(45deg);
+            flex-shrink: 0;
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ============================================
+           PROJECTS SECTION
+           ============================================ */
+        .projects {
+            padding: 80px 0;
+        }
+
+        .projects__header {
+            padding: 0 24px;
+            max-width: 1400px;
+            margin: 0 auto 48px;
+        }
+
+        .projects__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            border: var(--border-thick);
+        }
+
+        .project-card {
+            border: var(--border-thick);
+            margin: -4px;
+            background: var(--white);
+            padding: 0;
+            transition: transform 0.2s, z-index 0s;
+            position: relative;
+        }
+
+        .project-card:hover {
+            z-index: 10;
+            transform: scale(1.03) rotate(var(--rotation-2));
+        }
+
+        .project-card:nth-child(even):hover {
+            transform: scale(1.03) rotate(var(--rotation-1));
+        }
+
+        .project-card__image {
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-bottom: var(--border-thick);
+            background: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card__image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 10px,
+                rgba(0,0,0,0.04) 10px,
+                rgba(0,0,0,0.04) 20px
+            );
+        }
+
+        .project-card__image--yellow { background: var(--yellow); }
+        .project-card__image--red { background: var(--red); color: var(--white); }
+        .project-card__image--blue { background: var(--blue); color: var(--white); }
+        .project-card__image--lime { background: var(--lime); }
+
+        .project-card__number {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-family: var(--font-display);
+            font-size: 3rem;
+            line-height: 1;
+            opacity: 0.15;
+        }
+
+        .project-card__body {
+            padding: 20px;
+        }
+
+        .project-card__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .project-card__tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border: var(--border-thin);
+            background: var(--white);
+        }
+
+        .project-card__title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+
+        .project-card__desc {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .project-card__link {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border: var(--border-medium);
+            background: var(--black);
+            color: var(--white);
+            display: inline-block;
+            box-shadow: var(--shadow-brutal-sm);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .project-card__link:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--black);
+            background: var(--blue);
+        }
+
+        @media (max-width: 480px) {
+            .projects__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           SKILLS SECTION
+           ============================================ */
+        .skills {
+            padding: 80px 0;
+            background: var(--dark-gray);
+            color: var(--white);
+            border-top: var(--border-thick);
+            border-bottom: var(--border-thick);
+        }
+
+        .skills__header {
+            max-width: 1400px;
+            margin: 0 auto 48px;
+            padding: 0 24px;
+        }
+
+        .skills .section-label {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .skills__wall {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .skill-sticker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border: var(--border-thick);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            box-shadow: var(--shadow-brutal-sm);
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        .skill-sticker:hover {
+            transform: rotate(var(--rotation-4)) scale(1.08);
+            z-index: 5;
+        }
+
+        .skill-sticker__icon {
+            font-size: 1.2rem;
+        }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about {
+            padding: 80px 0;
+        }
+
+        .about__grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: var(--border-thick);
+        }
+
+        .about__photo {
+            border-right: var(--border-thick);
+            border-bottom: var(--border-thick);
+            padding: 0;
+            background: var(--yellow);
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about__photo-placeholder {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 10vw, 10rem);
+            line-height: 1;
+            opacity: 0.1;
+        }
+
+        .about__photo-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .about__content {
+            border-bottom: var(--border-thick);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about__content h3 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 20px;
+            line-height: 1.05;
+        }
+
+        .about__content h3 span {
+            background: var(--lime);
+            padding: 0 8px;
+            border: var(--border-medium);
+            display: inline-block;
+            transform: rotate(var(--rotation-2));
+        }
+
+        .about__content p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about__stats {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .about__stat {
+            padding: 24px;
+            border-right: var(--border-thick);
+            text-align: center;
+        }
+
+        .about__stat:last-child {
+            border-right: none;
+        }
+
+        .about__stat-number {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .about__stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        @media (max-width: 768px) {
+            .about__grid {
+                grid-template-columns: 1fr;
+            }
+            .about__photo {
+                border-right: none;
+                aspect-ratio: 16/9;
+            }
+            .about__stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about__stat:nth-child(2) {
+                border-right: none;
+            }
+            .about__stat:nth-child(1),
+            .about__stat:nth-child(2) {
+                border-bottom: var(--border-thick);
+            }
+        }
+
+        /* ============================================
+           EXPERIENCE SECTION
+           ============================================ */
+        .experience {
+            padding: 80px 0;
+            background: var(--gray);
+        }
+
+        .experience__header {
+            max-width: 1400px;
+            margin: 0 auto 48px;
+            padding: 0 24px;
+        }
+
+        .experience__table {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            border: var(--border-thick);
+            background: var(--white);
+        }
+
+        .experience__row {
+            display: grid;
+            grid-template-columns: 120px 2fr 1fr 1fr;
+            border-bottom: var(--border-thick);
+            transition: background 0.15s;
+        }
+
+        .experience__row:last-child {
+            border-bottom: none;
+        }
+
+        .experience__row:hover {
+            background: var(--yellow);
+        }
+
+        .experience__row-header {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .experience__row-header:hover {
+            background: var(--black);
+        }
+
+        .experience__cell {
+            padding: 16px 20px;
+            border-right: var(--border-thin);
+            font-size: 0.85rem;
+        }
+
+        .experience__cell:last-child {
+            border-right: none;
+        }
+
+        .experience__row-header .experience__cell {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .experience__year {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+        }
+
+        .experience__role {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .experience__company {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--dark-gray);
+        }
+
+        @media (max-width: 768px) {
+            .experience__row {
+                grid-template-columns: 80px 1fr;
+            }
+            .experience__cell:nth-child(3),
+            .experience__cell:nth-child(4) {
+                display: none;
+            }
+            .experience__row-header .experience__cell:nth-child(3),
+            .experience__row-header .experience__cell:nth-child(4) {
+                display: none;
+            }
+        }
+
+        /* ============================================
+           TESTIMONIALS SECTION
+           ============================================ */
+        .testimonials {
+            padding: 80px 0;
+        }
+
+        .testimonials__header {
+            max-width: 1400px;
+            margin: 0 auto 48px;
+            padding: 0 24px;
+        }
+
+        .testimonials__grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 32px;
+        }
+
+        .testimonial {
+            border: var(--border-thick);
+            padding: 32px;
+            background: var(--white);
+            position: relative;
+            box-shadow: var(--shadow-brutal);
+        }
+
+        .testimonial:nth-child(1) {
+            transform: rotate(var(--rotation-3));
+            background: var(--yellow);
+        }
+
+        .testimonial:nth-child(2) {
+            transform: rotate(var(--rotation-2));
+            background: var(--lime);
+        }
+
+        .testimonial:nth-child(3) {
+            transform: rotate(var(--rotation-1));
+            background: var(--cyan);
+        }
+
+        .testimonial:hover {
+            transform: rotate(0deg) scale(1.03);
+            z-index: 5;
+        }
+
+        .testimonial__quote-mark {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            line-height: 1;
+            position: absolute;
+            top: 8px;
+            left: 16px;
+            opacity: 0.15;
+        }
+
+        .testimonial__text {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial__author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-top: var(--border-thin);
+            padding-top: 16px;
+        }
+
+        .testimonial__avatar {
+            width: 48px;
+            height: 48px;
+            border: var(--border-medium);
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .testimonial__name {
+            font-family: var(--font-display);
+            font-size: 1rem;
+        }
+
+        .testimonial__role {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        @media (max-width: 480px) {
+            .testimonials__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact {
+            padding: 80px 0;
+            background: var(--blue);
+            color: var(--white);
+            border-top: var(--border-thick);
+            border-bottom: var(--border-thick);
+        }
+
+        .contact .section-label {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .contact__layout {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: var(--border-thick);
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .contact__info {
+            padding: 48px;
+            border-right: var(--border-thick);
+            background: var(--yellow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact__info h3 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .contact__info p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .contact__details {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact__details li {
+            padding: 12px 16px;
+            border: var(--border-medium);
+            background: var(--white);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-brutal-sm);
+        }
+
+        .contact__form-area {
+            padding: 48px;
+        }
+
+        .form-brutal {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-brutal__group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-brutal__label {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .form-brutal__input,
+        .form-brutal__textarea {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            padding: 12px 16px;
+            border: var(--border-thick);
+            background: var(--gray);
+            outline: none;
+            transition: background 0.15s, box-shadow 0.15s;
+            width: 100%;
+        }
+
+        .form-brutal__input:focus,
+        .form-brutal__textarea:focus {
+            background: var(--lime);
+            box-shadow: var(--shadow-brutal-sm);
+        }
+
+        .form-brutal__textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-brutal__submit {
+            align-self: flex-start;
+        }
+
+        @media (max-width: 768px) {
+            .contact__layout {
+                grid-template-columns: 1fr;
+            }
+            .contact__info {
+                border-right: none;
+                border-bottom: var(--border-thick);
+            }
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            border-top: var(--border-thick);
+        }
+
+        .footer__top {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 48px 24px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            border-bottom: var(--border-thin);
+        }
+
+        .footer__brand-name {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .footer__brand-desc {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            max-width: 320px;
+            color: var(--gray);
+        }
+
+        .footer__col-title {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: var(--border-thin);
+        }
+
+        .footer__col-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer__col-links a {
+            font-size: 0.85rem;
+            color: var(--gray);
+            transition: color 0.15s;
+        }
+
+        .footer__col-links a:hover {
+            color: var(--yellow);
+        }
+
+        .footer__bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer__copy {
+            font-size: 0.75rem;
+            color: var(--dark-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .footer__socials {
+            display: flex;
+            gap: 8px;
+        }
+
+        .footer__social {
+            width: 40px;
+            height: 40px;
+            border: var(--border-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.7rem;
+            transition: background 0.15s, color 0.15s;
+            background: transparent;
+            color: var(--white);
+        }
+
+        .footer__social:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        @media (max-width: 768px) {
+            .footer__top {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer__top {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-1deg); }
+            75% { transform: rotate(1deg); }
+        }
+
+        .animate-shake:hover {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        /* ============================================
+           SCROLL ANIMATIONS
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         NAVIGATION
+         ============================================ -->
+    <nav class="nav">
+        <div class="nav__inner">
+            <a href="#" class="nav__logo">BRUT.</a>
+            <button class="nav__toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav__links').classList.toggle('active')">☰</button>
+            <ul class="nav__links">
+                <li><a href="#projects">Work</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">XP</a></li>
+                <li><a href="#testimonials">Words</a></li>
+                <li><a href="#contact">Hire Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero" id="hero">
+        <div class="hero__tag">
+            <span class="hero__tag-dot"></span>
+            Available for freelance — Based in Brooklyn, NY
+        </div>
+        <div class="hero__left">
+            <div class="hero__greeting">Hello World →</div>
+            <h1 class="hero__name">
+                I'M
+                <span>ALEX</span>
+                MORGAN
+            </h1>
+            <div class="hero__title">Creative Developer &amp; Designer</div>
+            <p class="hero__desc">
+                I build bold digital experiences that refuse to blend in. Specializing in web development, creative coding, and visual design that punches through the noise.
+            </p>
+            <div class="hero__cta">
+                <a href="#projects" class="btn-brutal btn-primary">View Work →</a>
+                <a href="#contact" class="btn-brutal btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="hero__right">
+            <div class="hero__image-frame">
+                <div class="hero__image-badge">SINCE<br>2018</div>
+            </div>
+        </div>
+        <div class="hero__bottom">
+            <div class="hero__stat"><strong>7+</strong> Years Experience</div>
+            <div class="hero__stat"><strong>80+</strong> Projects Delivered</div>
+            <div class="hero__stat"><strong>40+</strong> Happy Clients</div>
+            <div class="hero__stat"><strong>∞</strong> Coffees Consumed</div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         MARQUEE
+         ============================================ -->
+    <div class="marquee">
+        <div class="marquee__track">
+            <span class="marquee__item">Web Development <span class="sep"></span></span>
+            <span class="marquee__item">UI/UX Design <span class="sep"></span></span>
+            <span class="marquee__item">Creative Coding <span class="sep"></span></span>
+            <span class="marquee__item">Brand Identity <span class="sep"></span></span>
+            <span class="marquee__item">Motion Design <span class="sep"></span></span>
+            <span class="marquee__item">Interactive Art <span class="sep"></span></span>
+            <span class="marquee__item">Web Development <span class="sep"></span></span>
+            <span class="marquee__item">UI/UX Design <span class="sep"></span></span>
+            <span class="marquee__item">Creative Coding <span class="sep"></span></span>
+            <span class="marquee__item">Brand Identity <span class="sep"></span></span>
+            <span class="marquee__item">Motion Design <span class="sep"></span></span>
+            <span class="marquee__item">Interactive Art <span class="sep"></span></span>
+        </div>
+    </div>
+
+    <!-- ============================================
+         PROJECTS SECTION
+         ============================================ -->
+    <section class="projects" id="projects">
+        <div class="projects__header">
+            <div class="section-label">// Selected Work</div>
+            <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1;">
+                PROJECTS<span style="color: var(--red);">.</span>
+            </h2>
+        </div>
+        <div class="projects__grid">
+            <!-- Project 1 -->
+            <div class="project-card reveal">
+                <div class="project-card__image project-card__image--yellow">
+                    <span class="project-card__number">01</span>
+                    PROJECT IMAGE
+                </div>
+                <div class="project-card__body">
+                    <div class="project-card__tags">
+                        <span class="project-card__tag" style="background: var(--lime);">React</span>
+                        <span class="project-card__tag" style="background: var(--cyan);">Three.js</span>
+                        <span class="project-card__tag">GSAP</span>
+                    </div>
+                    <h3 class="project-card__title">Neon Commerce</h3>
+                    <p class="project-card__desc">An immersive e-commerce experience with 3D product visualization and interactive storytelling.</p>
+                    <a href="#" class="project-card__link">View Project →</a>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="project-card reveal">
+                <div class="project-card__image project-card__image--red">
+                    <span class="project-card__number">02</span>
+                    PROJECT IMAGE
+                </div>
+                <div class="project-card__body">
+                    <div class="project-card__tags">
+                        <span class="project-card__tag" style="background: var(--yellow);">Next.js</span>
+                        <span class="project-card__tag" style="background: var(--pink);">Prisma</span>
+                        <span class="project-card__tag">Stripe</span>
+                    </div>
+                    <h3 class="project-card__title">Riot Dashboard</h3>
+                    <p class="project-card__desc">Real-time analytics platform with brutalist data visualization and live monitoring tools.</p>
+                    <a href="#" class="project-card__link">View Project →</a>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="project-card reveal">
+                <div class="project-card__image project-card__image--blue">
+                    <span class="project-card__number">03</span>
+                    PROJECT IMAGE
+                </div>
+                <div class="project-card__body">
+                    <div class="project-card__tags">
+                        <span class="project-card__tag" style="background: var(--orange);">Vue</span>
+                        <span class="project-card__tag" style="background: var(--lime);">WebGL</span>
+                        <span class="project-card__tag">Shaders</span>
+                    </div>
+                    <h3 class="project-card__title">Pulse Audio</h3>
+                    <p class="project-card__desc">Audio-reactive visual experience combining WebAudio API with custom GLSL shaders.</p>
+                    <a href="#" class="project-card__link">View Project →</a>
+                </div>
+            </div>
+            <!-- Project 4 -->
+            <div class="project-card reveal">
+                <div class="project-card__image project-card__image--lime">
+                    <span class="project-card__number">04</span>
+                    PROJECT IMAGE
+                </div>
+                <div class="project-card__body">
+                    <div class="project-card__tags">
+                        <span class="project-card__tag" style="background: var(--cyan);">TypeScript</span>
+                        <span class="project-card__tag" style="background: var(--yellow);">Node.js</span>
+                        <span class="project-card__tag">PostgreSQL</span>
+                    </div>
+                    <h3 class="project-card__title">Grid Engine</h3>
+                    <p class="project-card__desc">Headless CMS with a brutal visual editor and automated content pipeline system.</p>
+                    <a href="#" class="project-card__link">View Project →</a>
+                </div>
+            </div>
+            <!-- Project 5 -->
+            <div class="project-card reveal">
+                <div class="project-card__image" style="background: var(--orange); color: var(--white);">
+                    <span class="project-card__number">05</span>
+                    PROJECT IMAGE
+                </div>
+                <div class="project-card__body">
+                    <div class="project-card__tags">
+                        <span class="project-card__tag" style="background: var(--pink);">Figma</span>
+                        <span class="project-card__tag" style="background: var(--lime);">Framer</span>
+                        <span class="project-card__tag">Design</span>
+                    </div>
+                    <h3 class="project-card__title">Clash Branding</h3>
+                    <p class="project-card__desc">Complete brand identity system with unconventional typography and maximum visual impact.</p>
+                    <a href="#" class="project-card__link">View Project →</a>
+                </div>
+            </div>
+            <!-- Project 6 -->
+            <div class="project-card reveal">
+                <div class="project-card__image" style="background: var(--pink);">
+                    <span class="project-card__number">06</span>
+                    PROJECT IMAGE
+                </div>
+                <div class="project-card__body">
+                    <div class="project-card__tags">
+                        <span class="project-card__tag" style="background: var(--yellow);">Canvas</span>
+                        <span class="project-card__tag" style="background: var(--cyan);">WASM</span>
+                        <span class="project-card__tag">Rust</span>
+                    </div>
+                    <h3 class="project-card__title">Fractal Lab</h3>
+                    <p class="project-card__desc">Real-time generative art tool powered by WebAssembly with exportable high-res outputs.</p>
+                    <a href="#" class="project-card__link">View Project →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SKILLS SECTION
+         ============================================ -->
+    <section class="skills" id="skills">
+        <div class="skills__header">
+            <div class="section-label">// Tech Stack</div>
+            <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; color: var(--yellow);">
+                SKILLS<span style="color: var(--red);">.</span>
+            </h2>
+        </div>
+        <div class="skills__wall">
+            <span class="skill-sticker sticker-yellow animate-shake"><span class="skill-sticker__icon">⚡</span> JavaScript</span>
+            <span class="skill-sticker sticker-red animate-shake"><span class="skill-sticker__icon">⚛</span> React</span>
+            <span class="skill-sticker sticker-blue animate-shake"><span class="skill-sticker__icon">▲</span> Next.js</span>
+            <span class="skill-sticker sticker-lime animate-shake"><span class="skill-sticker__icon">🟢</span> Vue.js</span>
+            <span class="skill-sticker sticker-orange animate-shake"><span class="skill-sticker__icon">TS</span> TypeScript</span>
+            <span class="skill-sticker sticker-pink animate-shake"><span class="skill-sticker__icon">🎨</span> CSS/SCSS</span>
+            <span class="skill-sticker sticker-cyan animate-shake"><span class="skill-sticker__icon">📦</span> Node.js</span>
+            <span class="skill-sticker sticker-yellow animate-shake"><span class="skill-sticker__icon">🐍</span> Python</span>
+            <span class="skill-sticker sticker-lime animate-shake"><span class="skill-sticker__icon">🦀</span> Rust</span>
+            <span class="skill-sticker sticker-red animate-shake"><span class="skill-sticker__icon">🔷</span> Three.js</span>
+            <span class="skill-sticker sticker-blue animate-shake"><span class="skill-sticker__icon">🎮</span> WebGL</span>
+            <span class="skill-sticker sticker-orange animate-shake"><span class="skill-sticker__icon">🖋</span> Figma</span>
+            <span class="skill-sticker sticker-pink animate-shake"><span class="skill-sticker__icon">🎬</span> GSAP</span>
+            <span class="skill-sticker sticker-cyan animate-shake"><span class="skill-sticker__icon">🐳</span> Docker</span>
+            <span class="skill-sticker sticker-yellow animate-shake"><span class="skill-sticker__icon">☁️</span> AWS</span>
+            <span class="skill-sticker sticker-lime animate-shake"><span class="skill-sticker__icon">🗄</span> PostgreSQL</span>
+            <span class="skill-sticker sticker-red animate-shake"><span class="skill-sticker__icon">🔥</span> Firebase</span>
+            <span class="skill-sticker sticker-blue animate-shake"><span class="skill-sticker__icon">📊</span> GraphQL</span>
+            <span class="skill-sticker sticker-orange animate-shake"><span class="skill-sticker__icon">🧪</span> Jest</span>
+            <span class="skill-sticker sticker-pink animate-shake"><span class="skill-sticker__icon">📐</span> Tailwind</span>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ABOUT SECTION
+         ============================================ -->
+    <section class="about" id="about">
+        <div class="about__grid">
+            <div class="about__photo">
+                <div class="about__photo-placeholder">AM</div>
+                <div class="about__photo-badge">
+                    <span class="sticker sticker-orange rotate-4">Creative Coder</span>
+                </div>
+            </div>
+            <div class="about__content">
+                <div class="section-label">// Who Am I</div>
+                <h3>I make <span>digital stuff</span> that refuses to be boring<span style="color: var(--red);">.</span></h3>
+                <p>I'm a creative developer and designer based in Brooklyn with 7+ years of experience building bold, unconventional digital experiences. I believe the web should be expressive, not just functional.</p>
+                <p>My work sits at the intersection of design and engineering — where visual storytelling meets clean, performant code. I've worked with startups, agencies, and global brands to create work that stands out.</p>
+                <p>When I'm not coding, I'm experimenting with generative art, exploring analog photography, or arguing about fonts on the internet.</p>
+            </div>
+            <div class="about__stats">
+                <div class="about__stat" style="background: var(--yellow);">
+                    <div class="about__stat-number">7+</div>
+                    <div class="about__stat-label">Years XP</div>
+                </div>
+                <div class="about__stat" style="background: var(--lime);">
+                    <div class="about__stat-number">80+</div>
+                    <div class="about__stat-label">Projects</div>
+                </div>
+                <div class="about__stat" style="background: var(--red); color: var(--white);">
+                    <div class="about__stat-number">40+</div>
+                    <div class="about__stat-label">Clients</div>
+                </div>
+                <div class="about__stat" style="background: var(--cyan);">
+                    <div class="about__stat-number">12</div>
+                    <div class="about__stat-label">Awards</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ============================================
+         EXPERIENCE SECTION
+         ============================================ -->
+    <section class="experience" id="experience">
+        <div class="experience__header">
+            <div class="section-label">// Work History</div>
+            <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1;">
+                EXPERIENCE<span style="color: var(--blue);">.</span>
+            </h2>
+        </div>
+        <div class="experience__table">
+            <div class="experience__row experience__row-header">
+                <div class="experience__cell">Year</div>
+                <div class="experience__cell">Role</div>
+                <div class="experience__cell">Company</div>
+                <div class="experience__cell">Type</div>
+            </div>
+            <div class="experience__row">
+                <div class="experience__cell"><span class="experience__year">2022—</span></div>
+                <div class="experience__cell">
+                    <div class="experience__role">Senior Creative Developer</div>
+                </div>
+                <div class="experience__cell">Riot Studio</div>
+                <div class="experience__cell"><span class="sticker sticker-lime" style="font-size:0.65rem;padding:3px 8px;">Full-time</span></div>
+            </div>
+            <div class="experience__row">
+                <div class="experience__cell"><span class="experience__year">2020—22</span></div>
+                <div class="experience__cell">
+                    <div class="experience__role">Lead Frontend Engineer</div>
+                </div>
+                <div class="experience__cell">Neon Digital</div>
+                <div class="experience__cell"><span class="sticker sticker-yellow" style="font-size:0.65rem;padding:3px 8px;">Full-time</span></div>
+            </div>
+            <div class="experience__row">
+                <div class="experience__cell"><span class="experience__year">2019—20</span></div>
+                <div class="experience__cell">
+                    <div class="experience__role">Creative Technologist</div>
+                </div>
+                <div class="experience__cell">Wildcard Agency</div>
+                <div class="experience__cell"><span class="sticker sticker-orange" style="font-size:0.65rem;padding:3px 8px;">Contract</span></div>
+            </div>
+            <div class="experience__row">
+                <div class="experience__cell"><span class="experience__year">2018—19</span></div>
+                <div class="experience__cell">
+                    <div class="experience__role">Frontend Developer</div>
+                </div>
+                <div class="experience__cell">Pixel Forge Co.</div>
+                <div class="experience__cell"><span class="sticker sticker-cyan" style="font-size:0.65rem;padding:3px 8px;">Full-time</span></div>
+            </div>
+            <div class="experience__row">
+                <div class="experience__cell"><span class="experience__year">2017—18</span></div>
+                <div class="experience__cell">
+                    <div class="experience__role">Junior Developer</div>
+                </div>
+                <div class="experience__cell">Startup Lab</div>
+                <div class="experience__cell"><span class="sticker sticker-pink" style="font-size:0.65rem;padding:3px 8px;">Internship</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TESTIMONIALS SECTION
+         ============================================ -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials__header">
+            <div class="section-label">// What People Say</div>
+            <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1;">
+                TESTIMONIALS<span style="color: var(--orange);">.</span>
+            </h2>
+        </div>
+        <div class="testimonials__grid">
+            <div class="testimonial reveal">
+                <div class="testimonial__quote-mark">"</div>
+                <p class="testimonial__text">Alex doesn't just build websites — they create experiences that make people stop scrolling. Their work on our rebrand was nothing short of transformative.</p>
+                <div class="testimonial__author">
+                    <div class="testimonial__avatar">SR</div>
+                    <div>
+                        <div class="testimonial__name">Sarah Reynolds</div>
+                        <div class="testimonial__role">CEO, Neon Digital</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial reveal">
+                <div class="testimonial__quote-mark">"</div>
+                <p class="testimonial__text">Working with Alex is like having a designer and developer combined into one unstoppable force. They understood our vision and pushed it further than we imagined.</p>
+                <div class="testimonial__author">
+                    <div class="testimonial__avatar">MK</div>
+                    <div>
+                        <div class="testimonial__name">Marcus Kim</div>
+                        <div class="testimonial__role">Creative Director, Wildcard</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial reveal">
+                <div class="testimonial__quote-mark">"</div>
+                <p class="testimonial__text">The attention to detail is insane. Every pixel, every animation, every interaction feels intentional. Our conversion rate went up 340% after the redesign.</p>
+                <div class="testimonial__author">
+                    <div class="testimonial__avatar">JL</div>
+                    <div>
+                        <div class="testimonial__name">Jordan Lee</div>
+                        <div class="testimonial__role">Founder, Pixel Forge</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECOND MARQUEE
+         ============================================ -->
+    <div class="marquee" style="background: var(--red);">
+        <div class="marquee__track" style="animation-direction: reverse; animation-duration: 15s;">
+            <span class="marquee__item">Let's Work Together <span class="sep" style="background: var(--black);"></span></span>
+            <span class="marquee__item">Available Now <span class="sep" style="background: var(--black);"></span></span>
+            <span class="marquee__item">Hire Me <span class="sep" style="background: var(--black);"></span></span>
+            <span class="marquee__item">Open to Projects <span class="sep" style="background: var(--black);"></span></span>
+            <span class="marquee__item">Let's Work Together <span class="sep" style="background: var(--black);"></span></span>
+            <span class="marquee__item">Available Now <span class="sep" style="background: var(--black);"></span></span>
+            <span class="marquee__item">Hire Me <span class="sep" style="background: var(--black);"></span></span>
+            <span class="marquee__item">Open to Projects <span class="sep" style="background: var(--black);"></span></span>
+        </div>
+    </div>
+
+    <!-- ============================================
+         CONTACT SECTION
+         ============================================ -->
+    <section class="contact" id="contact">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 24px 48px;">
+            <div class="section-label">// Get In Touch</div>
+            <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; color: var(--yellow);">
+                CONTACT<span style="color: var(--lime);">.</span>
+            </h2>
+        </div>
+        <div class="contact__layout" style="max-width: 1400px; margin: 0 auto;">
+            <div class="contact__info">
+                <div>
+                    <h3>Let's build something <span style="background: var(--white); padding: 0 8px; border: var(--border-medium);">remarkable</span> together.</h3>
+                    <p>Got a project in mind? Want to collaborate? Or just want to say hello? Drop me a line and let's make it happen.</p>
+                </div>
+                <ul class="contact__details">
+                    <li>📧 alex@morgandev.io</li>
+                    <li>📱 +1 (555) 234-5678</li>
+                    <li>📍 Brooklyn, NY</li>
+                    <li>🕐 Response within 24h</li>
+                </ul>
+            </div>
+            <div class="contact__form-area">
+                <form class="form-brutal" onsubmit="handleSubmit(event)">
+                    <div class="form-brutal__group">
+                        <label class="form-brutal__label" for="name">Your Name *</label>
+                        <input class="form-brutal__input" type="text" id="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-brutal__group">
+                        <label class="form-brutal__label" for="email">Your Email *</label>
+                        <input class="form-brutal__input" type="email" id="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-brutal__group">
+                        <label class="form-brutal__label" for="subject">Subject</label>
+                        <input class="form-brutal__input" type="text" id="subject" placeholder="Project Inquiry">
+                    </div>
+                    <div class="form-brutal__group">
+                        <label class="form-brutal__label" for="message">Message *</label>
+                        <textarea class="form-brutal__textarea" id="message" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-brutal btn-primary form-brutal__submit">Send Message →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="footer">
+        <div class="footer__top">
+            <div>
+                <div class="footer__brand-name">BRUT<span style="color: var(--yellow);">.</span></div>
+                <p class="footer__brand-desc">Building bold digital experiences that refuse to blend in. Creative development with raw impact.</p>
+            </div>
+            <div>
+                <div class="footer__col-title">Navigation</div>
+                <ul class="footer__col-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer__col-title">More</div>
+                <ul class="footer__col-links">
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Resume</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer__col-title">Connect</div>
+                <ul class="footer__col-links">
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Twitter/X</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Dribbble</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="footer__copy">&copy; 2025 Alex Morgan. All rights reserved. Built with raw energy.</div>
+            <div class="footer__socials">
+                <a href="#" class="footer__social" title="GitHub">GH</a>
+                <a href="#" class="footer__social" title="Twitter">X</a>
+                <a href="#" class="footer__social" title="LinkedIn">IN</a>
+                <a href="#" class="footer__social" title="Dribbble">DR</a>
+                <a href="#" class="footer__social" title="Email">@</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // =============================================
+        // Mobile Navigation Toggle
+        // =============================================
+        const navToggle = document.querySelector('.nav__toggle');
+        const navLinks = document.querySelector('.nav__links');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close nav when a link is clicked (mobile)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // =============================================
+        // Scroll Reveal Animation
+        // =============================================
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // =============================================
+        // Sticker Random Rotation on Load
+        // =============================================
+        document.querySelectorAll('.skill-sticker').forEach(sticker => {
+            const randomRotation = (Math.random() * 6 - 3).toFixed(2);
+            sticker.style.transform = `rotate(${randomRotation}deg)`;
+            sticker.addEventListener('mouseenter', () => {
+                const hoverRotation = (Math.random() * 10 - 5).toFixed(2);
+                sticker.style.transform = `rotate(${hoverRotation}deg) scale(1.1)`;
+            });
+            sticker.addEventListener('mouseleave', () => {
+                sticker.style.transform = `rotate(${randomRotation}deg)`;
+            });
+        });
+
+        // =============================================
+        // Project Card Hover Sound-like Effect (Visual)
+        // =============================================
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.zIndex = '10';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.zIndex = '1';
+            });
+        });
+
+        // =============================================
+        // Nav Background on Scroll
+        // =============================================
+        const nav = document.querySelector('.nav');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 100) {
+                nav.style.boxShadow = '0 4px 0 var(--black)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+            lastScroll = currentScroll;
+        });
+
+        // =============================================
+        // Form Submission Handler
+        // =============================================
+        function handleSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = form.querySelector('.form-brutal__submit');
+            const originalText = submitBtn.textContent;
+
+            submitBtn.textContent = 'SENT! ✓';
+            submitBtn.style.background = 'var(--lime)';
+            submitBtn.style.color = 'var(--black)';
+
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.style.background = '';
+                submitBtn.style.color = '';
+                form.reset();
+            }, 2500);
+        }
+
+        // =============================================
+        // Experience Row Hover Accent
+        // =============================================
+        document.querySelectorAll('.experience__row:not(.experience__row-header)').forEach(row => {
+            row.style.cursor = 'pointer';
+            row.addEventListener('click', () => {
+                // Quick flash animation
+                row.style.background = 'var(--lime)';
+                setTimeout(() => {
+                    row.style.background = '';
+                }, 300);
+            });
+        });
+
+        // =============================================
+        // Console Easter Egg
+        // =============================================
+        console.log('%c BRUTALIST PORTFOLIO ', 'background: #FFE600; color: #000; font-size: 24px; font-weight: bold; padding: 10px 20px; border: 4px solid #000;');
+        console.log('%c Designed with raw energy and zero compromises. ', 'background: #000; color: #FFE600; font-size: 14px; padding: 8px 16px;');
+    </script>
+</body>
+</html>

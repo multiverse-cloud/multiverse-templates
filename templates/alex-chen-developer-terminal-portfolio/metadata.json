@@ -1,0 +1,58 @@
+{
+  "id": "template-alex-chen-developer-terminal-portfolio",
+  "slug": "alex-chen-developer-terminal-portfolio",
+  "title": "Alex Chen Developer Terminal Portfolio",
+  "summary": "A terminal-inspired developer portfolio with code aesthetics, animated surfaces, and a sharp technical personality.",
+  "description": "Built for engineers and technical creators, this portfolio template combines developer tooling references, terminal visuals, and interactive sections in a highly recognizable personal brand format.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Terminal developer portfolio",
+  "audience": "developers, engineers, and technical personal brands",
+  "tags": [
+    "developer portfolio",
+    "terminal portfolio",
+    "code portfolio",
+    "engineer website",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Hero",
+    "Projects",
+    "Experience",
+    "Skills",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "The theme is technical and immersive, but the content still needs to scan quickly.",
+    "This template suits engineers who want a memorable code-centric personal site."
+  ],
+  "responsiveNotes": [
+    "The terminal-like layout collapses into simpler sections on mobile screens.",
+    "Decorative effects remain secondary so the site still feels usable on touch devices."
+  ],
+  "bestFor": [
+    "Developer portfolios",
+    "Engineer websites",
+    "Technical freelancers"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": true,
+  "updatedAt": "2026-04-25",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-25T12:29:34.436Z"
+}

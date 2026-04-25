@@ -1,0 +1,58 @@
+{
+  "id": "template-3d-interactive-portfolio",
+  "slug": "3d-interactive-portfolio",
+  "title": "3D Interactive Portfolio",
+  "summary": "A playful 3D-inspired portfolio with immersive visuals, interactive motion, and a modern experimental creator feel.",
+  "description": "This portfolio template is designed for motion designers, creative developers, and digital artists who want a more interactive presentation with visual depth and a modern experimental tone.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "3D interactive portfolio",
+  "audience": "motion designers, digital artists, and creative technologists",
+  "tags": [
+    "3d portfolio",
+    "interactive portfolio",
+    "motion portfolio",
+    "creative developer site",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Hero",
+    "Work",
+    "Interactive showcase",
+    "About",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "The visual identity depends on motion and depth, so the composition should feel playful but still usable.",
+    "This template is suited for creators whose work benefits from a more experimental presentation."
+  ],
+  "responsiveNotes": [
+    "Interactive surfaces collapse into simpler touch-friendly modules on mobile.",
+    "Visual depth remains part of the experience without hurting readability on smaller screens."
+  ],
+  "bestFor": [
+    "Digital artists",
+    "Motion designers",
+    "Interactive portfolios"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": true,
+  "updatedAt": "2026-04-25",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-25T12:29:34.436Z"
+}

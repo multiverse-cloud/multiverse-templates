@@ -1,0 +1,58 @@
+{
+  "id": "template-swiss-design-portfolio",
+  "slug": "swiss-design-portfolio",
+  "title": "Swiss Design Portfolio",
+  "summary": "A Swiss-style portfolio with disciplined grids, typographic clarity, and a high-signal visual system for modern design work.",
+  "description": "This template focuses on ordered layout, sharp typography, and restrained presentation, making it ideal for designers who want a rational, gallery-quality portfolio experience.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Swiss grid portfolio",
+  "audience": "graphic designers, art directors, and modern creative portfolios",
+  "tags": [
+    "swiss design portfolio",
+    "grid portfolio",
+    "typography portfolio",
+    "minimal website",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Hero",
+    "Work",
+    "About",
+    "Capabilities",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "Grids and type do the work, so extra decorative UI should stay minimal.",
+    "This template is ideal when the creator wants precision and clarity over visual noise."
+  ],
+  "responsiveNotes": [
+    "The strict grid system simplifies into aligned stacked sections on smaller screens.",
+    "Spacing and text hierarchy remain the main identity even in mobile layouts."
+  ],
+  "bestFor": [
+    "Graphic designers",
+    "Modernist portfolios",
+    "Editorial design sites"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": false,
+  "updatedAt": "2026-04-25",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-25T12:29:34.436Z"
+}

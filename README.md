@@ -2,8 +2,8 @@
 
 This folder is a GitHub-repo-ready export of the current Multiverse template library.
 
-Generated: 2026-04-22T10:53:42.043Z
-Templates: 98
+Generated: 2026-04-25T12:29:34.436Z
+Templates: 106
 
 ## Structure
 
@@ -16,28 +16,34 @@ Templates: 98
 
 ## Templates
 
-- `auren-premium-saas-commerce-kit` - Auren Premium SaaS Commerce Kit (React + Tailwind) | live: https://multiverse-templates.vercel.app/auren-premium-saas-commerce-kit
+- `3d-interactive-portfolio` - 3D Interactive Portfolio (HTML + CSS + JS)
+- `alex-chen-developer-terminal-portfolio` - Alex Chen Developer Terminal Portfolio (HTML + CSS + JS)
+- `alex-morgan-dark-minimal-portfolio` - Alex Morgan Dark Minimal Portfolio (HTML + CSS + JS)
 - `blockforge-build-deploy-defi-protocols` - BlockForge - Build & Deploy DeFi Protocols (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/blockforge-build-deploy-defi-protocols
 - `brandforge-full-service-marketing-agency` - BrandForge - Full-Service Marketing Agency (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/brandforge-full-service-marketing-agency
 - `bug-hunter-developer-portfolio` - Bug Hunter Developer Portfolio (HTML + CSS + JS)
 - `codeworks-web-development-agency` - CodeWorks - Web Development Agency (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/codeworks-web-development-agency
 - `contentworks-content-marketing-agency` - ContentWorks - Content Marketing Agency (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/contentworks-content-marketing-agency
+- `creative-agency-bold-portfolio` - Creative Agency Bold Portfolio (HTML + CSS + JS)
 - `creativestudio-branding-design-agency` - CreativeStudio - Branding & Design Agency (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/creativestudio-branding-design-agency
 - `cryptovault-secure-cryptocurrency-management-platform` - CryptoVault - Secure Cryptocurrency Management Platform (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/cryptovault-secure-cryptocurrency-management-platform
 - `designer-folio-editorial-portfolio` - Designer Folio Editorial Portfolio (HTML + CSS + JS)
 - `designstudio-creative-digital-agency` - DesignStudio - Creative Digital Agency (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/designstudio-creative-digital-agency
+- `elena-voss-photographer-portfolio` - Elena Voss Photographer Portfolio (HTML + CSS + JS)
 - `eventflow-event-marketing-management` - EventFlow - Event Marketing & Management (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/eventflow-event-marketing-management
 - `growthlab-growth-marketing-agency` - GrowthLab - Growth Marketing Agency (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/growthlab-growth-marketing-agency
 - `macos-desktop-portfolio-experience` - macOS Desktop Portfolio Experience (HTML + CSS + JS)
-- `nexusshop-platform-ui-kit` - NexusShop Platform UI Kit (Next.js + Tailwind) | live: https://multiverse-templates.vercel.app/nexusshop-platform-ui-kit
+- `neon-cyberpunk-portfolio` - Neon Cyberpunk Portfolio (HTML + CSS + JS)
 - `pixelforce-ui-ux-design-agency` - PixelForce - UI/UX Design Agency (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/pixelforce-ui-ux-design-agency
 - `shopelite-ecommerce-ui-kit` - ShopElite Ecommerce UI Kit (Next.js + Tailwind) | live: https://ecommerce-pro-orcin.vercel.app/
 - `socialvibe-social-media-marketing-agency` - SocialVibe - Social Media Marketing Agency (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/socialvibe-social-media-marketing-agency
 - `startupboost-startup-consulting-growth` - StartupBoost - Startup Consulting & Growth (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/startupboost-startup-consulting-growth
 - `analyticshub-real-time-analytics-insights-platform` - AnalyticsHub - Real-time Analytics & Insights Platform (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/analyticshub-real-time-analytics-insights-platform
+- `architect-studio-portfolio` - Architect Studio Portfolio (HTML + CSS + JS)
 - `bookvault-online-bookstore-media` - BookVault - Online Bookstore & Media (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/bookvault-online-bookstore-media
 - `boxmaster-boxing-combat-fitness` - BoxMaster - Boxing & Combat Fitness (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/boxmaster-boxing-combat-fitness
 - `braincode-ai-powered-code-generation` - BrainCode - AI-Powered Code Generation (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/braincode-ai-powered-code-generation
+- `brutalist-portfolio` - Brutalist Portfolio (HTML + CSS + JS)
 - `businessrealty-commercial-real-estate-solutions` - BusinessRealty - Commercial Real Estate Solutions (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/businessrealty-commercial-real-estate-solutions
 - `carelync-coordinate-patient-care` - CareLync - Coordinate Patient Care (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/carelync-coordinate-patient-care
 - `chainswap-swap-across-any-blockchain` - ChainSwap - Swap Across Any Blockchain (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/chainswap-swap-across-any-blockchain
@@ -100,6 +106,7 @@ Templates: 98
 - `stakevault-earn-crypto-through-staking` - StakeVault - Earn Crypto Through Staking (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/stakevault-earn-crypto-through-staking
 - `streampro-professional-live-streaming-platform` - StreamPro - Professional Live Streaming Platform (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/streampro-professional-live-streaming-platform
 - `stylevogue-fashion-boutique` - StyleVogue - Fashion Boutique (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/stylevogue-fashion-boutique
+- `swiss-design-portfolio` - Swiss Design Portfolio (HTML + CSS + JS)
 - `syncteam-team-collaboration-file-sync` - SyncTeam - Team Collaboration & File Sync (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/syncteam-team-collaboration-file-sync
 - `taskvault-secure-task-password-management` - TaskVault - Secure Task & Password Management (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/taskvault-secure-task-password-management
 - `taste-haven-fine-dining` - Taste Haven - Fine Dining (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/taste-haven-fine-dining
@@ -110,6 +117,7 @@ Templates: 98
 - `tokenlaunch-launch-your-blockchain-project` - TokenLaunch - Launch Your Blockchain Project (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/tokenlaunch-launch-your-blockchain-project
 - `tutorconnect-online-tutoring-platform` - TutorConnect - Online Tutoring Platform (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/tutorconnect-online-tutoring-platform
 - `vacationpalace-luxury-holiday-homes` - VacationPalace - Luxury Holiday Homes (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/vacationpalace-luxury-holiday-homes
+- `valentine-fashion-editorial-portfolio` - Valentine Fashion Editorial Portfolio (HTML + CSS + JS)
 - `visionai-intelligent-image-analysis-api` - VisionAI - Intelligent Image Analysis API (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/visionai-intelligent-image-analysis-api
 - `vitalsign-monitor-your-health` - VitalSign - Monitor Your Health (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/vitalsign-monitor-your-health
 - `wellvital-your-health-companion` - WellVital - Your Health Companion (HTML + Tailwind CSS) | live: https://multiverse-templates.vercel.app/wellvital-your-health-companion

@@ -1,0 +1,58 @@
+{
+  "id": "template-valentine-fashion-editorial-portfolio",
+  "slug": "valentine-fashion-editorial-portfolio",
+  "title": "Valentine Fashion Editorial Portfolio",
+  "summary": "A fashion-forward editorial portfolio with luxury-inspired pacing, larger imagery, and magazine-style visual rhythm.",
+  "description": "This fashion portfolio template is built for stylists, models, photographers, and editorial creatives who want a more luxurious personal site with strong visual pacing and high-contrast type.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Luxury fashion editorial portfolio",
+  "audience": "fashion creatives, stylists, models, and editorial brands",
+  "tags": [
+    "fashion portfolio",
+    "editorial portfolio",
+    "luxury portfolio",
+    "stylist website",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Hero",
+    "Editorial work",
+    "Lookbook",
+    "About",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "The template should feel more like a digital editorial spread than a standard portfolio grid.",
+    "Large imagery and refined type carry the brand identity throughout the page."
+  ],
+  "responsiveNotes": [
+    "Editorial sections collapse into touch-friendly image and text stacks.",
+    "The visual tone stays premium without relying on overly heavy chrome on mobile."
+  ],
+  "bestFor": [
+    "Fashion portfolios",
+    "Luxury personal brands",
+    "Editorial creators"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": false,
+  "updatedAt": "2026-04-25",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-25T12:29:34.436Z"
+}

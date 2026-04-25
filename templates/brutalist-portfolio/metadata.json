@@ -1,0 +1,58 @@
+{
+  "id": "template-brutalist-portfolio",
+  "slug": "brutalist-portfolio",
+  "title": "Brutalist Portfolio",
+  "summary": "A bold brutalist portfolio with hard edges, strong contrast, and poster-like typography for a standout visual identity.",
+  "description": "This template is ideal for creatives who want an unapologetically bold personal website with heavy borders, raw shapes, and a more anti-polished, expressive portfolio direction.",
+  "category": "portfolio",
+  "categoryTitle": "Portfolio Sites",
+  "platform": "responsive",
+  "platformLabel": "Responsive",
+  "framework": "html-css-js",
+  "frameworkLabel": "HTML + CSS + JS",
+  "templateType": "template",
+  "industry": "Portfolio",
+  "style": "Brutalist portfolio",
+  "audience": "experimental designers, art directors, and bold personal brands",
+  "tags": [
+    "brutalist portfolio",
+    "bold portfolio",
+    "experimental website",
+    "graphic design site",
+    "html portfolio"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "sections": [
+    "Hero",
+    "Work",
+    "About",
+    "Services",
+    "Contact"
+  ],
+  "layoutNotes": [
+    "The brutalist identity should feel deliberate and graphic rather than messy.",
+    "This template works well for portfolios that want strong visual memorability over softness."
+  ],
+  "responsiveNotes": [
+    "Hard-edged modules stack into strong mobile sections without losing visual clarity.",
+    "Typography remains large and direct so the style survives smaller screens."
+  ],
+  "bestFor": [
+    "Experimental portfolios",
+    "Art direction sites",
+    "Bold personal brands"
+  ],
+  "previewImage": null,
+  "previewCapturedAt": null,
+  "liveUrl": null,
+  "downloadUrl": null,
+  "featured": false,
+  "updatedAt": "2026-04-25",
+  "license": "Free download",
+  "priceLabel": "Free",
+  "generatedAt": "2026-04-25T12:29:34.436Z"
+}
